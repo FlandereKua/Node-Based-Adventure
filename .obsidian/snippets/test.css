@@ -1,0 +1,12 @@
+table {
+    table-layout: auto !important;
+    width: unset !important;
+    max-width: 100%;
+  
+    /* for centered tables, add the following */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  th {
+    text-align: center;
+  }

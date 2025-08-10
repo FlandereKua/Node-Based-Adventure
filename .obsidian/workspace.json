@@ -1,0 +1,227 @@
+{
+  "main": {
+    "id": "e41fad9b4bd183b6",
+    "type": "split",
+    "children": [
+      {
+        "id": "131e948d689d64f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e447f1561cd731e8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Zone/Arclight Province/Harken Forest (Deep).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Harken Forest (Deep)"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "343475ed8d798d54",
+    "type": "split",
+    "children": [
+      {
+        "id": "06f1d8fdcfcdf88b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d5ddf33475ff15b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f0a812bad8cbf04a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "42bc9422b0da746d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b141f22d328d3169",
+    "type": "split",
+    "children": [
+      {
+        "id": "458e014a846f8dc6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a36b284497ae14ea",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "6 - Story/Brewing Flame, Waving Divinities.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Brewing Flame, Waving Divinities"
+            }
+          },
+          {
+            "id": "6a800b85c4cece1f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "6 - Story/Brewing Flame, Waving Divinities.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Brewing Flame, Waving Divinities"
+            }
+          },
+          {
+            "id": "2c35e337a8028d7b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3c5c67120687349a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Zone/Arclight Province/Harken Forest (Deep).md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Harken Forest (Deep)"
+            }
+          },
+          {
+            "id": "927ffd62ee8caf9a",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "e447f1561cd731e8",
+  "lastOpenFiles": [
+    "Zone/Arclight Province/Harken Forest.md",
+    "Zone/Arclight Province/Harken Forest (Deep).md",
+    "Node Based.md",
+    "Zone/Arclight Province/Arken Town.md",
+    "Classes.md",
+    "Template/Magical Girl Tempplate.md",
+    "Template/Monster Template.md",
+    "Setting/World Setting.md",
+    "Template",
+    "Organization",
+    "Monster",
+    "Magical Girl",
+    "Setting.md",
+    "World Design.md",
+    "Auction.md",
+    "Report.md",
+    "WIFI.md",
+    "Chapter 1. Dream.md",
+    "Flandere Eonia.md",
+    "Welcome.md",
+    "Setting",
+    "Storyboard/Garbage Yard.md",
+    "5 - World/Suika Ibuki.md",
+    "5 - World/Flandre Eonia.md",
+    "5 - World/Sephie.md",
+    "5 - World/Radias.md",
+    "5 - World/Elizabeth Von Hasburg.md",
+    "5 - World/Arunka.md",
+    "Assets/Color-Table.md",
+    "6 - Story/Chapter 1 - Dawn.md",
+    "Storyboard/Untitled",
+    "6 - Story/Brewing Flame, Waving Divinities.md",
+    "Assets/Pasted image 20241217031050.png",
+    "Storyboard",
+    "Extra - Mission",
+    "6 - Story",
+    "5 - World",
+    "Assets/ZangyinPor.png",
+    "Assets/radiasPNG.png",
+    "Assets/HolmesPor.png",
+    "Assets/Holmes.png",
+    "Assets/1702741069946.jpg",
+    "Assets/output-onlinepngtools(1).png",
+    "Untitled.canvas"
+  ]
+}

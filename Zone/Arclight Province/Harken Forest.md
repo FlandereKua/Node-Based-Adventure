@@ -1,4 +1,4 @@
-# Harken Forest (Tier 1-2 Zone)
+# Harken Forest (Tier 1 Zone)
 
 ## Overview
 Harken Forest is an ancient, sprawling woodland that serves as a starting zone for new characters. The forest is characterized by its towering, moss-covered trees, dense undergrowth, and the ever-present sound of unseen wildlife. While relatively safe, it is not without its dangers. The creatures and plants here are foundational, offering the initial Nodes required for any adventurer to begin their journey.

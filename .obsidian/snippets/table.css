@@ -1,0 +1,15 @@
+table {
+  width: 600px; /* Set the total table width */
+  table-layout: fixed; /* Ensures equal column widths */
+  border-collapse: collapse; /* Collapse borders for cleaner design */
+  border: 1px solid black; /* Adds a border around the table */
+}
+
+th, td {
+  width: 33%; /* Ensures all columns have equal width */
+  border: 1px solid black; /* Adds borders to each cell */
+  padding: 8px; /* Adds spacing within cells */
+  text-align: left; /* Aligns text to the left */
+  word-wrap: break-word; /* Breaks long words to wrap text */
+  overflow-wrap: break-word; /* Ensures compatibility across browsers */
+}
