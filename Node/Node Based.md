@@ -22,6 +22,8 @@ Nodes are the fundamental building blocks of power and identity. Each Node repre
 *   **Titles & Reputations**: A title that changes how NPCs react to you.
 *   **Mutations**: A permanent change to the character's body or mind.
 
+**Alert**: Nodes could be detrimental or have little effects.
+
 ### Node Tiers
 Each Node has a Tier, indicating its rarity, power, and the difficulty of its acquisition.
 

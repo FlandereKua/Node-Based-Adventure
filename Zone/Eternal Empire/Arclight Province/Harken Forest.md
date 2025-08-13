@@ -1,161 +1,176 @@
-# Harken Forest (Tier 1 Zone)
+# Harken Forest (Tier 1) (Enemy Zone)
 
 ## Overview
-Harken Forest is an ancient, sprawling woodland that serves as a starting zone for new characters. The forest is characterized by its towering, moss-covered trees, dense undergrowth, and the ever-present sound of unseen wildlife. While relatively safe, it is not without its dangers. The creatures and plants here are foundational, offering the initial Nodes required for any adventurer to begin their journey.
+An ancient woodland of towering ironwoods, mossy understory, and constant birdsong. Safe enough for first ventures yet full of lessons: pack predators, stinging swarms, and patient plants that reward timing. Travelers come for starter combat nodes, basic recipes, and gentle stealth practice along shaded trails and creek crossings.
 
 ---
 
 ## Monsters
 
 ### Grumble Bee
-*   **Description**: Large, fist-sized bees with fuzzy, brown-striped bodies and a low, constant buzzing sound. They are highly territorial and will attack anything that approaches their nests, which hang from the lower branches of Ironwood trees.
-*   **Max Tier**: 1 (Common)
+*   Role: Basic
+*   **Description**: Fist-sized, territorial honey-guardians that rally around hanging nests and punish loud intruders.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Stinger Jab - Tier 1]`: A basic piercing attack skill.
-        *   **Acquisition**: Defeat a Grumble Bee in combat. The experience of being jabbed (or seeing it up close) unlocks the principle of the attack.
-    *   `[Basic Toxin Knowledge - Tier 1]`: A knowledge node that allows for the crafting of simple poisons.
-        *   **Acquisition**: Harvest a Grumble Bee's stinger without destroying it (requires a basic `[Harvesting]` node).
+    *   `[Stinger Jab - Tier 1]`
+        *   **Acquisition**: Defeat a Grumble Bee in melee or closely observe a stinger strike without breaking position.
+    *   `[Basic Toxin Knowledge - Tier 1]`
+        *   **Acquisition**: Harvest an intact stinger from a fresh corpse (requires `[Harvesting - Tier 1]` or equivalent care).
 
 ### Gloomfang Wolf
-*   **Description**: A lean, grey-furred wolf that hunts in small packs. Their eyes glow with a faint, pale light in the dim forest. They are cunning predators, known for flanking their prey. The pack leader is often larger and bears several scars.
-*   **Max Tier**: 2 (Uncommon)
+*   Role: Elite
+*   **Description**: Lean, grey-furred pack hunters with pale glimmering eyes; flank, feint, and test lines before committing.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Gloomfang Bite - Tier 2]`: A biting attack that has a chance to cause a minor "Bleed" effect.
-        *   **Acquisition**: Defeat a Gloomfang Wolf. This is a direct combat-learned node.
-    *   `[Pack Tactics - Tier 2]`: A passive node that grants a small damage bonus when fighting alongside allies who also have this node.
-        *   **Acquisition**: Defeat a Gloomfang Wolf Pack Leader, or observe a pack successfully hunt three times without being detected. This requires a degree of patience and stealth.
+    *   `[Gloomfang Bite - Tier 2]`
+        *   **Acquisition**: Defeat a Gloomfang Wolf in direct combat.
+    *   `[Pack Tactics - Tier 2]`
+        *   **Acquisition**: Defeat a Pack Leader, or observe a pack complete three hunts without detection.
 
 ---
 
 ## Fauna (Non-Hostile Wildlife)
 
 ### Sun-Whisker Squirrel
-*   **Description**: A common squirrel with unusually vibrant, golden whiskers. They are incredibly fast and skittish, darting between trees and burrows. They are often seen collecting nuts and shimmering seeds.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Golden-whiskered darting foragers that zigzag tree lines and stash shimmering seeds.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Nimble Feet - Tier 1]`: A passive node that slightly increases movement speed and dodge chance.
-        *   **Acquisition**: Successfully catch a Sun-Whisker Squirrel. This is a test of speed and timing, likely requiring the character to corner it or use a simple trap.
+    *   `[Nimble Feet - Tier 1]`
+        *   **Acquisition**: Catch one via timed cornering or a simple snare; release unharmed.
 
 ### Elderwood Deer
-*   **Description**: A majestic, large deer with antlers that resemble the gnarled branches of an old tree. They move with a serene grace and are rarely seen. They are considered a good omen by local hunters and are generally left undisturbed.
-*   **Max Tier**: 2 (Uncommon)
+*   **Description**: Majestic browsers with branchlike antlers; omens of calm that seldom spook if winds are right.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Forest's Calm - Tier 2]`: A passive node that reduces the aggro range of beasts and makes it easier to approach wildlife without startling it.
-        *   **Acquisition**: Approach within 10 meters of an Elderwood Deer without it fleeing. This requires significant stealth, possibly linking from nodes like `[Silent Step]` or using calming scents derived from local flora.
+    *   `[Forest's Calm - Tier 2]`
+        *   **Acquisition**: Approach within 10 meters without a flee response (stealth or calming scents help).
 
 ### Whistling Rabbit
-*   **Description**: Small, brown rabbits with oversized ears that produce a distinct whistling sound when they're alert. They live in burrow networks and are excellent at detecting danger from far away.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Burrowing lookouts whose ear-whistles carry early warnings across glades.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Danger Sense - Tier 1]`: A passive node that gives a brief warning before being ambushed or walking into a trap.
-        *   **Acquisition**: Follow a Whistling Rabbit to its burrow and observe how it reacts to various threats for at least 30 minutes without being detected.
+    *   `[Danger Sense - Tier 1]`
+        *   **Acquisition**: Observe alert behaviors at a burrow for 30 minutes without detection.
 
 ---
 
 ## Flora (Plants & Fungi)
 
 ### Glimmer Moss
-*   **Description**: A soft, green moss that grows on the shaded side of rocks and trees. At night, or in deep shade, it emits a gentle, pulsating blue-green light.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Shade-dwelling moss that pulses blue-green at night.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Basic Bioluminescence - Tier 1]`: A knowledge node that allows the character to use Glimmer Moss to create simple, temporary light sources like torches that don't require fire.
-        *   **Acquisition**: Harvest Glimmer Moss at night while it is actively glowing.
+    *   `[Basic Bioluminescence - Tier 1]`
+        *   **Acquisition**: Harvest while actively glowing after dusk.
 
 ### Ironwood Sapling
-*   **Description**: The young version of the towering trees that dominate the forest. The wood is surprisingly dense and hard, even at this early stage.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Young, dense-growth ironwood—tough even early.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Basic Woodworking - Tier 1]`: A knowledge node that unlocks the ability to craft simple wooden items like tool handles, basic shields, and arrows.
-        *   **Acquisition**: Harvest wood from an Ironwood Sapling using a hatchet or axe.
+    *   `[Basic Woodworking - Tier 1]`
+        *   **Acquisition**: Harvest with a hatchet/axe; process clean grains.
 
 ### Sunpetal Flower
-*   **Description**: A rare flower that only grows in clearings where direct sunlight can reach the forest floor. Its petals are a bright, sunny yellow, and they seem to follow the sun's path across the sky.
-*   **Max Tier**: 2 (Uncommon)
+*   **Description**: Bright yellow bloom in sunlit clearings; tracks the sun.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Minor Healing Draught Recipe - Tier 2]`: A knowledge node that unlocks the recipe for a basic healing potion at an Alchemy Lab or campfire.
-        *   **Acquisition**: Harvest a Sunpetal Flower while it is at the peak of its bloom (mid-day). Requires a foundational `[Herbalism]` node to understand which part of the plant holds the restorative properties.
+    *   `[Minor Healing Draught Recipe - Tier 2]`
+        *   **Acquisition**: Harvest at midday peak bloom (requires `[Herbalism - Tier 1]`).
 
 ### Shadowfern
-*   **Description**: Dark green ferns that grow in the deepest, shadiest parts of the forest. Their fronds have a peculiar property of absorbing light, creating small patches of deeper darkness around them.
-*   **Max Tier**: 2 (Uncommon)
+*   **Description**: Deep-shade fronds that seem to drink light.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Shadow Camouflage - Tier 2]`: An active skill that allows the character to blend with shadows, becoming much harder to detect while stationary.
-        *   **Acquisition**: Harvest Shadowfern while remaining completely motionless in natural shadow for 10 minutes. The plant teaches you how to become one with darkness.
+    *   `[Shadow Camouflage - Tier 2]`
+        *   **Acquisition**: Harvest while remaining motionless in natural shadow for 10 minutes.
 
 ### Honeydew Vine
-*   **Description**: Sweet-smelling vines that wrap around tree trunks, producing small droplets of golden, honey-like sap. The sap is highly nutritious and sought after by both animals and travelers.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Sweet-scented climber with golden, nutritious sap.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Foraging - Tier 1]`: A knowledge node that allows the identification and gathering of edible plants and natural food sources in the wild.
-        *   **Acquisition**: Successfully identify and safely consume Honeydew Vine sap without getting sick. Requires careful observation of which animals eat it first.
+    *   `[Foraging - Tier 1]`
+        *   **Acquisition**: Identify safe sap by watching what eats it; consume without illness.
 
 ### Whispergrass
-*   **Description**: Tall, thin grass that grows in forest clearings. When the wind passes through it, it creates soft, almost musical sounds. Local folklore says the grass carries messages between distant places.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Tall clearing-grass that sings with the wind.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Wind Reading - Tier 1]`: A knowledge node that allows the character to predict weather changes and detect the general direction of distant sounds or movements.
-        *   **Acquisition**: Sit quietly among Whispergrass during different weather conditions and learn to interpret the various sounds it makes.
+    *   `[Wind Reading - Tier 1]`
+        *   **Acquisition**: Sit among whispergrass across changing breezes and learn its tones.
 
 ### Thornbark Shrub
-*   **Description**: Defensive shrubs with thick, woody stems covered in sharp thorns. Despite their intimidating appearance, they produce small, bitter berries that have mild medicinal properties.
-*   **Max Tier**: 1 (Common)
+*   **Description**: Thorned woody shrub with bitter, medicinal berries.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Basic Toxin Knowledge - Tier 1]`: A knowledge node that allows for the crafting of simple poisons.
-        *   **Acquisition**: Carefully harvest Thornbark berries without getting pricked by the thorns. The process teaches precision and awareness of natural toxins (alternative to Grumble Bee method).
+    *   `[Basic Toxin Knowledge - Tier 1]`
+        *   **Acquisition**: Harvest berries without pricks; learn dosage and handling.
 
 ### Duskbloom Flower
-*   **Description**: Unusual flowers that only open their petals at twilight, releasing a soft, purple glow and a sweet fragrance. They close again at dawn and remain tightly shut during the day.
-*   **Max Tier**: 2 (Uncommon)
+*   **Description**: Twilight-only bloom with soft purple glow and fragrance.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Night Vision - Tier 2]`: A passive node that allows the character to see much better in low-light conditions.
-        *   **Acquisition**: Harvest a Duskbloom Flower at the exact moment it begins to open at sunset, while maintaining eye contact with its glow. The timing must be perfect.
+    *   `[Night Vision - Tier 2]`
+        *   **Acquisition**: Pluck at the precise moment of opening at sunset while maintaining visual focus.
 
 ### Crystalcap Mushroom
-*   **Description**: Rare mushrooms with translucent, crystal-like caps that grow on the roots of the oldest Ironwood trees. They seem to pulse with a faint inner light and are highly valued by alchemists.
-*   **Max Tier**: 2 (Uncommon)
+*   **Description**: Translucent, pulsing caps on ancient ironwood roots.
+*   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Mana Sensitivity - Tier 2]`: A passive node that allows the character to sense areas of concentrated magical energy and identify enchanted items.
-        *   **Acquisition**: Find and harvest a Crystalcap Mushroom while it's actively pulsing with light. The mushroom's magical resonance teaches sensitivity to mana (alternative to Moonwing Moth method).
+    *   `[Mana Sensitivity - Tier 2]`
+        *   **Acquisition**: Harvest while the cap is actively pulsing.
+
+---
+
+## Detriments & Situational Nodes
+*   `[Forest Muck - Tier 1]`
+    *   **Acquisition**: Move through boggy undergrowth or ford shallow creeks.
+    *   **Mitigation**: Dry by a fire, scrape boots, apply oil/wax to footwear.
+*   `[Pollen Irritation - Tier 1]`
+    *   **Acquisition**: Traverse blooming thickets in windy conditions.
+    *   **Mitigation**: Herbal salve from an apothecary; cloth mask.
+*   `[Sap-Sticky Hands - Tier 1]`
+    *   **Acquisition**: Harvest fresh sap or break resin-heavy branches barehanded.
+    *   **Mitigation**: Alcohol wipe, sand scrub, or water/ash wash.
+*   `[Buzzing Harried - Tier 1]`
+    *   **Acquisition**: Dusk travel near still water or sweet blooms.
+    *   **Mitigation**: Smoke, repellant poultice, or move to breezier ground.
+*   `[Trail-Loud - Tier 1]`
+    *   **Acquisition**: Move quickly through leaf-heavy paths.
+    *   **Mitigation**: Slow step, wet cloth wraps on feet, or use game trails.
 
 ---
 
 ## Recruitable Characters
 
-### Bramble the Lost Ranger
-*   **Description**: A weathered human ranger in his forties who has been living alone in Harken Forest for over a decade. He wears patched leather armor and carries a well-maintained bow. Bramble knows the forest like the back of his hand but seems haunted by some past tragedy. He's cautious around strangers but has a good heart.
-*   **Tier**: 2 (Uncommon)
+### Bramble, Ranger
+*   **Description**: Weathered forest hunter with a careful eye and a past he won’t let the woods forget.
+-   Power Target: Around zone difficulty to zone +1 for a guide archetype.
 *   **Notable Nodes**:
-    *   `[Forest Pathfinding - Tier 2]`: Can navigate through any forest terrain without getting lost and finds the most efficient routes.
-    *   `[Tracking - Tier 2]`: Can follow the trails of creatures and identify what passed through an area up to 3 days ago.
-    *   `[Survival Instinct - Tier 2]`: Requires less food and water, and can craft basic shelter from forest materials.
-    *   `[Precise Shot - Tier 2]`: Bow attacks have increased accuracy and a chance to hit weak points for extra damage.
-*   **Recruitment Method**: Help Bramble recover his lost locket from a Gloomfang Wolf den. The locket contains a picture of his deceased daughter. After completion, he'll offer to join you, saying he's tired of being alone.
-*   **Learnable Nodes from Interaction**:
-    *   `[Basic Archery - Tier 1]`: Learn by training with Bramble for a full day (requires having a bow).
-    *   `[Forest Lore - Tier 1]`: Listen to Bramble's stories about the forest's history and hidden locations.
+    *   `[Forest Pathfinding - Tier 2]`
+    *   `[Tracking - Tier 2]`
+    *   `[Survival Instinct - Tier 2]`
+    *   `[Precise Shot - Tier 2]`
+*   Recruitment Method: Recover his lost locket from a Gloomfang den; he joins once the memory is honored.
+*   Learnable Nodes: `[Basic Archery - Tier 1]`, `[Forest Lore - Tier 1]`
 
-### Whisp the Dryad Initiate
-*   **Description**: A young, ethereal humanoid with bark-like skin and leaves growing from her hair. She appears to be around 16 in human years but could be much older. Whisp is playful and curious about the outside world, often speaking to plants and animals as if they were old friends. She's half-dryad, caught between two worlds.
-*   **Tier**: 2 (Uncommon)
+### Whisp, Dryad Initiate
+*   **Description**: Playful half-dryad between worlds; chats with leaves and leans toward mischief.
+-   Power Target: Around zone difficulty to zone +1 for nature control.
 *   **Notable Nodes**:
-    *   `[Plant Communion - Tier 2]`: Can communicate with plants to gather information about recent events in the area.
-    *   `[Nature's Blessing - Tier 2]`: Passively regenerates health slowly when in natural environments.
-    *   `[Entangling Roots - Tier 2]`: Can cause roots to burst from the ground to immobilize enemies for a short time.
-    *   `[Photosynthesis - Tier 1]`: Requires less food during daylight hours when in sunlight.
-*   **Recruitment Method**: Whisp is being hunted by corrupted animals that are immune to her nature magic. Protect her during a nighttime assault (3 waves of corrupted creatures), and she'll ask to travel with you to learn about the world beyond the forest.
-*   **Learnable Nodes from Interaction**:
-    *   `[Nature Speech - Tier 1]`: Whisp teaches you basic communication with plants (requires `[Forest Communication]` node).
-    *   `[Herb Identification - Tier 1]`: Advanced plant knowledge beyond basic herbalism (kill Whisp to steal this knowledge).
+    *   `[Plant Communion - Tier 2]`
+    *   `[Nature's Blessing - Tier 2]`
+    *   `[Entangling Roots - Tier 2]`
+    *   `[Photosynthesis - Tier 1]`
+*   Recruitment Method: Protect Whisp through a three-wave night assault of corrupted creatures.
+*   Learnable Nodes: `[Nature Speech - Tier 1]`, `[Herb Identification - Tier 1]`
 
-### Old Tom the Hermit
-*   **Description**: An ancient, bearded man who lives in a hidden cave deep in the forest. His exact age is unknown, but he claims to have been in Harken Forest "since before the trees learned to whisper." He's eccentric and speaks in riddles, but possesses vast knowledge about magic and the forest's secrets.
-*   **Tier**: 1 (Common, but with hidden potential)
+### Old Tom, Hermit
+*   **Description**: Riddle-speaking cave sage with long memory and longer beard; trades wisdom for oddities.
+-   Power Target: Around zone difficulty to zone +1 for ritual support.
 *   **Notable Nodes**:
-    *   `[Ancient Wisdom - Tier 2]`: Has knowledge of long-lost crafting recipes and historical events.
-    *   `[Ritual Magic - Tier 2]`: Can perform complex magical rituals given the proper components and time.
-    *   `[Mana Weaving - Tier 1]`: Basic magical manipulation skills.
-    *   `[Hermit's Endurance - Tier 1]`: Can survive on very little food and water for extended periods.
-*   **Recruitment Method**: Bring Old Tom three rare components he requests: a Crystalcap Mushroom, a Moonwing Moth's wing, and the heart of a Gloomfang Wolf Pack Leader. He'll test your "worthiness" through a riddle contest. Success means he'll reluctantly agree to leave his cave to "see what foolishness the world has gotten up to."
-*   **Learnable Nodes from Interaction**:
-    *   `[Basic Ritual Knowledge - Tier 1]`: Learn simple magical rituals from Old Tom's teachings.
-    *   `[Forest History - Tier 1]`: Knowledge about the ancient past of Harken Forest and its secrets (kill Old Tom to forcibly extract this knowledge).
+    *   `[Ancient Wisdom - Tier 2]`
+    *   `[Ritual Magic - Tier 2]`
+    *   `[Mana Weaving - Tier 1]`
+    *   `[Hermit's Endurance - Tier 1]`
+*   Recruitment Method: Bring a Crystalcap Mushroom, a Moonwing Moth’s wing, and a Gloomfang Pack Leader’s heart; pass his riddle trial.
+*   Learnable Nodes: `[Basic Ritual Knowledge - Tier 1]`, `[Forest History - Tier 1]`

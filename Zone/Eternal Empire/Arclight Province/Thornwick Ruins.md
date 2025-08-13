@@ -1,238 +1,152 @@
-# Thornwick Ruins (Tier 2-3 Haunted Zone)
+# Thornwick Ruins (Tier 3) (Enemy Zone)
 
 ## Overview
-Once the prosperous village of Thornwick, this area was abandoned decades ago after a mysterious plague swept through the population. Now overgrown with twisted thorns and unnatural vegetation, the ruins are haunted by restless spirits and corrupted wildlife. The very ground seems tainted, with patches of blackened soil that nothing healthy will grow upon.
-
-Ancient stone foundations peek through masses of thorny vines, while collapsed roofs and shattered walls create a maze of dangerous passages. An unnatural mist clings to the ruins during certain hours, and travelers report hearing voices calling from empty doorways. The area pulses with malevolent spiritual energy that affects both the living and the dead.
+Once the prosperous village of Thornwick, these ivy-choked ruins now pulse with malevolent spiritual energy. Thorn mazes shift when unwatched, graves heave, and a cold, whispering hush hangs over the chapel and well. Travelers come seeking rare spirit knowledge, powerful corruption cures, and hard-won lessons from the dead—and many do not return.
 
 ---
 
-## Key Locations & Encounters
+## Monsters
 
-### The Cursed Well
-*   **Description**: A circular stone well at the village center, now sealed with rusted iron grating. Black water can be glimpsed far below, and strange whispers seem to emanate from its depths. Thorny vines have grown through the grating, creating an almost web-like barrier.
-*   **Encounters**: 2 **Thorn Wraiths** (Tier 2), 1 **Well Guardian** (Tier 3)
+### Thorn Wraith
+*   **Role**: Elite
+*   **Description**: Plague-twisted spirits tangled in spectral thorns, phasing between matter and mist while lashing out from mid-range.
+*   **Tier**: 2
 *   **Notable Nodes**:
-    *   `[Spirit Communication - Tier 2]`: The ability to speak with and understand restless spirits, gaining information from beyond the veil.
-        *   **Acquisition**: Listen to the whispers from the well without being driven mad, then successfully communicate with the trapped spirits.
-    *   `[Curse Detection - Tier 2]`: Knowledge of how to identify cursed objects, areas, and individuals before their effects manifest.
-        *   **Acquisition**: Identify the source of the well's corruption without touching the cursed water.
+    *   `[Phase Shift - Tier 2]`
+        *   Acquisition Defeat a Thorn Wraith while timing counters during or immediately after its phasing attempt.
+    *   `[Thorn Lash - Tier 2]`
+        *   Acquisition Parry or endure a lash without dropping guard, then retaliate to stagger the wraith.
 
-### The Plaguekeeper's House
-*   **Description**: A partially collapsed two-story building that once belonged to the village healer. Medical equipment lies scattered and rusted, while strange alchemical stains mark the walls. Fungal growths pulse with sickly light, and the air carries the scent of decay and failed medicines.
-*   **Encounters**: 1 **Plague Doctor Phantom** (Tier 3 Boss), 3 **Disease Sprites** (Tier 1)
+### Disease Sprite
+*   **Role**: Basic
+*   **Description**: Sickly, green wisps born of concentrated plague energy; harry intruders in clouds and pile onto lone targets.
+*   **Tier**: 2
 *   **Notable Nodes**:
-    *   `[Disease Resistance - Tier 2]`: Natural immunity to most common diseases and enhanced recovery from illness.
-        *   **Acquisition**: Survive exposure to the concentrated plague energies in the house without succumbing to disease effects.
-    *   `[Undeath Knowledge - Tier 3]`: Understanding of how spirits bind to the material world and what drives undead creatures.
-        *   **Acquisition**: Defeat the Plague Doctor Phantom after learning about their tragic transformation from healer to monster.
+    *   `[Sickness Aura - Tier 1]`
+        *   Acquisition Get swarmed then disperse the sprites with smoke, wind, or movement without being downed.
+    *   `[Swarm Strike - Tier 1]`
+        *   Acquisition Defeat a cluster while they are focused on one ally or decoy.
+    *   `[Disease Resistance - Tier 2]`
+        *   Acquisition Survive concentrated miasma within the Plaguekeeper’s ruins or the Phantom’s alchemical clouds without succumbing, then complete the area encounter.
 
-### The Thorn Maze Garden
-*   **Description**: What was once the village's communal garden has become a labyrinth of thorny vines and corrupted plants. The thorns seem to move when no one is looking, and hidden paths shift between visits. At the center lies a corrupted shrine to a nature deity, now twisted into something malevolent.
-*   **Encounters**: 2 **Thorn Stalkers** (Tier 2), 1 **Corrupted Dryad** (Tier 3)
+### Thorn Stalker
+*   **Role**: Basic
+*   **Description**: Corrupted beasts fused with barbed growths; motionless, they vanish among briars, then spring from cover.
+*   **Tier**: 2
 *   **Notable Nodes**:
-    *   `[Nature's Corruption - Tier 3]`: Understanding of how natural forces can be perverted and turned against their original purpose.
-        *   **Acquisition**: Witness the Corrupted Dryad's transformation and learn how the plague affected even nature spirits.
-    *   `[Thorn Resistance - Tier 2]`: Physical adaptation that reduces damage from piercing attacks and natural hazards.
-        *   **Acquisition**: Navigate the entire thorn maze without taking damage from the moving vines.
+    *   `[Thorn Camouflage - Tier 2]`
+        *   Acquisition Observe an ambush from within cover without being detected, then replicate the stillness for one minute.
+    *   `[Thorn Resistance - Tier 2]`
+        *   Acquisition Navigate a thorn corridor without taking bleed damage using careful body positioning and tools.
 
-### The Silent Chapel
-*   **Description**: A small stone chapel dedicated to a deity of peace and rest. The building remains structurally intact, but no sound can be heard within its walls - not even footsteps or breathing. Stained glass windows show scenes of death and judgment, though locals swear they once depicted salvation and hope.
-*   **Encounters**: 1 **Silent Warden** (Tier 3), 2 **Mute Spirits** (Tier 2)
+### Risen Villager
+*   **Role**: Basic
+*   **Description**: Restless dead who dimly remember duty and neighbor; slow but coordinated in groups and hard to frighten.
+*   **Tier**: 2
 *   **Notable Nodes**:
-    *   `[Sacred Silence - Tier 3]`: The ability to move and act without making any sound, even during combat.
-        *   **Acquisition**: Spend one full hour in the chapel's absolute silence without breaking the effect or going mad.
-    *   `[Divine Corruption - Tier 3]`: Knowledge of how sacred places and holy symbols can be twisted by evil influences.
-        *   **Acquisition**: Restore the chapel's original blessing by understanding what corrupted it in the first place.
+    *   `[Plague Touch - Tier 2]`
+        *   Acquisition Defeat a villager after resisting or immediately curing an applied disease during combat.
+    *   `[Grave Sight - Tier 2]`
+        *   Acquisition Read the echoes at an undisturbed grave, then lay one spirit to rest without destroying its body.
 
-### The Overgrown Cemetery
-*   **Description**: Thornwick's graveyard has become completely overgrown with thorny vines that seem to feed on the buried dead. Headstones are cracked and tilted, while some graves have been torn open from within. Spectral lights dance between the tombs at night, and the very ground feels unsteady.
-*   **Encounters**: 3 **Risen Villagers** (Tier 2), 1 **Grave Warden** (Tier 3), Multiple **Wandering Souls** (Tier 1)
+### Boss: Plague Doctor Phantom
+*   **Role**: Boss
+*   **Description**: The village healer’s guilt-bound spirit, experimenting with ghostly alchemy and empowering nearby undead.
+*   **Tier**: 3
 *   **Notable Nodes**:
-    *   `[Undead Command - Tier 3]`: The ability to give simple commands to lesser undead creatures, making them temporary allies.
-        *   **Acquisition**: Defeat the Grave Warden without destroying any of the risen villagers, then convince them to rest peacefully.
-    *   `[Grave Sight - Tier 2]`: The ability to see the spiritual echoes of recently deceased beings and understand their final moments.
-        *   **Acquisition**: Witness the tragedy that befell each risen villager by examining their graves with supernatural sight.
+    *   `[Failed Healing - Tier 3]`
+        *   Acquisition Defeat the Phantom after interrupting one of its false healings on an ally or undead thrall.
+    *   `[Phantom Experiment - Tier 3]`
+        *   Acquisition Survive and neutralize three experiment effects in a single encounter before landing the killing blow.
+    *   `[Undead Empowerment - Tier 3]`
+        *   Acquisition Defeat the Phantom while at least two empowered undead are active.
+    *   `[Undeath Knowledge - Tier 3]`
+        *   Acquisition Study the healer’s journal fragments, then win the fight without striking any non-hostile undead.
+
+### Boss: Well Guardian
+*   **Role**: Boss
+*   **Description**: A mass of spectral water and grasping hands rising from the sealed well; dominates space with drowning pressure.
+*   **Tier**: 3
+*   **Notable Nodes**:
+    *   `[Drowning Grasp - Tier 3]`
+        *   Acquisition Escape a grasp without assistance, then defeat the Guardian in the same attempt.
+    *   `[Spiritual Torrent - Tier 3]`
+        *   Acquisition Break line-of-sight and counter-push through two torrents before closing to finish the fight.
+    *   `[Plague Memory - Tier 3]`
+        *   Acquisition Resist the memory visions to full duration once, then end the Guardian within the next minute.
+    *   `[Spirit Communication - Tier 2]`
+        *   Acquisition Listen at the well’s grate at night without breaking composure, then quell the Guardian’s surge.
+    *   `[Curse Detection - Tier 2]`
+        *   Acquisition Determine the precise source of the well’s taint without touching the water, then suppress the Guardian.
+
+### Boss: Corrupted Dryad
+*   **Role**: Boss
+*   **Description**: The garden’s guardian spirit twisted by blight; reshapes briars and commands tainted nature.
+*   **Tier**: 3
+*   **Notable Nodes**:
+    *   `[Thorn Manipulation - Tier 3]`
+        *   Acquisition Force the Dryad to reshape the maze three times, then strike during the reconfiguration window.
+    *   `[Poison Sap - Tier 3]`
+        *   Acquisition Cleanse all poison stacks during the fight, then defeat her without taking a final tick of toxin.
+    *   `[Nature’s Wrath - Tier 3]`
+        *   Acquisition Eliminate all adds within a single phase, then finish the boss before the next call.
+    *   `[Nature’s Corruption - Tier 3]`
+        *   Acquisition Witness the Dryad’s memory at the shrine after the fight and deduce the corruption chain.
+
+### Boss: Silent Warden
+*   **Role**: Boss
+*   **Description**: The chapel’s bound priest-spirit; crafts zones of absolute silence and twists benedictions into harms.
+*   **Tier**: 3
+*   **Notable Nodes**:
+    *   `[Silence Barrier - Tier 3]`
+        *   Acquisition Lure the Warden to place three overlapping barriers, then defeat him while muted.
+    *   `[Mute Curse - Tier 3]`
+        *   Acquisition Reflect or cleanse one Mute during the encounter, then end the fight without reapplication.
+    *   `[Corrupted Blessing - Tier 3]`
+        *   Acquisition Survive a corrupted blessing at low health and immediately turn the tide to victory.
+    *   `[Sacred Silence - Tier 3]`
+        *   Acquisition Endure one hour of the chapel’s silence without breaking it before confronting the Warden.
+    *   `[Divine Corruption - Tier 3]`
+        *   Acquisition Restore the chapel’s symbol after the fight by identifying the exact source of taint.
+
+### Boss: Grave Warden
+*   **Role**: Boss
+*   **Description**: The gravedigger’s towering spirit, commanding risen villagers and reaping both flesh and soul.
+*   **Tier**: 3
+*   **Notable Nodes**:
+    *   `[Grave Command - Tier 3]`
+        *   Acquisition Interrupt two summons by locating the calling graves, then finish the boss before a third.
+    *   `[Soul Reaping - Tier 3]`
+        *   Acquisition Survive a full reap cycle without using invulnerability, then secure the kill.
+    *   `[Burial Rite - Tier 3]`
+        *   Acquisition Prevent two rite attempts with precise staggers, then defeat the Warden.
+    *   `[Undead Coordination - Tier 3]`
+        *   Acquisition Win while five or more undead remain active.
+    *   `[Undead Command - Tier 3]`
+        *   Acquisition Defeat the Warden without destroying any villagers, then lay them to peaceful rest.
 
 ---
 
-## Enemy Types
-
-### Thorn Wraith (Tier 2)
-*   **Description**: Spirits of plague victims who became entangled with the corrupted thorns during their final moments. They appear as translucent figures wrapped in spectral vines, capable of phasing between material and spiritual states.
-*   **Combat Style**: Phases in and out of physical reality, uses thorn attacks that can pierce armor.
-*   **Notable Abilities**:
-    *   `[Phase Shift - Tier 2]`: Can become temporarily incorporeal to avoid physical attacks.
-    *   `[Thorn Lash - Tier 2]`: Spectral thorns that can strike at medium range and cause bleeding.
-
-### Disease Sprite (Tier 1)
-*   **Description**: Tiny, malevolent spirits that formed from concentrated plague energy. They appear as sickly green wisps that leave trails of corrupted air wherever they float.
-*   **Combat Style**: Swarm tactics, inflicts disease and weakness effects.
-*   **Notable Abilities**:
-    *   `[Sickness Aura - Tier 1]`: Nearby enemies suffer reduced stamina and healing.
-    *   `[Swarm Strike - Tier 1]`: Multiple sprites can combine their attacks for greater effect.
-
-### Thorn Stalker (Tier 2)
-*   **Description**: Corrupted animals that have become fused with the thorny vines. Most appear to be former deer or wolves, now covered in barbed growths and moving with unnatural, jerky motions.
-*   **Combat Style**: Ambush predators that use the thorn maze for cover and concealment.
-*   **Notable Abilities**:
-    *   `[Thorn Camouflage - Tier 2]`: Nearly invisible when motionless among thorny vegetation.
-    *   `[Barbed Hide - Tier 2]`: Damages attackers who strike in melee range.
-
-### Risen Villager (Tier 2)
-*   **Description**: The reanimated corpses of Thornwick's former residents, still wearing the tattered remains of their burial clothes. Unlike typical undead, they retain fragments of their original memories and personalities.
-*   **Combat Style**: Slow but relentless, uses simple weapons and coordinated group tactics.
-*   **Notable Abilities**:
-    *   `[Plague Touch - Tier 2]`: Attacks carry risk of disease transmission.
-    *   `[Undying Loyalty - Tier 2]`: Fights harder when other villagers are threatened.
-
-### Mute Spirit (Tier 2)
-*   **Description**: Ghostly figures of those who died trying to pray for salvation in the chapel. They appear as translucent humans with their mouths sewn shut with spectral thread.
-*   **Combat Style**: Silent attackers that coordinate without verbal communication.
-*   **Notable Abilities**:
-    *   `[Silent Coordination - Tier 2]`: Can perfectly coordinate attacks without making any sound.
-    *   `[Despair Aura - Tier 2]`: Nearby enemies suffer reduced morale and willpower.
-
-### Wandering Soul (Tier 1)
-*   **Description**: The weakest spirits in the ruins, these are fragments of consciousness that couldn't fully form into more powerful undead. They appear as barely visible wisps of light that drift aimlessly.
-*   **Combat Style**: Weak individually but can possess objects or merge with stronger undead.
-*   **Notable Abilities**:
-    *   `[Object Possession - Tier 1]`: Can briefly animate simple objects as weapons.
-    *   `[Soul Merge - Tier 1]`: Can temporarily strengthen other undead by merging with them.
+## Detriments & Situational Nodes
+*   `[Whispers at the Nape - Tier 1]`
+    *   Acquisition Linger in chapel or grave lanes at night.
+    *   Mitigation Consecrated charm, incense, or daytime approach.
+*   `[Thorn-Torn - Tier 1]`
+    *   Acquisition Push through hedge walls without cutting a path.
+    *   Mitigation Gloves/cloak wrap, machete, or take stone lanes.
+*   `[Shifting Thorn Maze - Tier 2]`
+    *   Acquisition Traverse the garden while doubling back without markers.
+    *   Mitigation `[Thorn Camouflage - Tier 2]`, trail cords, or mirrored sightlines.
+*   `[Plague Miasma - Tier 2]`
+    *   Acquisition Engage near fungus-bloom houses during fog.
+    *   Mitigation `[Disease Resistance - Tier 2]`, masks, wind wards.
+*   `[Spiritual Interference - Tier 2]`
+    *   Acquisition Fight amid overlapping haunt fields.
+    *   Mitigation `[Spirit Communication - Tier 2]`, `[Mental Fortitude - Tier 2]`, or purified charms.
+*   `[Cursed Ground - Tier 2]`
+    *   Acquisition Prolonged battle on tainted plots.
+    *   Mitigation `[Curse Detection - Tier 2]` to route around, or sanctified earth.
 
 ---
 
-## Elite Enemies & Bosses
 
-### Well Guardian (Tier 3)
-*   **Description**: A massive spirit formed from the collective despair of plague victims thrown into the well. It appears as a writhing mass of spectral water and grasping hands that emerges from the cursed depths.
-*   **Combat Style**: Area control fighter that uses water and spiritual attacks.
-*   **Notable Abilities**:
-    *   `[Drowning Grasp - Tier 3]`: Can pull enemies into spectral water, causing suffocation damage.
-    *   `[Spiritual Torrent - Tier 3]`: Unleashes waves of cursed water that damage both body and soul.
-    *   `[Plague Memory - Tier 3]`: Forces enemies to experience the final moments of plague victims.
-
-### Plague Doctor Phantom (Tier 3 Boss)
-*   **Description**: The spirit of Thornwick's healer, who desperately tried to save his patients but only accelerated their deaths through failed experiments. Wears a spectral plague doctor's mask and coat, carrying ghostly medical instruments.
-*   **Combat Style**: Support-focused boss that enhances other undead while using alchemical attacks.
-*   **Notable Abilities**:
-    *   `[Failed Healing - Tier 3]`: Attempts to "heal" enemies, actually causing damage and disease.
-    *   `[Phantom Experiment - Tier 3]`: Uses ghostly alchemical equipment to create harmful effects.
-    *   `[Undead Empowerment - Tier 3]`: Strengthens all other undead in the area.
-    *   `[Guilty Transformation - Tier 3]`: At low health, transforms into a more monstrous form.
-
-### Corrupted Dryad (Tier 3)
-*   **Description**: Once the guardian spirit of Thornwick's gardens, she was driven mad by the corruption of her domain. Her wooden form is now twisted with thorns, and sap that bleeds from her bark carries the taint of the plague.
-*   **Combat Style**: Nature magic turned malevolent, controls the thorn maze environment.
-*   **Notable Abilities**:
-    *   `[Thorn Manipulation - Tier 3]`: Can reshape the maze during combat, creating new paths or barriers.
-    *   `[Poison Sap - Tier 3]`: Ranged attacks that inflict multiple negative status effects.
-    *   `[Nature's Wrath - Tier 3]`: Calls corrupted animals and plants to assist in battle.
-    *   `[Root Network - Tier 3]`: Can sense the location of all living beings touching the ground.
-
-### Silent Warden (Tier 3)
-*   **Description**: The former priest of the chapel, transformed into a guardian spirit bound to protect the sacred silence. Appears as a tall, robed figure whose face is hidden in shadow, carrying a staff topped with a cracked holy symbol.
-*   **Combat Style**: Defensive fighter that uses silence-based attacks and holy magic turned dark.
-*   **Notable Abilities**:
-    *   `[Silence Barrier - Tier 3]`: Creates areas where no sound can exist, disrupting spellcasting and coordination.
-    *   `[Mute Curse - Tier 3]`: Can permanently remove an enemy's ability to speak or use verbal abilities.
-    *   `[Corrupted Blessing - Tier 3]`: Uses twisted versions of healing magic that harm instead of helping.
-    *   `[Sacred Ground - Tier 3]`: The chapel itself assists in combat, moving walls and changing layout.
-
-### Grave Warden (Tier 3)
-*   **Description**: The spirit of Thornwick's gravedigger, who continued his duties even after death. A tall, skeletal figure wrapped in tattered burial shrouds, wielding a massive spectral shovel that can tear through both flesh and spirit.
-*   **Combat Style**: Melee specialist that can summon and command multiple undead minions.
-*   **Notable Abilities**:
-    *   `[Grave Command - Tier 3]`: Can instantly summon risen villagers from nearby graves.
-    *   `[Soul Reaping - Tier 3]`: Attacks that damage both health and spiritual energy.
-    *   `[Burial Rite - Tier 3]`: Can attempt to instantly kill badly wounded enemies by "burying" them.
-    *   `[Undead Coordination - Tier 3]`: All undead in the area fight with perfect tactical coordination.
-
----
-
-## Environmental Hazards
-
-### Shifting Thorn Maze
-*   **Effect**: Paths through the garden change when not directly observed, potentially separating party members.
-*   **Mitigation**: `[Nature Knowledge]` or `[Spiritual Sight]` nodes can predict the changes.
-
-### Plague Miasma
-*   **Effect**: Certain areas emit clouds of diseased air that can cause sickness and hallucinations.
-*   **Mitigation**: `[Disease Resistance]` nodes or proper protective equipment reduce effects.
-
-### Spiritual Interference
-*   **Effect**: High concentration of restless spirits disrupts magical abilities and mental focus.
-*   **Mitigation**: `[Spirit Communication]` or `[Mental Fortitude]` nodes help maintain clarity.
-
-### Cursed Ground
-*   **Effect**: Some areas drain stamina and spiritual energy from living beings while strengthening undead.
-*   **Mitigation**: `[Curse Detection]` can identify safe paths through cursed areas.
-
----
-
-## Exploration Rewards
-
-### Hidden Plague Doctor's Laboratory
-*   **Location**: Secret basement beneath the Plaguekeeper's House
-*   **Requirements**: `[Investigation - Tier 2]` and surviving plague effects
-*   **Rewards**: 
-    *   Ancient alchemical equipment
-    *   `[Advanced Medicine - Tier 3]` node
-    *   Plague Doctor's Journal (provides background lore)
-
-### The Original Sacred Spring
-*   **Location**: Hidden beneath the corrupted well
-*   **Requirements**: Defeat the Well Guardian and `[Sacred Rituals - Tier 2]`
-*   **Rewards**:
-    *   Holy water that can cure curses
-    *   `[Purification - Tier 3]` node
-    *   Blessing that provides protection against undead
-
-### Dryad's Memory Grove
-*   **Location**: Secret area within the thorn maze
-*   **Requirements**: Convince the Corrupted Dryad to show you her memories
-*   **Rewards**:
-    *   Seeds from before the corruption
-    *   `[Nature Restoration - Tier 3]` node
-    *   Knowledge of how to heal corrupted natural areas
-
----
-
-## Overall Zone Objectives
-
-### Primary Objective: Cleanse the Ruins
-*   **Goal**: Defeat all major undead and lift the curse from Thornwick
-*   **Requirements**: Defeat all bosses and discover the plague's true origin
-*   **Rewards**: 
-    *   Zone becomes safe for travel and settlement
-    *   `[Master Exorcist - Tier 4]` node
-    *   Title: "Cleanser of Thornwick"
-
-### Secondary Objective: Uncover the Truth
-*   **Goal**: Discover what really caused the plague and why it still lingers
-*   **Requirements**: Collect lore from each location and piece together the mystery
-*   **Rewards**:
-    *   `[Plague Investigation - Tier 3]` node
-    *   Knowledge that may prevent similar tragedies
-    *   Access to related questlines in other regions
-
-### Optional Objective: Redemption Path
-*   **Goal**: Help the major spirits find peace instead of destroying them
-*   **Requirements**: High-tier social and spiritual nodes, specific dialogue choices
-*   **Rewards**:
-    *   `[Spirit Guidance - Tier 4]` node
-    *   Grateful spirits provide ongoing assistance
-    *   Unique equipment blessed by redeemed spirits
-
----
-
-## Connection to Node-Based System
-
-Thornwick Ruins serves as an excellent source of high-tier spiritual and medical nodes, contrasting with the more mundane combat and social nodes available from Brown Wolf Camp. The zone's emphasis on supernatural threats and curse mechanics integrates well with the game's node system by:
-
-1. **Offering Specialized Nodes**: Many nodes here are unique to spiritual/undead encounters
-2. **Teaching Advanced Concepts**: Players learn about curse mechanics, spirit communication, and the intersection of nature/holy magic
-3. **Providing Moral Choices**: The redemption path offers alternative solutions that require different node combinations
-4. **Environmental Integration**: Hazards and exploration rewards encourage diverse node builds beyond pure combat
-
-The zone works best for parties that have already mastered basic combat and are ready to tackle more complex, puzzle-like encounters that require specific node combinations to solve effectively.
