@@ -1,7 +1,6 @@
 # {{Zone Name}} (Tier {Zone Difficulty}) (Enemy Zone)
 
 How to use
-- Tierless template. Do not write numeric tiers in names. Use role-based Tier below.
 - Assign enemies a role (Basic, Elite, Boss) and scale their difficulty relative to the zone’s intended challenge.
 - Keep node names in [Square Case] and include Acquisition/Mitigation where relevant.
 
@@ -16,7 +15,11 @@ How to use
 ---
 
 ## Monsters
-List 2–4 enemy types with role, description, notable nodes, and acquisition.
+List 2–4 enemy types with role, description, nodes, and acquisition.
+- Basic Monster possess 1-2 Notable Nodes
+- Basic Monster possess 2-3 Notable Nodes
+- Basic Monster possess 3-4 Notable Nodes
+
 
 ### {{Monster A}}
 *   **Role**: Basic | Elite | Boss
@@ -28,19 +31,11 @@ List 2–4 enemy types with role, description, notable nodes, and acquisition.
       *   `[{{Passive/Tactic}}]`: Effect.
       *   **Acquisition** Defeat elite/observe behavior N times without detection (≈ zone − 1).
 
-### {{Monster B}}
-*   **Role**: …
-*   **Description**: …
-*   **Tier**: …
-*   **Notable Nodes**:
-      *   `[{{Skill}}]`: Effect.
-      *   **Acquisition** …
-
 ---
 **Note**: Some enemy zones won’t have Fauna or Flora (e.g., human settlements, enemy camps like Brown Wolf Camp).
 
 ## Fauna (Non-Hostile Wildlife) (Optional)
-Add 1–3 with gentle node rewards for exploration or patience.
+Add 1–3 with node rewards for exploration or patience.
 
 ### {{Fauna A}}
 *   **Description**: Flavor + behavior.
@@ -64,7 +59,7 @@ Add 3–6 resource nodes; emphasize gathering conditions.
 ---
 
 ## Detriments & Situational Nodes
-Local negatives that encourage prep and environmental play.
+Local negatives that encourage prep and environmental play. Scale with {Zone Difficulty}.
     *   `[{{Terrain Penalty}}]`: Effect.
     *   **Acquisition** Condition.
     *   **Mitigation**: Clear, thematic counterplay (often available in adjacent towns).
@@ -72,8 +67,6 @@ Local negatives that encourage prep and environmental play.
     *   **Acquisition** …
     *   **Mitigation**: …
 
-Example (from Harken Forest)
-    *   [Forest Muck], [Pollen Irritation], [Buzzing Harried]
 
 ---
 
@@ -92,10 +85,4 @@ Provide up to 3 with role clarity and learnables.
 ---
 
 ## Integration Notes (Designer)
-  - Role-based Tier (tierless):
-  - Enemies: Basic ≥ zone − 2; Elite ≥ zone − 1; Boss ≥ zone (optionally +1 for apex).
-  - Nodes: Basic/knowledge ≈ zone − 2; tactical/elite ≈ zone − 1; boss/unique ≈ zone to zone +1.
-  - Detriments: Baseline intensity ≈ zone − 2; escalate in hazardous sub-biomes.
-- Provide at least one alternate acquisition path for knowledge nodes when possible.
-- Ensure detriments have 2–3 mitigations discoverable in nearby towns.
 - Cross-link to adjacent towns or hubs for services (repairs, cures, auctions).

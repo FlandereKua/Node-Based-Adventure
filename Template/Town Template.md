@@ -25,33 +25,33 @@ Note: These are example patterns. Replace, add, or remove as needed for the town
 - Description: Atmosphere, proprietor/attendants, clientele.
 - Services: Rest/refreshment, job/rumor board, letters, mediation, rites.
 - Notable Nodes Example:
-  - [{{Social/Info Node}}]: Short effect.
+  - [{{Social/Info Node}} - Tier: {{Node Tier}}]: Short effect.
     - Acquisition: Time/cost/action at the venue.
-  - [{{Negotiation/Events}}]: Small edge after facilitating disputes or hosting an event.
+  - [{{Negotiation/Events}} - Tier: {{Node Tier}}]: Small edge after facilitating disputes or hosting an event.
 
 ### {{Location B: Crafting/Works (Smithy/Tannery/Workshop/Shipyard)}}
 - Description: Owner, specialty.
 - Services: Crafting, repairs, materials, commissions.
 - Notable Nodes Example:
-  - [{{Basic Craft}}]: Unlocks simple recipes.
+  - [{{Basic Craft}} - Tier: {{Node Tier}}]: Unlocks simple recipes.
     - Acquisition: Complete owner’s request or lesson.
-  - [{{Maintenance/Upkeep}}]: Slows gear degradation.
+  - [{{Maintenance/Upkeep}} - Tier: {{Node Tier}}]: Slows gear degradation.
     - Acquisition: Purchase kit and receive training.
 
 ### {{Location C: Herbalist/Clinic/Apothecary}}
 - Description: Healer/alchemist, shop flavor.
 - Services: Potions, salves, identifications, cures.
 - Notable Nodes Example:
-  - [{{Herbalism}}]: Gather without damaging plants.
+  - [{{Herbalism}} - Tier: {{Node Tier}}]: Gather without damaging plants.
     - Acquisition: Provide sample set; receive instruction.
-  - [{{Field Care}}]: Craft basic care in the field.
+  - [{{Field Care}} - Tier: {{Node Tier}}]: Craft basic care in the field.
     - Acquisition: Unlock via prior recipe or favor.
 
 ### {{Location D: Administration/Guild/Temple/Watch}}
 - Description: Who’s in charge; papers/rites they control.
 - Services: Permits, titles, arbitration, quests.
 - Notable Nodes Example:
-  - [{{Local Title}}] (Title): Discounts or dialogue unlocks.
+  - [{{Local Title}} - Tier: {{Node Tier}}] (Title): Discounts or dialogue unlocks.
     - Acquisition: Complete a town task, pay fee, or pass exam.
 
 Optional Locations
@@ -65,18 +65,15 @@ Optional Locations
 ## Detriments & Situational Nodes
 Local negatives that should be avoidable or mitigable via services, prep, or playstyle.
 
-- [{{Local Irritant}}]: Minor stat/skill penalty in specific contexts.
+- [{{Local Irritant}} - Tier: {{Node Tier}}]: Minor stat/skill penalty in specific contexts.
   - Acquisition: Exposure condition.
   - Mitigation: Local remedy or rest.
-- [{{Social Reputation Mark}}]: Buyers wary; prices up.
+- [{{Social Reputation Mark}} - Tier: {{Node Tier}}]: Buyers wary; prices up.
   - Acquisition: Brawl/theft/rule breach.
   - Mitigation: Pay fine, perform favor, donate.
-- [{{Equipment Wear}}]: Tool/weapon minor penalty.
+- [{{Equipment Wear}} - Tier: {{Node Tier}}]: Tool/weapon minor penalty.
   - Acquisition: Prolonged use without upkeep.
   - Mitigation: Use workshop service/kit.
-
-Example (from Arken Town)
-- [Sawdust Cough], [Overindulged], [Blunt Edge], [Marked by Gossip]
 
 ---
 
@@ -106,13 +103,10 @@ Provide 1–3 recruits with clear roles and learnables.
 - Description: Visuals, personality, motivation.
 - Tier: Around local challenge − 1 to local challenge for small towns; scale up for Elite/Secret Character.
 - Notable Nodes Example:
-  - [{{Combat/Support}}]
-  - [{{Utility/Knowledge}}]
+  - [{{Combat/Support}} - Tier: {{Node Tier}}]
+  - [{{Utility/Knowledge}} - Tier: {{Node Tier}}]
 - Recruitment Method: Clear, optional path with requirements.
 - Learnable Nodes from Interaction: [{{Skill A}}], [{{Skill B}}]
-
-Example (from Arken Town)
-- Marcus (shield), Vera (trade), Father Aldric (healing), Senna (stealth)
 
 ---
 
