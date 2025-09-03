@@ -14,162 +14,163 @@ Deep within the Hidden Valleys of the Murim Confederation lies a legendary natur
 ## Flora (Plants & Fungi)
 
 ### Yearning Heartbroken Red
-*   **Description**: A brilliant red lotus that blooms upon floating obsidian shards in the magma half of the spring. Its petals flicker like flames, and it is a vessel of pure, concentrated Yang energy.
-*   **Tier**: 8
+*   **Description**: A seemingly common white flower, palm sized, a bit like a tree peony, without leaves, the stalk connecting to a big rock. That stone was completely pitch black with an astonishing weight. On that white flower are a few flecks of red, scarlet red like blood. Consuming it has great restorative effects, able to restore one's body, strengthen one's physique, and cure illnesses.
+*   **Tier**: 9
 *   **Notable Nodes**:
-    *   `[Yang Essence Infusion] (Tier 8)`: A permanent, minor boost to Yang-aspected techniques and fire resistance.
-    *   **Acquisition**: Harvest the lotus by braving the magma's heat and plucking it at the peak of its bloom, which occurs only for a few moments at midday.
+    *   `[Yang Essence Infusion] (Tier 9)`: 
+    *   `[Yang Essence Infusion] (Tier 9)`: 
+    *   **Acquisition**: 
 
 ### Beautiful Silk Tulip
-*   **Description**: A delicate, translucent white flower growing on the perpetually frosted banks of the Yin half. Its petals are colder than ice and seem to absorb all light, glowing with a soft, internal luminescence.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Yin Essence Infusion] (Tier 8)`: A permanent, minor boost to Yin-aspected techniques and ice resistance.
-    *   **Acquisition**: Harvest the bloom by enduring the intense cold. It must be picked at midnight, when its glow is brightest.
+    *   `[Yin Essence Infusion] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Aromatic Silk Beauty
-*   **Description**: An exquisitely rare orchid that grows only on the precise line where the two pools meet. One side of the flower is fiery red, the other an icy white. It embodies the perfect, dangerous balance of Yin and Yang.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Harmonious Cultivation] (Tier 8)`: Unlocks the ability to cultivate Yin and Yang energy simultaneously without conflict, greatly accelerating spiritual growth.
-    *   **Acquisition**: Harvest the orchid by perfectly balancing one's own internal energy while standing on the dividing rock. Any imbalance will instantly destroy the flower.
+    *   `[Harmonious Cultivation] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Octagonal Mysterious Ice Grass
-*   **Description**: A crystalline formation that grows like a flower from the geothermal vents at the bottom of the Yang pool. It pulses with the heat of a small star and is incredibly hard to retrieve.
+*   **Description**: 
 *   **Tier**: 7
 *   **Notable Nodes**:
-    *   `[Solar Flare Elixir Recipe] (Tier 7)`: Unlocks the recipe for an elixir that grants a temporary but immense boost to offensive power.
-    *   **Acquisition**: Retrieve the gem from the depths of the magma pool using a specialized tool or a powerful fire-nullifying technique.
+    *   `[Solar Flare Elixir Recipe] (Tier 7)`: 
+    *   **Acquisition**: 
 
 ### Infernal Delicate Apricot
-*   **Description**: A silvery, shimmering moss that covers the rocks on the Yin side. It grows in intricate, fractal patterns and drains the heat from anything it touches.
+*   **Description**: 
 *   **Tier**: 7
 *   **Notable Nodes**:
-    *   `[Glacial Cloak Technique] (Tier 7)`: Learn a technique to weave a cloak of ice energy, providing a strong defense against physical attacks.
-    *   **Acquisition**: Scrape the moss from the rocks using a tool made of pure Yang-aspected material, as any other material will become too brittle from the cold.
+    *   `[Glacial Cloak Technique] (Tier 7)`: 
+    *   **Acquisition**: 
 
 ### Singular Velvet Sky Chrysanthemum
-*   **Description**: A small, gnarled plant that grows in the cracks of the scorched earth on the Yang side. It produces a single, bright orange chili that is painfully hot to the touch and contains volatile fire energy.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Volcanic Ki Burst] (Tier 8)`: A combat technique that allows the user to unleash a short-range, explosive burst of pure fire from their body.
-    *   **Acquisition**: Consume the chili raw. The consumer must be able to withstand the internal explosion of energy to learn the node.
+    *   `[Volcanic Ki Burst] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Full Moon Wearing Autumn Dew
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Eight Petal Immortal Orchid
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Cockscomb Phoenix Sunflower
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Nine Treasure Purple Zoysia
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Daffodil Jade Flesh Bone
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Snow Swan Kiss
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Sacred Soul Grass
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
-*   **Tier**: 8
+*   **Description**: A tall, milky white grass that faintly glow an eerie light. It prefers to perch its stem to a stiff mountain's cliffs, coupled with its pungent ordor to deter away other beings. Consuming it would nourish one souls, capable of granting enlightment and breakthrough.
+*   **Tier**: 7
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 7)`: 
+    *   **Acquisition**: 
 
 ### Ginseng King
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Crystal Blood Dragon Ginseng
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Cinnabar Lotus
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Origin Energy Immortal Grass
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Black Jade Divine Bamboo
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Land Dragon Golden Melon
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Star Lou Holy Pearl
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ### Forsaken Prismatic Rose
-*   **Description**: A single, perfect lily pad that floats on the calmest part of the Yin pool. Once a day, it gathers the ambient Yin energy and condenses it into a single, shimmering drop of liquid that is said to clarify the mind.
+*   **Description**: 
 *   **Tier**: 8
 *   **Notable Nodes**:
-    *   `[Tranquil Mind] (Tier 8)`: A passive ability that grants immunity to mental status effects like confusion, fear, and rage.
-    *   **Acquisition**: Collect the tear in a vessel of pure Yin-aspected material at the exact moment it falls. The slightest disturbance will cause it to evaporate.
+    *   `[Tranquil Mind] (Tier 8)`: 
+    *   **Acquisition**: 
 
 ---
 
 ## Detriments & Situational Nodes
 
-*   `[Scorching Yang Aura] (Tier 8)`: While on the red side of the spring, one is subjected to intense, continuous fire damage that drains stamina and scorches the soul. Unprotected exposure is quickly fatal.
-    *   **Acquisition**: Stepping onto the banks of the Yang pool.
-    *   **Mitigation**: Activating a powerful Yin-based defensive technique or possessing a high-tier ice-aspected treasure.
-*   `[Frigid Yin Aura] (Tier 8)`: While on the white side of the spring, one is subjected to intense, continuous ice damage that slows all movement and congeals internal energy.
-    *   **Acquisition**: Stepping onto the banks of the Yin pool.
-    *   **Mitigation**: Activating a powerful Yang-based defensive technique or possessing a high-tier fire-aspected treasure.
-*   `[Energetic Dissonance] (Tier 8)`: Standing on the stone bridge between the two pools causes one's internal energy to become violently unstable, risking catastrophic internal damage.
-    *   **Acquisition**: Standing on the dividing line between the pools.
-    *   **Mitigation**: Possessing a powerful artifact of balance or having already acquired the `[Harmonious Cultivation]` node.
+*   `[Scorching Vermillion Yang Aura] (Tier 8)`: 
+    *   **Danger**: Stepping onto the banks of the Yang pool.
+    *   **Mitigation**: 
+*   `[Frigid Azure Yin Aura] (Tier 8)`: 
+    *   **Danger**: Stepping onto the banks of the Yin pool.
+    *   **Mitigation**: 
+*   `[Heavenly Purple Poison Mist] (Tier 8)`: 
+    *   **Danger**: 
+    *   **Mitigation**: 
