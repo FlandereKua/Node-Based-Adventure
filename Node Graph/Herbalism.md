@@ -1,17 +1,18 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+The ability to gather common plants, increasing yield.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** | 1     |
-| **Type** |       |
+| Property | Value                                  |
+| -------- | -------------------------------------- |
+| **Tier** | 1 #Common                              |
+| **Type** | #Passive #Knowledge #Beneficial #Herb  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - Identify tier 1 Herb.
+    - 20% chance to +1 additional herb when harvesting **Common** herb.
 
 ---
 

@@ -19,16 +19,14 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: These wolves are common predators, hunting in small packs. They are territorial but usually avoid the main trails unless provoked or unusually hungry.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Pack Tactics] (Tier 1)`: Deals more damage when near other wolves.
-    *   **Acquisition**: Defeat a pack of 3 or more wolves.
+    *   [[Pack Tactics]] (Tier 1)
 
 ### Alpha Wolf
 *   **Role**: Elite
 *   **Description**: The leader of the wolf pack, noticeably larger and more cunning than the others. It coordinates the pack's attacks and is fiercely protective.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Vicious Bite] (Tier 1)`: A powerful bite attack that can cause a bleeding effect.
-    *   **Acquisition**: Defeat the Alpha Wolf from the "Pest Control" quest.
+    *   [[Vicious Bite]] (Tier 1)
 
 ---
 
@@ -38,15 +36,13 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A rare butterfly whose wings shimmer with faint, hypnotic light. They are skittish and difficult to approach.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Soothing Light] (Tier 1)`: A passive node that grants a minor bonus to resisting fear or confusion effects.
-    *   **Acquisition**: Catch a Glimmerwing Butterfly in a net without damaging its wings.
+    *   [[Soothing Light]] (Tier 1)
 
 ### Stout-Heart Deer
 *   **Description**: A large, majestic deer with a calm and stoic demeanor. They are not easily startled and can be observed from a respectful distance.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Sure-Footed] (Tier 1)`: Grants a minor bonus to resisting trip or knockdown effects while in forests.
-    *   **Acquisition**: Follow a Stout-Heart Deer for an hour without it fleeing.
+    *   [[Sure-Footed]] (Tier 1)
 
 ---
 
@@ -56,14 +52,13 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A tall, sturdy tree with dark, incredibly dense wood. It's highly sought after for construction. Found in the deeper parts of the forest.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Lumberjack's Knowledge] (Tier 1)`: Unlocks the ability to identify and efficiently harvest valuable common timber.
-    *   **Acquisition**: Successfully harvest 10 units of Ironwood for the "Timber Shortage" quest.
+    *   [[Lumberjack's Knowledge]] (Tier 1)
 
 ### Sun-Kissed Fern
 *   **Description**: A vibrant green fern that grows in sun-dappled clearings. Its leaves feel warm to the touch and are a key ingredient in restorative potions.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Herbalism] (Tier 1)`: Unlocks the ability to gather plants without damaging them, increasing yield.
+    *   [[Herbalism]] (Tier 1)
     *   **Acquisition**: Gather a Sun-Kissed Fern and show it to Lena in Harken Town.
 
 ### Grave Moss
@@ -79,10 +74,10 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 
 *   `[Thorny Thicket] (Tier 1)`: Going off the main trails can lead through dense, thorny bushes that cause minor damage and can slow movement.
     *   **Acquisition**: Moving through the forest's undergrowth.
-    *   **Mitigation**: Wearing sturdy leather gear or having the [Tracking] node to find clearer paths.
+    *   **Mitigation**: Wearing sturdy leather gear or having the [[Tracking]] node to find clearer paths.
 *   `[Disorienting Fog] (Tier 1)`: A thick, low-lying fog can roll in unexpectedly, heavily obscuring vision and making navigation difficult.
     *   **Acquisition**: Being in the forest during the early morning or after rainfall.
-    *   **Mitigation**: Using a compass or having the [Forest Lore] node.
+    *   **Mitigation**: Using a compass or having the [[Arken Forest Lore]] node.
 
 ---
 

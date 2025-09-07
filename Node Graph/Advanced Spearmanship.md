@@ -2,22 +2,23 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value     |
-| -------- | --------- |
-| **Tier** | 1 #Common |
-| **Type** |           |
+| Property | Value                                 |
+| -------- | ------------------------------------- |
+| **Tier** | 3 #Rare                               |
+| **Type** | #Spear #Physical #Beneficial #Passive |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    -  +7 Piercing DMG when using a spear
+    - +10% critical chance when using a piercing attack
 
 ---
 
 ## Acquisition
 ### Prerequisites
-- [[Herbalism]]
+- [[Spearmanship]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

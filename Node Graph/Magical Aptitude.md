@@ -2,10 +2,10 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** | 1     |
-| **Type** |       |
+| Property | Value                       |
+| -------- | --------------------------- |
+| **Tier** | 1 #Common                   |
+| **Type** | #Passive #Magic #Beneficial |
 
 ---
 

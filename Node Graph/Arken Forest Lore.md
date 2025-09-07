@@ -1,11 +1,11 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ Can identify any plant or animal in the Arken forest and knows its properties.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** |       |
-| **Type** |       |
+| Property | Value                                                       |
+| -------- | ----------------------------------------------------------- |
+| **Tier** | 1 #Common                                                   |
+| **Type** | #Knowledge #Passive #Wood #Herb #Beneficial #Forest #Animal |
 
 ---
 

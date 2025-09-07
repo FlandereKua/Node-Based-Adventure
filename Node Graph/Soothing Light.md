@@ -1,17 +1,17 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+Grants a minor bonus to resisting fear or confusion effects.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** | 1     |
-| **Type** |       |
+| Property | Value                                 |
+| -------- | ------------------------------------- |
+| **Tier** | 1 #Common                             |
+| **Type** | #Passive #Beneficial #Confusion #Fear |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - 10% chance to resist being **Fear** or **Confused**.
 
 ---
 
@@ -22,7 +22,7 @@
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [ ] **Activities:** 
+- [x] **Activities:** Catch a Glimmerwing Butterfly in a net without damaging its wings.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
 - [ ] **Other:** 

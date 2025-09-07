@@ -25,17 +25,17 @@ Node Tiers indicate rarity, power, and acquisition difficulty. Tiers are assigne
 
 ### Standard Tiers
 
-| Tier          | Number | Description                                                                                             |
-|-------------- |--------|--------------------------------------------------------------------------------------------------------|
-| Common        | 1      | Foundational abilities and knowledge. Easily accessible and widely distributed.                         |
-| Uncommon      | 2      | Specialized skills, moderately accessible. May require focused effort or training.                      |
-| Rare          | 3      | Defining abilities, requiring significant effort, discovery, or achievement.                           |
-| Renowned      | 4      | Abilities that confer local recognition. Often tied to notable accomplishments.                        |
-| Heroic        | 5      | Abilities capable of influencing regional events. Typically associated with major feats.                |
-| Epic          | 6      | Powers with kingdom-level impact. Frequently the subject of stories and legends.                        |
-| Legendary     | 7      | Abilities comparable to historical heroes. Rare and transformative.                                     |
-| Immortal      | 8      | Powers that interact with fundamental forces, granting longevity or godlike traits.                     |
-| Ascendance    | 9      | The highest mortal achievement, merging personal identity with abstract concepts.                       |
+| Tier       | Number | Description                                                                              |
+| ---------- | ------ | ---------------------------------------------------------------------------------------- |
+| Common     | 1      | Foundational abilities and knowledge. Easily accessible and widely distributed.          |
+| Uncommon   | 2      | Specialized skills, moderately accessible. May require focused effort or training.       |
+| Rare       | 3      | Defining abilities, requiring significant effort, discovery, or achievement.             |
+| Renowned   | 4      | Abilities that confer local recognition. Often tied to notable accomplishments.          |
+| Heroic     | 5      | Abilities capable of influencing regional events. Typically associated with major feats. |
+| Epic       | 6      | Powers with kingdom-level impact. Frequently the subject of stories and legends.         |
+| Legendary  | 7      | Abilities comparable to historical heroes. Rare and transformative.                      |
+| Immortal   | 8      | Powers that interact with fundamental forces, granting longevity or godlike traits.      |
+| Ascendance | 9      | The highest mortal achievement, merging personal identity with abstract concepts.        |
 
 #### Expanded Tier Details
 - **Common (1):** Entry-level abilities, basic knowledge, or minor traits. Acquisition is straightforward.

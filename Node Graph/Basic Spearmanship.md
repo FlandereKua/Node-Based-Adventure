@@ -4,7 +4,7 @@
 ## Quick Info
 | Property | Value                                 |
 | -------- | ------------------------------------- |
-| **Tier** | 1                                     |
+| **Tier** | 1 #Common                             |
 | **Type** | #Spear #Physical #Beneficial #Passive |
 
 ---

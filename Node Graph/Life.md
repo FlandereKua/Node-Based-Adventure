@@ -2,16 +2,16 @@
  The beginning of all creatures.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** | 0     |
-| **Type** | #Life |
+| Property | Value     |
+| -------- | --------- |
+| **Tier** | 0 #Origin |
+| **Type** | #Life     |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - The start of all Nodes
+    - The start of all Nodes.
 
 ---
 

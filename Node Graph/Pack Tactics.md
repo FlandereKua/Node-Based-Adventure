@@ -4,14 +4,14 @@ Deals more damage when near other wolves.
 ## Quick Info
 | Property | Value                             |
 | -------- | --------------------------------- |
-| **Tier** | 1                                 |
+| **Tier** | 1 #Common                         |
 | **Type** | #Beneficial #Passive #Wolf #Party |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 DMG when near other wolves (At least 1)
+    - +1 DMG when near other wolves (At least 1).
 
 ---
 

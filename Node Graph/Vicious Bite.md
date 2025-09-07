@@ -4,15 +4,15 @@
 ## Quick Info
 | Property | Value                           |
 | -------- | ------------------------------- |
-| **Tier** | 1                               |
+| **Tier** | 1 #Common                       |
 | **Type** | #Active #Slash #Physical #Bleed |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D4 STR Physical DMG
-    - 10% Chance to cause bleeding (Lose 5% HP every turn)
+    - Deal 1D4 STR Slash DMG.
+    - 10% Chance to cause bleeding (Lose 5% HP every turn).
 
 ---
 

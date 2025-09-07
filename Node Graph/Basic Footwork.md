@@ -2,16 +2,16 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value              |
-| -------- | ------------------ |
-| **Tier** | 1                  |
-| **Type** | #Passive #Movement |
+| Property | Value                          |
+| -------- | ------------------------------ |
+| **Tier** | 1 #Common                      |
+| **Type** | #Passive #Movement #Beneficial |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 DEX when in combat
+    - +1 DEX when in combat.
 
 ---
 

@@ -4,15 +4,15 @@
 ## Quick Info
 | Property | Value                                 |
 | -------- | ------------------------------------- |
-| **Tier** | 2                                     |
+| **Tier** | 2 #Uncommon                           |
 | **Type** | #Spear #Physical #Beneficial #Passive |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +3 Piercing DMG when using a spear
-    - **Enhancement**: +1 STR/DEX if all prerequisites Nodes are acquired
+    - +3 Piercing DMG when using a spear.
+    - **Enhancement**: +1 STR/DEX if all prerequisites Nodes are acquired.
 
 ---
 

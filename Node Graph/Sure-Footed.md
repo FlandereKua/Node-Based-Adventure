@@ -1,17 +1,17 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+Grants a minor bonus to resisting slowed or knockdown effects while in forests.
 
 ## Quick Info
-| Property | Value |
-| -------- | ----- |
-| **Tier** | 1     |
-| **Type** |       |
+| Property | Value                                  |
+| -------- | -------------------------------------- |
+| **Tier** | 1 #Common                              |
+| **Type** | #Passive #Movement #Beneficial #Forest |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - 10% chance to resist being **Slow** or **Stun**. (Active only in Forest)
 
 ---
 
@@ -22,7 +22,7 @@
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
-- [ ] **Research:** 
+- [x] **Research:** Follow a Stout-Heart Deer for an hour without it fleeing
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 

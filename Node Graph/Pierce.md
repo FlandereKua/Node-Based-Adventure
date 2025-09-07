@@ -4,14 +4,14 @@
 ## Quick Info
 | Property | Value                       |
 | -------- | --------------------------- |
-| **Tier** | 1                           |
+| **Tier** | 1 #Common                   |
 | **Type** | #Active #Physical #Piercing |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Piercing DMG
+    - Deal 1D3 STR Piercing DMG.
 
 ---
 
