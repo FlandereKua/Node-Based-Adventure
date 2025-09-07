@@ -1,9 +1,10 @@
 # Arken Forest (Tier 1) (Enemy Zone)
+Tags: [[Eternal Empire]] 
 
 ---
 
 ## Overview
-Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Province, adjacent to Harken Town. The forest is the primary source of lumber and game for the town, with well-trod paths near the outskirts. However, its deeper sections are untamed and wild, with a mysterious, quiet atmosphere. Players venture here for resources, to complete quests, and to explore its hidden groves.
+Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Province, adjacent to Harken Town. The forest is the primary source of lumber and game for the town, with well-trod paths near the outskirts. However, its deeper sections are untamed and wild, with a mysterious, quiet atmosphere. 
 
 - **Biome**: Temperate Forest
 - **Hooks**: Gathering Ironwood for the Harken mill, hunting aggressive wolves, discovering rare flora and fauna, finding a reclusive hermit.
@@ -18,7 +19,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: These wolves are common predators, hunting in small packs. They are territorial but usually avoid the main trails unless provoked or unusually hungry.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Pack Tactics] (Tier 1)`: Becomes more aggressive and deals more damage when near other wolves.
+    *   `[Pack Tactics] (Tier 1)`: Deals more damage when near other wolves.
     *   **Acquisition**: Defeat a pack of 3 or more wolves.
 
 ### Alpha Wolf
@@ -55,7 +56,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A tall, sturdy tree with dark, incredibly dense wood. It's highly sought after for construction. Found in the deeper parts of the forest.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Lumberjack's Knowledge] (Tier 1)`: Unlocks the ability to identify and efficiently harvest valuable timber.
+    *   `[Lumberjack's Knowledge] (Tier 1)`: Unlocks the ability to identify and efficiently harvest valuable common timber.
     *   **Acquisition**: Successfully harvest 10 units of Ironwood for the "Timber Shortage" quest.
 
 ### Sun-Kissed Fern
@@ -91,7 +92,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A reclusive old man with a long grey beard and clothes made of moss and leather. He is gruff and speaks little, but his knowledge of the forest is unparalleled. He sees himself as the forest's protector.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Forest Lore] (Tier 1)`: Can identify any plant or animal in the forest and knows its properties.
+    *   `[Arken Forest Lore] (Tier 1)`: Can identify any plant or animal in the Arken forest and knows its properties.
     *   `[Root Snare] (Tier 1)`: A simple druidic spell that causes roots to erupt from the ground and temporarily entangle a target.
 *   **Recruitment Method**: Find his hidden cabin deep in the forest and offer him a Sun-Kissed Fern as a sign of respect for the woods. Impressed by the gesture, he will offer to travel with you to ensure the forest's balance is not disturbed.
 *   **Learnable Nodes**: `[Forest Lore] (Tier 1)`

@@ -1,9 +1,8 @@
 {
-  "theme": "obsidian",
+  "theme": "system",
   "cssTheme": "Tokyo Night",
   "accentColor": "#aa62d0",
   "enabledCssSnippets": [
-    "test",
     "table"
   ]
 }

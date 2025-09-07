@@ -4,24 +4,91 @@
     "type": "split",
     "children": [
       {
-        "id": "131e948d689d64f3",
+        "id": "ff7f0018c4710713",
         "type": "tabs",
         "children": [
           {
-            "id": "e447f1561cd731e8",
+            "id": "ab7a971087c64253",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Zone/Arclight Province/Harken Forest (Deep).md",
+                "file": "Node Graph/Root Snare.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Harken Forest (Deep)"
+              "title": "Root Snare"
+            }
+          },
+          {
+            "id": "8f73e2000b51f4c1",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "a60199dd2fa501bf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Node Graph/Soothing Light.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Soothing Light"
+            }
+          },
+          {
+            "id": "9e0ec900bde0652b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Node Graph/Vicious Bite.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Vicious Bite"
+            }
+          },
+          {
+            "id": "394134e9d85e92b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Node Graph/Sure-Footed.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Sure-Footed"
+            }
+          },
+          {
+            "id": "a87f59d5884e895d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Node Graph/Field Care.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Field Care"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,7 +120,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Harke",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -140,13 +207,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Zone/Arclight Province/Harken Forest (Deep).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Harken Forest (Deep)"
+              "title": "Outline"
             }
           },
           {
@@ -160,14 +226,16 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -177,45 +245,84 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e447f1561cd731e8",
+  "floating": {
+    "id": "70369241926830e3",
+    "type": "floating",
+    "children": [
+      {
+        "id": "cad361a63ce6caa6",
+        "type": "window",
+        "children": [
+          {
+            "id": "8fce75a2f82ceabc",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "ffe476cdcdb827ab",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Zone/Eternal Empire/Northen Province/Harken Town.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "Harken Town"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 8,
+        "y": 576,
+        "width": 946,
+        "height": 496,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "8f73e2000b51f4c1",
   "lastOpenFiles": [
-    "Zone/Arclight Province/Harken Forest.md",
-    "Zone/Arclight Province/Harken Forest (Deep).md",
-    "Node Based.md",
-    "Zone/Arclight Province/Arken Town.md",
-    "Classes.md",
-    "Template/Magical Girl Tempplate.md",
-    "Template/Monster Template.md",
-    "Setting/World Setting.md",
+    "Node Graph/Basic Spearmanship.md",
+    "Node Graph/Root Snare.md",
+    "Node Graph/Herbalism.md",
+    "Node Graph/Arken Forest Lore.md",
+    "Zone/Eternal Empire/Northen Province/Harken Town.md",
+    "Node Graph/Soothing Poultice.md",
+    "Zone/Eternal Empire/Northen Province/Arken Forest.md",
+    "Node Graph/Magical Aptitude.md",
+    "Node Graph/Life.md",
+    "Node Graph/Sure-Footed.md",
+    "Node Graph/Field Care.md",
+    "Node Graph/Vicious Bite.md",
+    "Node Graph/Spearmanship.md",
+    "Node Graph/Pierce.md",
+    "Node Graph/Lumberjack's Knowledge.md",
+    "Node Graph/Pack Tactics.md",
+    "Node Graph/Soothing Light.md",
+    "Node Graph/Basic Footwork.md",
+    "Guide/Stat Description.md",
+    "Guide/Node Description.md",
+    "Template/Enemy Zone Template.md",
+    "Template/Node Template.md",
+    "Characters/Flandere.md",
+    "Wiki.base",
+    "Node Graph/Untitled.base",
+    "Monsters",
+    "Nodes/Node List.md",
+    "Nodes/Node.md",
+    "Template/Stat Template.md",
+    "Guide",
+    "Untitled.base",
+    "Node Graph",
+    "Tags",
+    "Characters",
+    "Zone/Murim",
     "Template",
-    "Organization",
-    "Monster",
-    "Magical Girl",
-    "Setting.md",
-    "World Design.md",
-    "Auction.md",
-    "Report.md",
-    "WIFI.md",
-    "Chapter 1. Dream.md",
-    "Flandere Eonia.md",
-    "Welcome.md",
-    "Setting",
-    "Storyboard/Garbage Yard.md",
-    "5 - World/Suika Ibuki.md",
-    "5 - World/Flandre Eonia.md",
-    "5 - World/Sephie.md",
-    "5 - World/Radias.md",
-    "5 - World/Elizabeth Von Hasburg.md",
-    "5 - World/Arunka.md",
-    "Assets/Color-Table.md",
-    "6 - Story/Chapter 1 - Dawn.md",
-    "Storyboard/Untitled",
-    "6 - Story/Brewing Flame, Waving Divinities.md",
     "Assets/Pasted image 20241217031050.png",
-    "Storyboard",
-    "Extra - Mission",
-    "6 - Story",
-    "5 - World",
     "Assets/ZangyinPor.png",
     "Assets/radiasPNG.png",
     "Assets/HolmesPor.png",
