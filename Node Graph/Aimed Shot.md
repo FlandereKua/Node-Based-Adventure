@@ -13,6 +13,7 @@
 - **Effect Details:**
     - Deal 1D3 DEX Piercing DMG.
     - Cost: 1 MP + 1 Projectile.
+    - Range: 15 M
 
 ---
 
