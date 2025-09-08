@@ -1,17 +1,19 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ Unlocks the recipe to craft basic healing salves.
 
 ## Quick Info
-| Property | Value     |
-| -------- | --------- |
-| **Tier** | 1 #Common |
-| **Type** |           |
+| Property | Value                     |
+| -------- | --------------------------|
+| **Tier** | 1 #Common                 |
+| **Type** | #Active #Healing #Crafting|
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - Craft 1 **Simple salve** 
+    - **Cost:** 5 Grave Moss
+    - **Simple salve**: Heal 3 HP
 
 ---
 
@@ -22,7 +24,7 @@
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [ ] **Activities:** 
+- [x] **Activities:** Gather Grave Moss and use it to craft a bandage.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
 - [ ] **Other:** 

@@ -1,5 +1,5 @@
 ## Description
-Grants a minor bonus to resisting slowed or knockdown effects while in forests.
+ Grants a minor bonus to resisting slowed or knockdown effects while in forests.
 
 ## Quick Info
 | Property | Value                                  |

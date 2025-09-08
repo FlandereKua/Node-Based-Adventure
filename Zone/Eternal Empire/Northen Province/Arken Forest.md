@@ -65,8 +65,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A dark, velvety moss that grows on the north side of ancient, fallen logs. It has mild anesthetic properties.
 *   - **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Field Care] (Tier 1)`: Unlocks the recipe to craft basic healing salves.
-    *   **Acquisition**: Gather Grave Moss and use it to craft a bandage.
+    *   [[Field Care]] (Tier 1)
 
 ---
 

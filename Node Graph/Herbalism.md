@@ -1,5 +1,5 @@
 ## Description
-The ability to gather common plants, increasing yield.
+ The ability to gather common plants, increasing yield.
 
 ## Quick Info
 | Property | Value                                  |

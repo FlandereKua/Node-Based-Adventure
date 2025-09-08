@@ -1,5 +1,5 @@
 ## Description
-Grants a minor bonus to resisting fear or confusion effects.
+ Grants a minor bonus to resisting fear or confusion effects.
 
 ## Quick Info
 | Property | Value                                 |

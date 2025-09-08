@@ -1,5 +1,5 @@
 ## Description
-The ability to identify and efficiently harvest common timber.
+ The ability to identify and efficiently harvest common timber.
 
 ## Quick Info
 | Property | Value                                 |

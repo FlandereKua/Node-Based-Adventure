@@ -1,5 +1,5 @@
 ## Description
-Deals more damage when near other wolves.
+ Deals more damage when near other wolves.
 
 ## Quick Info
 | Property | Value                             |

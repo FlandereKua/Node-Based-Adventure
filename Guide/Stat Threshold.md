@@ -1,4 +1,4 @@
-# Stat Thresholds by Tier
+# Stat Thresholds
 
 This document provides a general benchmark for the expected stats of an enemy or ally at each of the standard power Tiers. These are guidelines, not strict rules, and individual characters may have unique distributions of power.
 

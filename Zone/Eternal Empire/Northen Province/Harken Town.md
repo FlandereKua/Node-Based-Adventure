@@ -76,19 +76,19 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: A quiet but observant young man in his late teens, dressed in practical leather gear. He is motivated by a desire to prove himself and protect his home.
 - **Tier**: 1
 - **Notable Nodes**:
-  - **[Tracking] (Tier 1)**: Can spot subtle tracks and signs of wildlife.
-  - **[Aimed Shot] (Tier 1)**: A basic but reliable ranged bow attack.
+  - **[[Tracking]] (Tier 1)**: Can spot subtle tracks and signs of wildlife.
+  - **[[Aimed Shot]] (Tier 1)**
 - **Recruitment Method**: After completing the "Pest Control" quest, speak to Finn at the Hearth & Axe. He will offer to join you, seeking experience in the wider world.
-- **Learnable Nodes from Interaction**: [Tracking] (Tier 1)
+- **Learnable Nodes from Interaction**: [[Tracking]] (Tier 1)
 
 ### Lena, the Aspiring Herbalist
 - **Description**: A cheerful and curious young woman, often seen foraging near the edge of town. She dreams of one day studying at a grand academy and is eager to document new plants.
 - **Tier**: 1
 - **Notable Nodes**:
-  - **[Herbalism] (Tier 1)**: Can gather plants without damaging them.
-  - **[Soothing Poultice] (Tier 1)**: A basic healing ability that slowly restores a small amount of health.
+  - **[[Herbalism]] (Tier 1)**: Can gather plants without damaging them.
+  - **[[Soothing Poultice]] (Tier 1)**: A basic healing ability that slowly restores a small amount of health.
 - **Recruitment Method**: Show her an unusual herb found in Arken Forest. Intrigued by the discovery, she will ask to join your travels to find more.
-- **Learnable Nodes from Interaction**: [Herbalism] (Tier 1)
+- **Learnable Nodes from Interaction**: [[Herbalism]] (Tier 1)
 
 ---
 

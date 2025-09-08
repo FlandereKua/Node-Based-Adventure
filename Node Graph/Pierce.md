@@ -12,6 +12,7 @@
 ## Mechanics & Effects
 - **Effect Details:**
     - Deal 1D3 STR Piercing DMG.
+    - Cost: 1 MP
 
 ---
 
