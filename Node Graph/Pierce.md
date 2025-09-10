@@ -2,16 +2,16 @@
  Pierce the opponent, dealing physical Damage.
 
 ## Quick Info
-| Property | Value                       |
-| -------- | --------------------------- |
-| **Tier** | 1 #Common                   |
-| **Type** | #Active #Physical #Piercing |
+| Property | Value                     |
+| -------- | ------------------------- |
+| **Tier** | 1 #Common                 |
+| **Type** | #Active #Physical #Pierce |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Piercing DMG.
+    - Deal 1D3 STR Pierce DMG.
     - Cost: 1 MP
 
 ---

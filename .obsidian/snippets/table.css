@@ -5,6 +5,14 @@ table {
   border: 1px solid black; /* Adds a border around the table */
 }
 
+.markdown-preview-view img,
+.markdown-source-view img {
+    max-height: 40vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
 th, td {
   width: 33%; /* Ensures all columns have equal width */
   border: 1px solid black; /* Adds borders to each cell */

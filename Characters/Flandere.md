@@ -11,17 +11,11 @@
 
 ## Core Attributes
 - **Strength (STR)**: `1`
-  - *Measures physical power, carrying capacity, and melee damage.*
 - **Dexterity (DEX)**: `3`
-  - *Measures agility, reflexes, initiative, and ranged attack accuracy.*
 - **Intelligence (INT)**: `3`
-  - *Measures reasoning, memory, and mastery of complex subjects.*
 - **Wisdom (WIS)**: `5`
-  - *Measures perception, intuition, and attunement to the world.*
 - **Charisma (CHA)**: `5`
-  - *Measures force of personality, social influence, and leadership.*
 - **Luck (LCK)**: `2`
-  - *Measures luck and opportunities.*
 
 ---
 
@@ -35,13 +29,15 @@
 
 ## Nodes
 ### Active Nodes
+#### Tier 1 (1/4)
 > [[Pierce]] 
 
 ### Passive Nodes
-#### Tier 0
+#### Tier 0 (1/1)
 > [[Life]]
-#### Tier 1
+#### Tier 1 (2/10)
 > [[Basic Spearmanship]] 
+> [[Magical Aptitude]]
 ### Title Nodes
 
 
@@ -64,5 +60,5 @@
 ---
 
 ## Background & Notes
-*A brief summary of the character's history, personality, and goals.*
+**Tag**: 
 - 

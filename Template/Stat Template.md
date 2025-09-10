@@ -52,5 +52,5 @@
 ---
 
 ## Background & Notes
-*A brief summary of the character's history, personality, and goals.*
+**Tag**: 
 - 
