@@ -21,8 +21,8 @@
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
-- [ ] **Research:** 
-- [ ] **Activities:** 
+- [x] **Research:** Study the 
+- [x] **Activities:** Training under a Tier 2 Druid.
 - [ ] **Dialogue & Exchange:** 
 - [x] **Discovery:** Gain the **Blessing** from a **Nature Shrine**.
 - [ ] **Other:** 
