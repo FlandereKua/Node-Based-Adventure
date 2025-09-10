@@ -22,7 +22,7 @@
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [x] **Activities:** Practice footwork for 1 weeks
+- [x] **Activities:** Practice footwork for 1 cycle.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
 - [ ] **Other:** 

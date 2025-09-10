@@ -19,12 +19,12 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Life]]
+- [[Herbalism]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [x] **Activities:** Gather Grave Moss and use it to craft a bandage.
+- [x] **Activities:** Gather Grave Moss and use it to craft 5 basic bandages.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
 - [ ] **Other:** 

@@ -1,5 +1,5 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+A basic healing ability that slowly restores a small amount of health.
 
 ## Quick Info
 | Property | Value     |

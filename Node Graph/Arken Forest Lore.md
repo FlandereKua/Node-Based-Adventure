@@ -11,7 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - Identify any creatures and plants in Arken forest.
+    - **Identify**: Understand their nodes and acquisition methods.
 
 ---
 
@@ -22,7 +23,7 @@
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
-- [ ] **Research:** 
+- [x] **Research:** Encounter and tracked every fauna and flora in Arken forest.
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 

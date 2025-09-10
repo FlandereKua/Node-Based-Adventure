@@ -59,7 +59,6 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Tier**: 1
 *   **Notable Nodes**:
     *   [[Herbalism]] (Tier 1)
-    *   **Acquisition**: Gather a Sun-Kissed Fern and show it to Lena in Harken Town.
 
 ### Grave Moss
 *   **Description**: A dark, velvety moss that grows on the north side of ancient, fallen logs. It has mild anesthetic properties.
@@ -86,7 +85,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A reclusive old man with a long grey beard and clothes made of moss and leather. He is gruff and speaks little, but his knowledge of the forest is unparalleled. He sees himself as the forest's protector.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   `[Arken Forest Lore] (Tier 1)`: Can identify any plant or animal in the Arken forest and knows its properties.
-    *   `[Root Snare] (Tier 1)`: A simple druidic spell that causes roots to erupt from the ground and temporarily entangle a target.
+    *   [[Arken Forest Lore]] (Tier 1)
+    *   [[Root Snare]] (Tier 1)
 *   **Recruitment Method**: Find his hidden cabin deep in the forest and offer him a Sun-Kissed Fern as a sign of respect for the woods. Impressed by the gesture, he will offer to travel with you to ensure the forest's balance is not disturbed.
 *   **Learnable Nodes**: `[Forest Lore] (Tier 1)`

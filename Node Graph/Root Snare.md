@@ -1,5 +1,5 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ A simple druidic spell that causes roots to erupt from the ground and temporarily entangle a target.
 
 ## Quick Info
 | Property | Value     |
@@ -24,6 +24,6 @@
 - [ ] **Research:** 
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
-- [ ] **Discovery:** 
+- [x] **Discovery:** Gain the **Blessing** from a **Nature Shrine**.
 - [ ] **Other:** 
 

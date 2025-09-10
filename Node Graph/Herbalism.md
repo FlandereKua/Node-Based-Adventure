@@ -22,9 +22,9 @@
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
-- [ ] **Research:** 
+- [x] **Research:** Study **Basic Plants and Herbs**
 - [ ] **Activities:** 
-- [ ] **Dialogue & Exchange:** 
+- [x] **Dialogue & Exchange:** Gather a Sun-Kissed Fern and show it to Lena in Harken Town.
 - [ ] **Discovery:** 
 - [ ] **Other:** 
 

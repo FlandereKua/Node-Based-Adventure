@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - +3 MP
 
 ---
 
@@ -22,8 +22,8 @@
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [ ] **Activities:** 
+- [x] **Activities:** 20% Chance to acquire it upon using a Tier 1 **Magic Crystal**.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
-- [ ] **Other:** 
+- [x] **Other:** Born with it.
 
