@@ -31,7 +31,7 @@
 ## Nodes
 ### Active Nodes
 #### Tier 6 (1/4)
-> [[Cloudsplitting Manifestation - Mao]] 
+> [[Cloudsplitting Manifestation - Rabbit]] 
 
 ### Passive Nodes
 - **Node Name**: Description.
