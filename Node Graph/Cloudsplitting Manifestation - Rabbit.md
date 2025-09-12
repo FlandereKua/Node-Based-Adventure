@@ -21,7 +21,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Prerequisite Node 1]]
+- [[Cloudsplitting Manifestation]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

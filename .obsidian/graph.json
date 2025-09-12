@@ -29,21 +29,21 @@
       }
     },
     {
-      "query": "",
+      "query": "tag:#Renowed  t",
       "color": {
         "a": 1,
         "rgb": 5431378
       }
     },
     {
-      "query": "",
+      "query": "tag:#Heroic  ",
       "color": {
         "a": 1,
         "rgb": 5431473
       }
     },
     {
-      "query": "",
+      "query": "tag:#Epic  ",
       "color": {
         "a": 1,
         "rgb": 5419488
@@ -88,6 +88,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 1,
+  "scale": 1.5,
   "close": false
 }
