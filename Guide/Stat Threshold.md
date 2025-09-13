@@ -8,7 +8,7 @@ This document provides a general benchmark for the expected stats of an enemy or
 *Represents skilled individuals, talented apprentices, or tough local threats. A clear step above an ordinary person.*
 - **Primary Attribute(s)**: 3-5
 - **Health Points (HP)**: 20-35
-- **Armor Class (AC)**: 11-13
+- **Armor Class (AC)**: 1-4
 - **Nodes**: Possesses 1-3 Tier 1 nodes.
 
 ---

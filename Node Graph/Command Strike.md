@@ -11,19 +11,14 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Slash DMG.
-    - Cost: 1 MP
-- **Range:**:
-```
-[o][x]
-```
-
+    - Bring 1 ally to attack with you
 
 ---
 
 ## Acquisition
 ### Prerequisites
-- [[Life]]
+- [[Slash]]
+- [[Basic Leadership]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

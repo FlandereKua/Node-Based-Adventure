@@ -11,19 +11,13 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Slash DMG.
-    - Cost: 1 MP
-- **Range:**:
-```
-[o][x]
-```
-
+    - 
 
 ---
 
 ## Acquisition
 ### Prerequisites
-- [[Life]]
+- [[Prerequisite Node 1]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

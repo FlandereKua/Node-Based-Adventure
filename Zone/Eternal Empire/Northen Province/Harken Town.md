@@ -17,7 +17,7 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: A cozy, rustic tavern built from sturdy logs, with a large central fireplace. It's run by a retired lumberjack named Borin, a burly man with a warm smile. The clientele consists mostly of loggers and hunters sharing stories.
 - **Services**: Rest, simple meals, local rumors.
 - **Notable Nodes**:
-  - **[Local Gossip] (Tier 1)**: Learn a minor secret or rumor about the area.
+  - **[[Local Gossip]] (Tier 1)**: Learn a minor secret or rumor about the area.
     - **Acquisition**: Buy a round of drinks for the patrons.
   - **[Hearty Meal] (Tier 1)**: Gain a temporary boost to stamina.
     - **Acquisition**: Purchase the "Lumberjack's Feast."
@@ -33,7 +33,7 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: A cluttered but well-organized shop run by a kindly old man named Silas. He sells everything from dried goods and basic tools to local remedies.
 - **Services**: Basic supplies, tool repairs, local maps.
 - **Notable Nodes**:
-  - **[Field Care] (Tier 1)**: Craft basic bandages in the field.
+  - **[[Field Care]] (Tier 1)**: Craft basic bandages in the field.
     - **Acquisition**: Purchase a first-aid kit and listen to Silas's instructions.
 
 ### Harken Watch Post

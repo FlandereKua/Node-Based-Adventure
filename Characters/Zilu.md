@@ -18,6 +18,7 @@
 - **Wisdom (WIS)**: `15`
 - **Charisma (CHA)**: `15`
 - **Luck (LCK)**: `10`
+- **Faith (LCK)**: `10`
 
 ---
 

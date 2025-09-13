@@ -1,29 +1,24 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ The chosen Demigod Heir of Diche.
 
 ## Quick Info
-| Property | Value     |
-| -------- | --------- |
-| **Tier** | 1 #Common |
-| **Type** |           |
+| Property | Value          |
+| -------- | -------------- |
+| **Tier** | Unique #Unique |
+| **Type** |                |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Slash DMG.
-    - Cost: 1 MP
-- **Range:**:
-```
-[o][x]
-```
-
+    - Gain the ability to use [[Genesis Form - Ras]]
+    - +2 CHA
 
 ---
 
 ## Acquisition
 ### Prerequisites
-- [[Life]]
+
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
@@ -31,5 +26,5 @@
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
-- [ ] **Other:** 
+- [x] **Other:** Be Ras
 
