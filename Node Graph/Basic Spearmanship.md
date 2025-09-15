@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 Piercing DMG when using a spear
+    - +1 Pierce DMG when using a spear
 
 ---
 

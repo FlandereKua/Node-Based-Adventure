@@ -2,18 +2,18 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value     |
-| -------- | --------- |
-| **Tier** | 1 #Common |
-| **Type** |           |
+| Property | Value                       |
+| -------- | --------------------------- |
+| **Tier** | 1 #Common                   |
+| **Type** | #Slashing #Active #Physical |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Slash DMG.
+    - Deal 1D3 STR Slashing DMG.
     - Cost: 1 MP
-- **Range:**:
+- **Range:**
 ```
 [o][x]
 ```
@@ -26,7 +26,7 @@
 - [[Life]]
 
 ### Acquisition Method(s)
-- [ ] **Combat:** 
+- [x] **Combat:** Engage in combat and deal slashing DMG 5 times 
 - [ ] **Research:** 
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 

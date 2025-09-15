@@ -1,7 +1,7 @@
 
 | Name                       |
 | -------------------------- |
-| [[Arken Forest Lore]]      |
+| [[Forest Lore]]      |
 | [[Basic Footwork]]         |
 | [[Basic Spearmanship]]     |
 | [[Field Care]]             |

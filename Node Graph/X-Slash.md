@@ -2,10 +2,10 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value        |
-| -------- | ------------ |
-| **Tier** | 7 #Legendary |
-| **Type** |              |
+| Property | Value   |
+| -------- | ------- |
+| **Tier** | 3 #Rare |
+| **Type** |         |
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Heir of Covenant]]
+- [[Swift Cut]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
@@ -25,5 +25,5 @@
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
-- [x] **Other:** Be [[Ras]] and breakthrough tier 7
+- [ ] **Other:** 
 

@@ -17,7 +17,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Steel Crescent]]
+- [[Wind Cutter]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

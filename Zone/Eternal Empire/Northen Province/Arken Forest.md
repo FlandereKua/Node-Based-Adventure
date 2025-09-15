@@ -75,7 +75,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
     *   **Mitigation**: Wearing sturdy leather gear or having the [[Tracking]] node to find clearer paths.
 *   `[Disorienting Fog] (Tier 1)`: A thick, low-lying fog can roll in unexpectedly, heavily obscuring vision and making navigation difficult.
     *   **Acquisition**: Being in the forest during the early morning or after rainfall.
-    *   **Mitigation**: Using a compass or having the [[Arken Forest Lore]] node.
+    *   **Mitigation**: Using a compass or having the [[Forest Lore]] node.
 
 ---
 
@@ -85,7 +85,7 @@ Arken Forest is a vast, old-growth woodland in the Eternal Empire's Northern Pro
 *   **Description**: A reclusive old man with a long grey beard and clothes made of moss and leather. He is gruff and speaks little, but his knowledge of the forest is unparalleled. He sees himself as the forest's protector.
 *   **Tier**: 1
 *   **Notable Nodes**:
-    *   [[Arken Forest Lore]] (Tier 1)
+    *   [[Forest Lore]] (Tier 1)
     *   [[Root Snare]] (Tier 1)
 *   **Recruitment Method**: Find his hidden cabin deep in the forest and offer him a Sun-Kissed Fern as a sign of respect for the woods. Impressed by the gesture, he will offer to travel with you to ensure the forest's balance is not disturbed.
 *   **Learnable Nodes**: `[Forest Lore] (Tier 1)`

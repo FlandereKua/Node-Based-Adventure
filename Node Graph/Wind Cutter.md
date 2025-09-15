@@ -2,10 +2,10 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value   |
-| -------- | ------- |
-| **Tier** | 6 #Epic |
-| **Type** |         |
+| Property | Value      |
+| -------- | ---------- |
+| **Tier** | 4 #Renowed |
+| **Type** |            |
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Storm Divider]]
+- [[Steel Crescent]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

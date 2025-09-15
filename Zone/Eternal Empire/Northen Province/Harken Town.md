@@ -17,10 +17,8 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: A cozy, rustic tavern built from sturdy logs, with a large central fireplace. It's run by a retired lumberjack named Borin, a burly man with a warm smile. The clientele consists mostly of loggers and hunters sharing stories.
 - **Services**: Rest, simple meals, local rumors.
 - **Notable Nodes**:
-  - **[[Local Gossip]] (Tier 1)**: Learn a minor secret or rumor about the area.
-    - **Acquisition**: Buy a round of drinks for the patrons.
-  - **[Hearty Meal] (Tier 1)**: Gain a temporary boost to stamina.
-    - **Acquisition**: Purchase the "Lumberjack's Feast."
+  - **[[Local Gossip]] (Tier 1)**:
+  - **[[Hearty Meal]] (Tier 1)**: 
 
 ### Harken Lumber Mill
 - **Description**: The economic heart of the town, constantly humming with the sound of saws. The mill is overseen by Elara, a sharp and efficient woman who inherited the business.

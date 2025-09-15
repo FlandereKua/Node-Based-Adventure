@@ -2,10 +2,10 @@
  A basic but reliable ranged bow attack
 
 ## Quick Info
-| Property | Value                              |
-| -------- | ---------------------------------- |
-| **Tier** | 1 #Common                          |
-| **Type** | #Active #Physical #Piercing #Ranged|
+| Property | Value                               |
+| -------- | ----------------------------------- |
+| **Tier** | 1 #Common                           |
+| **Type** | #Active #Physical #Piercing #Ranged |
 
 ---
 
@@ -13,7 +13,10 @@
 - **Effect Details:**
     - Deal 1D3 DEX Piercing DMG.
     - Cost: 1 MP + 1 Projectile.
-    - Range: 15 M
+- **Range:**
+```
+[o][?][?][?][x]
+```
 
 ---
 

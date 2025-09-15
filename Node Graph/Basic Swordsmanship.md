@@ -2,10 +2,10 @@
  A brief, flavourful quote or summary of the node.
 
 ## Quick Info
-| Property | Value      |
-| -------- | ---------- |
-| **Tier** | 1 #Common  |
-| **Type** |            |
+| Property | Value                              |
+| -------- | ---------------------------------- |
+| **Tier** | 1 #Common                          |
+| **Type** | #Sword #Slash #Passive #Beneficial |
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Prerequisite Node 1]]
+- [[Life]]
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

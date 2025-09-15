@@ -17,7 +17,7 @@
 
 ## Acquisition
 ### Prerequisites
-- [[Focused Cleave]]
+- [[Swift Cut]] 
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 

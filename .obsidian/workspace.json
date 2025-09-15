@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Node Graph/Adventurer.md",
+                "file": "Characters/Zilu.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Adventurer"
+              "title": "Zilu"
+            }
+          },
+          {
+            "id": "172a241bc46d9f5f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Node Graph/Steel Crescent.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Steel Crescent"
             }
           },
           {
@@ -36,31 +50,17 @@
             }
           },
           {
-            "id": "e106c26e1abcf6c0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Guide/Stat Threshold.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Stat Threshold"
-            }
-          },
-          {
             "id": "4c4bedb4f2fb013d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Characters/Ras.md",
+                "file": "Node Graph/Genesis Form - Ras.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ras"
+              "title": "Genesis Form - Ras"
             }
           },
           {
@@ -102,7 +102,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -134,7 +134,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Map",
+                "query": "#Slas",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -260,45 +260,45 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e106c26e1abcf6c0",
+  "active": "90829b5a2a865cbe",
   "lastOpenFiles": [
-    "Tags/Common.md",
-    "Characters/Ras.md",
-    "Guide/Stat Threshold.md",
-    "Node Graph/Basic Spearmanship.md",
+    "Node Graph/X-Slash.md",
+    "Node Graph/Storm Divider.md",
+    "Node Graph/Swift Cut.md",
+    "Node Graph/Razor Arc.md",
+    "Node Graph/Focused Cleave.md",
     "Node Graph/Basic Swordsmanship.md",
-    "Characters/Flandere.md",
-    "Node Graph/Basic Cooking.md",
-    "Characters/Zilu.md",
-    "Node Graph/Command Strike.md",
-    "Node Graph/Heir of Covenant.md",
-    "Node Graph/Genesis Form - Ras.md",
-    "Guide/Stat Description.md",
-    "Resources/Attack Descriptor.md",
-    "Node Graph/Field Care.md",
+    "Node Graph/Steel Crescent.md",
     "Node Graph/Slash.md",
-    "Node Graph/Adventurer.md",
-    "Node Graph/Vicious Bite.md",
-    "Node Graph/Basic Leadership.md",
+    "Node Graph/Genesis Form - Ras.md",
+    "Node Graph/Heir of Covenant.md",
+    "Node Graph/Prerequisite Node 1.md",
     "Zone/Eternal Empire/Northen Province/Harken Town.md",
-    "Node Graph/Local Gossip.md",
-    "Tags/Uncommon.md",
-    "Tags/Rare.md",
-    "Node Graph/Cloudsplitting Manifestation - Rabbit.md",
-    "Node Graph/Tracking.md",
-    "Node Graph/Sure-Footed.md",
-    "Node Graph/Cloudsplitting Manifestation.md",
+    "Characters/Zilu.md",
+    "Guide/Stat Threshold.md",
+    "Node Graph/Wind Cutter - Rabbit.md",
+    "Node Graph/Wind Cutter.md",
+    "Node Graph/Vicious Bite.md",
+    "Node Graph/Pierce.md",
+    "Node Graph/Soothing Light.md",
+    "Node Graph/Command Strike.md",
+    "Node Graph/Forest Lore.md",
+    "Node Graph/Aimed Shot.md",
+    "Node Graph/Field Care.md",
+    "Node Graph/Basic Spearmanship.md",
+    "Node Graph/Basic Lockpicking.md",
+    "Node Graph/Basic Cooking.md",
+    "Wiki.base",
+    "Node Graph/Untitled 1.base",
+    "Node Graph/Untitled.base",
     "Node Graph/Untitled",
     "Resources/Image/Zilu.png",
     "Resources/Image",
-    "Wiki.base",
-    "Node Graph/Untitled.base",
     "Resources",
     "Zone/Murim Confederation/Central Plains",
     "Monsters",
     "Guide",
     "Untitled.base",
-    "Node Graph",
     "Assets/Pasted image 20241217031050.png",
     "Assets/ZangyinPor.png",
     "Assets/radiasPNG.png",

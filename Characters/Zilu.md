@@ -7,32 +7,32 @@
 ## Character Information
 - **Name**: Zilu
 - **Race/Origin**: Human
-- **Tier**: 6
+- **Tier**: 4
 
 ---
 
 ## Core Attributes
-- **Strength (STR)**: `46`
-- **Dexterity (DEX)**: `48`
-- **Intelligence (INT)**: `42`
-- **Wisdom (WIS)**: `15`
-- **Charisma (CHA)**: `15`
-- **Luck (LCK)**: `10`
+- **Strength (STR)**: `27`
+- **Dexterity (DEX)**: `30`
+- **Intelligence (INT)**: `24`
+- **Wisdom (WIS)**: `25`
+- **Charisma (CHA)**: `24`
+- **Luck (LCK)**: `20`
 - **Faith (LCK)**: `10`
 
 ---
 
 ## Combat Stats
-- **Health Points (HP)**: `550 / 550`
+- **Health Points (HP)**: `350 / 350`
 - **Resource (Mana/Stamina)**: `400 / 400`
 - **Armor Class (AC)**: `18`
-- **Initiative**: `+24`
+- **Initiative**: `+15`
 ---
 
 ## Nodes
 ### Active Nodes
-#### Tier 6 (1/4)
-> [[Cloudsplitting Manifestation - Rabbit]] 
+#### Tier 4 (1/4)
+> [[Wind Cutter - Rabbit]] 
 
 ### Passive Nodes
 - **Node Name**: Description.

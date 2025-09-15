@@ -11,7 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Bring 1 ally to attack with you
+    - Bring 1 ally to attack with you.
+    - 
 
 ---
 

@@ -2,10 +2,10 @@
  A powerful bite attack that can cause a bleeding effect.
 
 ## Quick Info
-| Property | Value                           |
-| -------- | ------------------------------- |
-| **Tier** | 1 #Common                       |
-| **Type** | #Active #Slash #Physical #Bleed |
+| Property | Value                              |
+| -------- | ---------------------------------- |
+| **Tier** | 1 #Common                          |
+| **Type** | #Active #Slashing #Physical #Bleed |
 
 ---
 
