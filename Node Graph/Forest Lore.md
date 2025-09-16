@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Identify any creatures and plants in Arken forest.
+    - Identify any creatures and plants in a tier 1 forest.
     - **Identify**: Understand their nodes and acquisition methods.
 
 ---

@@ -24,7 +24,7 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: The economic heart of the town, constantly humming with the sound of saws. The mill is overseen by Elara, a sharp and efficient woman who inherited the business.
 - **Services**: Wood processing, lumber sales.
 - **Notable Nodes**:
-  - **[Basic Woodcraft] (Tier 1)**: Unlocks simple wood-based crafting recipes.
+  - **[[Basic Woodcraft]] (Tier 1)**: Unlocks simple wood-based crafting recipes.
     - **Acquisition**: Complete Elara's "Timber Shortage" quest.
 
 ### Grist & Grain (General Store)
@@ -74,7 +74,7 @@ Harken Town is a small, remote logging settlement nestled in the foothills of th
 - **Description**: A quiet but observant young man in his late teens, dressed in practical leather gear. He is motivated by a desire to prove himself and protect his home.
 - **Tier**: 1
 - **Notable Nodes**:
-  - **[[Tracking]] (Tier 1)**: Can spot subtle tracks and signs of wildlife.
+  - **[[Tracking]] (Tier 1)**
   - **[[Aimed Shot]] (Tier 1)**
 - **Recruitment Method**: After completing the "Pest Control" quest, speak to Finn at the Hearth & Axe. He will offer to join you, seeking experience in the wider world.
 - **Learnable Nodes from Interaction**: [[Tracking]] (Tier 1)

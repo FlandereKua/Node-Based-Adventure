@@ -12,6 +12,7 @@
 ## Mechanics & Effects
 - **Effect Details:**
     - Identify tier 1 wood.
+    - **Identify**: Understand their nodes and acquisition methods.
     - +1 timber when harvesting **Common** wood.
 
 ---

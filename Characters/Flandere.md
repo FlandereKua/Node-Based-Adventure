@@ -48,7 +48,7 @@
 
 ## Equipment
 ### Worn
-- **Weapon(s)**: 
+- **Weapon(s)**: Iron Spear (+1 DMG)
 - **Armor**: 
 - **Amulet/Ring**: 
 

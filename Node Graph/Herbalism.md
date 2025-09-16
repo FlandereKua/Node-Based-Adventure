@@ -12,6 +12,7 @@
 ## Mechanics & Effects
 - **Effect Details:**
     - Identify tier 1 Herb.
+    - **Identify**: Understand their nodes and acquisition methods.
     - 20% chance to +1 additional herb when harvesting **Common** herb.
 
 ---
