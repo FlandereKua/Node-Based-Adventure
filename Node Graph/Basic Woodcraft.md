@@ -1,5 +1,5 @@
 ## Description
-Unlocks simple wood-based crafting recipes, allowing the creation of basic wooden items.
+ Unlocks simple wood-based crafting recipes, allowing the creation of basic wooden items.
 
 ## Quick Info
 | Property | Value                  |

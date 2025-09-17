@@ -1,19 +1,19 @@
 ## Description
-Fundamental techniques for wielding dagger in combat, providing improved speed and damage.
+ Fundamental techniques for wielding dagger in combat, providing improved speed and damage.
 
 ## Quick Info
 | Property | Value                                  |
 | -------- | -------------------------------------- |
 | **Tier** | 1 #Common                              |
-| **Type** | #Dagger #Physical #Passive #Beneficial |
+| **Type** | #Dagger #Passive #Physical    |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Grants +1 to attack rolls when using dagger
-    - Increases SPD by +1
     - Unlocks basic dagger combat maneuvers
+    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with daggers
+    - **Mobility Bonus**: +1 SPD
 
 ---
 

@@ -5,14 +5,14 @@
 | Property | Value                                 |
 | -------- | ------------------------------------- |
 | **Tier** | 3 #Rare                               |
-| **Type** | #Spear #Physical #Beneficial #Passive |
+| **Type** | #Spear #Passive #Physical     |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    -  +7 Piercing DMG when using a spear
-    - +10% critical chance when using a piercing attack
+    - **Weapon Bonus**: +7 to damage with spears
+    - **Critical Enhancement**: Small increase in critical hit range for piercing attacks (critical hits on max rolls)
 
 ---
 

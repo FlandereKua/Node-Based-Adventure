@@ -5,14 +5,13 @@
 | Property | Value          |
 | -------- | -------------- |
 | **Tier** | Unique #Unique |
-| **Type** |                |
+| **Type** | #Passive #Demigod           |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Gain the ability to use [[Genesis Form - Ras]]
-    - +2 CHA
+    - **Attribute Bonus**: +2 CHA
 
 ---
 

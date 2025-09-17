@@ -1,18 +1,18 @@
 ## Description
-A basic understanding of movement, granting bonus speed and dexterity.
+ A basic understanding of movement, granting bonus speed and dexterity.
 
 ## Quick Info
 | Property | Value                          |
 | -------- | ------------------------------ |
 | **Tier** | 1 #Common                      |
-| **Type** | #Passive #Movement #Beneficial |
+| **Type** | #Passive #Movement #Physical  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Grants +1 to DEX when in combat.
-    - Increase SPD by +1.
+    - **Combat Bonus**: +1 DEX when in combat
+    - **Mobility Bonus**: +1 SPD
 
 ---
 

@@ -1,5 +1,5 @@
 ## Description
-Fundamental techniques for wielding axes in combat, providing improved accuracy and damage.
+ Fundamental techniques for wielding axes in combat, providing improved accuracy and damage.
 
 ## Quick Info
 | Property | Value                            |

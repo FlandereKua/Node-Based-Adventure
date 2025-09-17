@@ -1,5 +1,5 @@
 ## Description
-An advanced tactical maneuver that allows a leader to coordinate simultaneous attacks from multiple allies.
+ An advanced tactical maneuver that allows a leader to coordinate simultaneous attacks from multiple allies.
 
 ## Quick Info
 | Property | Value                                    |

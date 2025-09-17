@@ -5,15 +5,15 @@
 | Property | Value                                               |
 | -------- | --------------------------------------------------- |
 | **Tier** | 1 #Common                                           |
-| **Type** | #Passive #Knowledge #Exploration #Chest #Beneficial |
+| **Type** | #Passive #Knowledge #Survival  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Allow the user to lock pick any locked chest. 
-    - 2 attempts maximum. Consume 2 MP each attempt.
-    - Check: 1D10 WIS + 1D20 DEX
+    - **Lockpicking Ability**: Attempt to pick locks on chests and doors
+    - **Skill Check**: Roll 1D10 + WIS modifier and 1D20 + DEX modifier
+    - **Resource Cost**: 2 MP per attempt, maximum 2 attempts per lock
 
 ---
 

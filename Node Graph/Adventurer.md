@@ -5,14 +5,14 @@
 | Property | Value       |
 | -------- | ----------- |
 | **Tier** | 1 #Common   |
-| **Type** | #Title #EXP |
+| **Type** | #Passive #Title              |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Reduce 10% requirement to learn any Nodes
-    - Gain +10% currency when receiving commission
+    - **Learning Enhancement**: Small reduction in requirements to learn new nodes
+    - **Economic Bonus**: Small increase in currency from commissions
 
 ---
 

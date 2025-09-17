@@ -18,7 +18,7 @@
 - **Wisdom (WIS)**: `25`
 - **Charisma (CHA)**: `24`
 - **Luck (LCK)**: `20`
-- **Faith (LCK)**: `10`
+- **Faith (FTH)**: `10`
 
 ---
 
@@ -26,7 +26,7 @@
 - **Health Points (HP)**: `350 / 350`
 - **Resource (Mana/Stamina)**: `400 / 400`
 - **Armor Class (AC)**: `18`
-- **Initiative**: `+15`
+- **SPD**: `+15`
 ---
 
 ## Nodes
