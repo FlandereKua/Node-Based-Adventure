@@ -163,7 +163,7 @@ Node types must use the current standardized tags. **Note**: This tag list is ac
 `#Crafting`, `#Knowledge`, `#Party`, `#Survival`
 
 **Knowledge Subcategories** (combine with #Knowledge):
-`#Nature`, `#Social`, `#Craft`
+`#Nature`, `#Social`, `#Crafting`
 
 **Race/Heritage Categories**:
 `#Wolf`, `#Wood`, `#Herb`
