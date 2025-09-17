@@ -5,14 +5,14 @@
 | Property | Value                     |
 | -------- | ------------------------- |
 | **Tier** | 1 #Common                 |
-| **Type** | #Active #Physical #Pierce |
+| **Type** | #Active #Physical #Pierce  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Pierce DMG.
-    - Cost: 1 MP
+    - **Attack**: Roll 1D3, add STR modifier for piercing damage
+    - **Resource Cost**: 1 MP
 
 ---
 

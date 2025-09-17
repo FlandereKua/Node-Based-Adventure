@@ -1,5 +1,5 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+A basic understanding of movement, granting bonus speed and dexterity.
 
 ## Quick Info
 | Property | Value                          |
@@ -11,7 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 DEX when in combat.
+    - Grants +1 to DEX when in combat.
+    - Increase SPD by +1.
 
 ---
 

@@ -5,14 +5,15 @@
 | Property | Value     |
 | -------- | --------- |
 | **Tier** | 1 #Common |
-| **Type** |           |
+| **Type** | #Party #Active #Physical  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Bring 1 ally to attack with you.
-    - 
+    - **Attack**: Command an ally to attack alongside you
+    - **Party Effect**: One ally within range gains an immediate attack action
+    - **Resource Cost**: 2 MP
 
 ---
 
@@ -22,7 +23,7 @@
 - [[Basic Leadership]]
 
 ### Acquisition Method(s)
-- [ ] **Combat:** 
+- [x] **Combat:** Learn by observing and withstanding 3 Command Strike attacks from Jeno during combat
 - [ ] **Research:** 
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 

@@ -1,5 +1,5 @@
 ## Description
- A basic understanding of dagger
+Fundamental techniques for wielding dagger in combat, providing improved speed and damage.
 
 ## Quick Info
 | Property | Value                                  |
@@ -11,7 +11,9 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 Slashing DMG when using a dagger
+    - Grants +1 to attack rolls when using dagger
+    - Increases SPD by +1
+    - Unlocks basic dagger combat maneuvers
 
 ---
 

@@ -5,14 +5,14 @@
 | Property | Value                             |
 | -------- | ----------------------------------|
 | **Tier** | 1 #Common                         |
-| **Type** | #Exploration #Passive #Beneficial |
+| **Type** | #Passive #Knowledge #Survival    |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Track tier 1 creatures and people.
-    - **Track**: See their trace and activities.
+    - **Identify**: Recognize tracks and signs of Tier 1 creatures and people
+    - **Track**: Understand their movement patterns, numbers, and how recently they passed
 
 
 ---

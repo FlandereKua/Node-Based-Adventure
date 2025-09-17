@@ -5,13 +5,14 @@
 | Property | Value                                 |
 | -------- | ------------------------------------- |
 | **Tier** | 1 #Common                             |
-| **Type** | #Spear #Physical #Beneficial #Passive |
+| **Type** | #Spear #Passive #Physical         |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 Pierce DMG when using a spear
+    - Unlocks basic spear combat maneuvers
+    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with spears
 
 ---
 

@@ -5,14 +5,15 @@
 | Property | Value                              |
 | -------- | ---------------------------------- |
 | **Tier** | 1 #Common                          |
-| **Type** | #Active #Slashing #Physical #Bleed |
+| **Type** | #Active #Physical #Slash #Wolf |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D4 STR Slash DMG.
-    - 10% Chance to cause bleeding (Lose 5% HP every turn).
+    - **Attack**: Roll 1D4, add STR modifier for slashing damage
+    - **Special Effect**: Small chance to cause bleeding (target loses small amount of HP each turn)
+    - **Resource Cost**: 1 MP
 
 ---
 

@@ -11,8 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Reduce 10% of the requirement to learn any Nodes
-    - Gain 10% more currency when receiving commission
+    - Reduce 10% requirement to learn any Nodes
+    - Gain +10% currency when receiving commission
 
 ---
 

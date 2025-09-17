@@ -5,14 +5,14 @@
 | Property | Value                               |
 | -------- | ----------------------------------- |
 | **Tier** | 1 #Common                           |
-| **Type** | #Active #Physical #Piercing #Ranged |
+| **Type** | #Active #Physical #Pierce #Ranged |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 DEX Piercing DMG.
-    - Cost: 1 MP + 1 Projectile.
+    - **Attack**: Roll 1D3, add DEX modifier for piercing damage
+    - **Resource Cost**: 1 MP + 1 Projectile
 - **Range:**
 ```
 [o][?][?][?][x]

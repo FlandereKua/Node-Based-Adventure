@@ -5,13 +5,14 @@
 | Property | Value                        |
 | -------- | ---------------------------- |
 | **Tier** | 1 #Common                    |
-| **Type** | #Beneficial #Passive #Party  |
+| **Type** | #Passive #Party #Mental     |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 DMG to ALL allies in a 3x3 area around the user
+    - **Party Bonus**: +1 to attack rolls for nearby allies
+    - **Leadership Aura**: Inspires confidence in group members
 
 ---
 

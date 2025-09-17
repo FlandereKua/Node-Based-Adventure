@@ -28,10 +28,81 @@ When creating a new node, you **MUST** use the structure defined in the [Node Te
     -   **Tier:** The power level of the node (e.g., Tier 1, Tier 2).
     -   **Type:** The category of the node (e.g., Skill, Combat, Utility, Trait).
 -   `## Mechanics & Effects`
-    -   This is the most critical section. List the specific, mechanical effects using objective language.
-    -   *Good Example:* `Grants +2 to Dexterity.`
-    -   *Good Example:* `User can perform a "Vicious Bite" attack, dealing 1d6 piercing damage.`
-    -   *Bad Example:* `Makes the user better at dodging.`
+    -   This is the most critical section. List the specific, mechanical effects using standardized formatting.
+    -   Use the standardized formats below based on node type to ensure consistency.
+
+### Standardized Effect Details Formats
+
+**Active Combat Attack Nodes:**
+```
+- **Attack**: Roll XDX, add [attribute] modifier for [damage type] damage
+- **Resource Cost**: X MP
+```
+*Example from [[Slash]]:*
+```
+- **Attack**: Roll 1D3, add STR modifier for slashing damage
+- **Resource Cost**: 1 MP
+```
+
+**Passive Weapon Proficiency Nodes:**
+```
+- Unlocks basic [weapon] combat maneuvers
+- **Weapon Bonus**: +X to attack rolls and +X to damage with [weapon]s
+```
+*Example from [[Basic Swordsmanship]]:*
+```
+- Unlocks basic sword combat maneuvers
+- **Weapon Bonus**: +1 to attack rolls and +1 to damage with swords
+```
+
+**Active Crafting Nodes (Recipe-based):**
+```
+- **Recipe**: [Item name] - [effect description]
+- **Materials**: [required resources]
+- **Resource Cost**: X MP per crafting attempt
+```
+*Example from [[Field Care]]:*
+```
+- **Recipe**: Simple Salve - Heals 3 HP when used
+- **Materials**: 5 Grave Moss
+- **Resource Cost**: 2 MP per crafting attempt
+```
+
+**Passive Crafting Nodes (General Enhancement):**
+```
+- **Crafting Enhancement**: [improvement to crafting process]
+- **Unlocks**: [types of recipes/items available]
+- **Crafting Bonus**: [additional chance/benefit]
+```
+*Example from [[Basic Cooking]]:*
+```
+- **Crafting Enhancement**: Small increase in benefits from self-prepared meals
+- **Unlocks**: Basic food recipes and cooking techniques
+- **Crafting Bonus**: Small chance to create additional Tier 1 dishes when cooking
+```
+
+**Knowledge Nodes:**
+```
+- **Identify**: [what can be identified and understood]
+- **[Secondary Effect]**: [additional benefit if applicable]
+```
+*Example from [[Herbalism]]:*
+```
+- **Identify**: Recognize Tier 1 herbs and understand their properties and uses
+- **Harvest Bonus**: Small chance to gather additional herbs when collecting Common herbs
+```
+
+**Party Support Nodes:**
+```
+- **Party Bonus**: [effect on allies]
+- **[Leadership/Command Effect]**: [additional benefits]
+```
+*Example from [[Basic Leadership]]:*
+```
+- **Party Bonus**: +1 to attack rolls for nearby allies
+- **Leadership Aura**: Inspires confidence in group members
+```
+
 -   `## Acquisition`
     -   **Prerequisites:** List any nodes required to unlock this one.
     -   **Acquisition Method(s):** Describe how the node is learned or obtained in the world.
@@ -70,3 +141,42 @@ When a request is made to create nodes for a specific zone or map (e.g., "Create
 2.  **Generate Nodes Sequentially:** After receiving confirmation, create **one node at a time**. Present the complete markdown content for the first node and wait for approval before moving to the next. This ensures quality control and allows for adjustments during the creation process.
 
 By following these instructions, you will create a consistent, balanced, and engaging node system.
+
+---
+
+### Standardized Tag System
+
+Node types must use the current standardized tags. **Note**: This tag list is actively maintained and may be expanded in the future.
+
+**Current Tag Categories:**
+
+**Weapon Types** (for weapon proficiency nodes):
+`#Sword`, `#Axe`, `#Spear`, `#Dagger`
+
+**Damage Types** (for attack nodes - do NOT combine with weapon tags unless specifically required):
+`#Pierce`, `#Blunt`, `#Slash`, `#Magic`, `#Mental`
+
+**Combat Types**:
+`#Active`, `#Passive`, `#Physical`, `#Mental`
+
+**Skill Categories**:
+`#Crafting`, `#Knowledge`, `#Party`, `#Survival`
+
+**Knowledge Subcategories** (combine with #Knowledge):
+`#Nature`, `#Social`, `#Craft`
+
+**Race/Heritage Categories**:
+`#Wolf`, `#Wood`, `#Herb`
+
+**Status Effect Types**:
+`#Bleed`, `#Stun`, `#Freeze`
+
+**Special Categories**:
+`#Healing`, `#Ranged`
+
+**Tag Usage Rules:**
+- Attack nodes use damage type tags (#Slash, #Pierce, etc.) NOT weapon tags
+- Weapon proficiency nodes use weapon type tags (#Sword, #Axe, etc.)
+- Combine categories as needed (e.g., `#Passive #Knowledge #Nature` for nature lore)
+- Active crafting nodes that create items use `#Active #Crafting`
+- Passive crafting nodes that enhance crafting use `#Passive #Crafting`

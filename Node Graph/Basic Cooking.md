@@ -5,14 +5,15 @@
 | Property | Value                      |
 | -------- | -------------------------- |
 | **Tier** | 1 #Common                  |
-| **Type** | #Food #Beneficial #Passive |
+| **Type** | #Passive #Crafting #Food   |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +10% Increase in self-cooked food benefits
-    - 10% chance to make an receive an additional tier 1 Dish
+    - **Crafting Enhancement**: Small increase in benefits from self-prepared meals
+    - **Crafting Bonus**: Small chance to create additional Tier 1 dishes when cooking
+    - **Unlocks**: Basic food recipes and cooking techniques
 
 ---
 

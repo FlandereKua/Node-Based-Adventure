@@ -5,14 +5,14 @@
 | Property | Value                       |
 | -------- | --------------------------- |
 | **Tier** | 1 #Common                   |
-| **Type** | #Slashing #Active #Physical |
+| **Type** | #Active #Physical #Slash    |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 1D3 STR Slashing DMG.
-    - Cost: 1 MP
+    - **Attack**: Roll 1D3, add STR modifier for slashing damage
+    - **Resource Cost**: 1 MP
 - **Range:**
 ```
 [o][x]

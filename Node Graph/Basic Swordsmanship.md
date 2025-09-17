@@ -5,13 +5,14 @@
 | Property | Value                              |
 | -------- | ---------------------------------- |
 | **Tier** | 1 #Common                          |
-| **Type** | #Sword #Slash #Passive #Beneficial |
+| **Type** | #Sword #Passive #Physical   |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - Unlocks basic sword combat maneuvers
+    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with swords
 
 ---
 

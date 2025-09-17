@@ -5,15 +5,15 @@
 | Property | Value                     |
 | -------- | --------------------------|
 | **Tier** | 1 #Common                 |
-| **Type** | #Active #Healing #Crafting|
+| **Type** | #Active #Crafting #Healing |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Craft 1 **Simple salve** 
-    - **Cost:** 5 Grave Moss
-    - **Simple salve**: Heal 3 HP
+    - **Recipe**: Simple Salve - Heals 3 HP when used
+    - **Materials**: 5 Grave Moss
+    - **Resource Cost**: 2 MP per crafting attempt
 
 ---
 

@@ -5,14 +5,15 @@ Unlocks simple wood-based crafting recipes, allowing the creation of basic woode
 | Property | Value                  |
 | -------- | -----------------------|
 | **Tier** | 1 #Common              |
-| **Type** | #Active #Wood #Crafting|
+| **Type** | #Passive #Crafting #Wood       |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Unlocks the ability to craft simple items from wood, such as basic handles for tools, wooden stakes, or simple furniture.
-    - Enables the user to process raw logs into usable planks at a lumber mill.
+    - **Crafting Enhancement**: Process raw logs into usable planks at lumber mills
+    - **Unlocks**: Simple wooden items (tool handles, stakes, basic furniture)
+    - **Crafting Bonus**: Improved efficiency when working with wood materials
 
 ---
 
@@ -24,6 +25,6 @@ Unlocks simple wood-based crafting recipes, allowing the creation of basic woode
 - [ ] **Combat:** 
 - [ ] **Research:** 
 - [x] **Activities:** Complete the "Timber Shortage" quest for Elara at the Harken Lumber Mill in [[Harken Town]].
-- [x] **Dialogue & Exchange:** Learn from any character with a higher-tier woodcrafting or carpentry node.
+- [x] **Dialogue & Exchange:** Learn from a tier 2 **Woodcrafter** or **Carpenter** node.
 - [ ] **Discovery:** 
 - [ ] **Other:**

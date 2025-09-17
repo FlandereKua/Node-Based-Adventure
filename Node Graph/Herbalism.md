@@ -5,15 +5,14 @@
 | Property | Value                                  |
 | -------- | -------------------------------------- |
 | **Tier** | 1 #Common                              |
-| **Type** | #Passive #Knowledge #Beneficial #Herb  |
+| **Type** | #Passive #Knowledge #Nature #Herb |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Identify tier 1 Herb.
-    - **Identify**: Understand their nodes and acquisition methods.
-    - 20% chance to +1 additional herb when harvesting **Common** herb.
+    - **Identify**: Recognize Tier 1 herbs and understand their properties and uses
+    - **Harvest Bonus**: Small chance to gather additional herbs when collecting Common herbs
 
 ---
 
