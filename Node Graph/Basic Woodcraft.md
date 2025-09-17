@@ -25,6 +25,6 @@ Unlocks simple wood-based crafting recipes, allowing the creation of basic woode
 - [ ] **Combat:** 
 - [ ] **Research:** 
 - [x] **Activities:** Complete the "Timber Shortage" quest for Elara at the Harken Lumber Mill in [[Harken Town]].
-- [x] **Dialogue & Exchange:** Learn from a tier 2 **Woodcrafter** or **Carpenter** node.
+- [x] **Dialogue & Exchange:** Learn from a tier 2 **Woodcrafter** or **Carpenter**.
 - [ ] **Discovery:** 
 - [ ] **Other:**
