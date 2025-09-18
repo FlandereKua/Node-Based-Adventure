@@ -11,9 +11,9 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Lockpicking Ability**: Attempt to pick locks on chests and doors
-    - **Skill Check**: Roll 1D10 + WIS modifier and 1D20 + DEX modifier
-    - **Resource Cost**: 2 MP per attempt, maximum 2 attempts per lock
+    - **Lockpicking Ability**: Attempt to pick locks on chests and doors.
+    - **Skill Check**: Roll 1D10 + WIS modifier and 1D10 + DEX modifier.
+    - **Resource Cost**: 2 MP per attempt, maximum 2 attempts per lock.
 
 ---
 

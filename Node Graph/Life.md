@@ -5,13 +5,13 @@
 | Property | Value     |
 | -------- | --------- |
 | **Tier** | 0 #Origin |
-| **Type** | #Life     |
+| **Type** | #Origin   |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - The start of all Nodes.
+    - **Foundation**: The starting point for all other nodes - grants the basic capacity for growth and learning.
 
 ---
 

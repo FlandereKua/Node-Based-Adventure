@@ -11,8 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Roll 1D3, add DEX modifier for piercing damage
-    - **Resource Cost**: 1 MP + 1 Projectile
+    - **Attack**: Roll 1D3, add DEX modifier for piercing damage.
+    - **Resource Cost**: 1 MP + 1 Projectile.
 - **Range:**
 ```
 [o][?][?][?][x]

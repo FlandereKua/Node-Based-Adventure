@@ -11,9 +11,9 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Recipe**: Simple Salve - Heals 3 HP when used
-    - **Materials**: 5 Grave Moss
-    - **Resource Cost**: 2 MP per crafting attempt
+    - **Recipe**: Simple Salve - Heals 3 HP when used.
+    - **Materials**: 5 Grave Moss.
+    - **Resource Cost**: 2 MP
 
 ---
 

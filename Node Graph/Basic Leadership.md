@@ -1,5 +1,5 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+Natural charisma and tactical knowledge that inspires allies and coordinates group efforts.
 
 ## Quick Info
 | Property | Value                        |

@@ -1,18 +1,18 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ Fundamental sword techniques that form the foundation of all blade mastery.
 
 ## Quick Info
-| Property | Value                              |
-| -------- | ---------------------------------- |
-| **Tier** | 1 #Common                          |
+| Property | Value                       |
+| -------- | ----------------------------|
+| **Tier** | 1 #Common                   |
 | **Type** | #Sword #Passive #Physical   |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Unlocks basic sword combat maneuvers
-    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with swords
+    - Unlocks basic sword combat maneuvers.
+    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with swords.
 
 ---
 

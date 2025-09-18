@@ -11,8 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Combat Bonus**: +1 DEX when in combat
-    - **Mobility Bonus**: +1 SPD
+    - **Combat Bonus**: +1 DEX when in combat.
+    - **Mobility Bonus**: +1 SPD.
 
 ---
 

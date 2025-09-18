@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Roll 1D3, add STR modifier for piercing damage
+    - **Attack**: Roll 1D3, add STR modifier for piercing damage.
     - **Resource Cost**: 1 MP
 
 ---

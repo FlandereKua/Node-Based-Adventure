@@ -2,17 +2,17 @@
  Gain a temporary boost to stamina after eating.
 
 ## Quick Info
-| Property | Value                            |
-| -------- | -------------------------------- |
-| **Tier** | 1 #Common                        |
-| **Type** | #Food #Passive #Food #Beneficial |
+| Property | Value                  |
+| -------- | -----------------------|
+| **Tier** | 1 #Common              |
+| **Type** | #Passive #Mental #Food |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +3 MP after eating a dish.
-    - Effective for 2 battles
+    - **Resource Boost**: +3 to maximum MP after eating any dish.
+    - **Duration**: Effects last for 2 battles.
 
 ---
 

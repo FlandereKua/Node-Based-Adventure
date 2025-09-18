@@ -1,17 +1,18 @@
 ## Description
- Grants a minor bonus to resisting slowed or knockdown effects while in forests.
+ Enhanced balance and stability that provides resistance to debilitating effects and difficult terrain.
 
 ## Quick Info
-| Property | Value                                  |
-| -------- | -------------------------------------- |
-| **Tier** | 1 #Common                              |
-| **Type** | #Passive #Movement #Beneficial #Forest |
+| Property | Value                           |
+| -------- | ------------------------------- |
+| **Tier** | 1 #Common                       |
+| **Type** | #Passive #Movement #Survival    |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 10% chance to resist being **Slow** or **Stun**. (Active only in Forest)
+    - **Status Resistance**: Small chance to resist slow and stun effects.
+    - **Terrain Navigation**: Bonus to movement through poor terrain conditions.
 
 ---
 

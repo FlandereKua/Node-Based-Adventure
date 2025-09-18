@@ -1,17 +1,19 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ A masterful arc of steel that cuts through defenses with deadly precision.
 
 ## Quick Info
-| Property | Value      |
-| -------- | ---------- |
-| **Tier** | 4 #Renowed |
-| **Type** |            |
+| Property | Value                        |
+| -------- | ---------------------------- |
+| **Tier** | 4 #Renowned                  |
+| **Type** | #Active #Physical #Slash     |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 
+    - **Attack**: Roll 1D30, add STR modifier for slashing damage.
+    - **Critical Enhancement**: Medium increase in critical hit range.
+    - **Resource Cost**: 6 MP
 
 ---
 

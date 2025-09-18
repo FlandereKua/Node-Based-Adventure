@@ -1,19 +1,20 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ An authoritative combat technique that rallies allies to strike alongside the commander.
 
 ## Quick Info
-| Property | Value     |
-| -------- | --------- |
-| **Tier** | 1 #Common |
+| Property | Value                     |
+| -------- | ------------------------- |
+| **Tier** | 1 #Common                 |
 | **Type** | #Party #Active #Physical  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Command an ally to attack alongside you
-    - **Party Effect**: One ally within range gains an immediate attack action
-    - **Resource Cost**: 2 MP
+    - **Attack**: Roll 1D3, add WIS modifier for slashing damage.
+    - **Party Effect**: One ally within range gains an immediate attack action.
+    - **Resource Cost**: 3 MP.
+    - **Limitation**: Participating ally could only use tier 1 attack.
 
 ---
 

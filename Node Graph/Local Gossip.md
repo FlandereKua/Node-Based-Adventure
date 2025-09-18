@@ -5,13 +5,14 @@
 | Property | Value                           |
 | -------- | ------------------------------- |
 | **Tier** | 1 #Common                       |
-| **Type** | #Passive #Knowledge #Beneficial |
+| **Type** | #Passive #Knowledge #Social  |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Learn a minor secret or rumor about the area
+    - **Information Gathering**: Learn minor secrets and rumors about the current area.
+    - **Social Insight**: Gain knowledge of local events, people, and hidden activities.
 
 ---
 

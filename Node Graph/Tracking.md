@@ -11,8 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Identify**: Recognize tracks and signs of Tier 1 creatures and people
-    - **Track**: Understand their movement patterns, numbers, and how recently they passed
+    - **Identify**: Recognize tracks and signs of Tier 1 creatures and people.
+    - **Track**: Understand their movement patterns, numbers, and how recently they passed.
 
 
 ---

@@ -5,14 +5,14 @@
 | Property | Value       |
 | -------- | ----------- |
 | **Tier** | 1 #Common   |
-| **Type** | #Passive #Title              |
+| **Type** | #Title      |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Learning Enhancement**: Small reduction in requirements to learn new nodes
-    - **Economic Bonus**: Small increase in currency from commissions
+    - **Learning Enhancement**: Small reduction in requirements to learn new nodes.
+    - **Economic Bonus**: Small increase in currency from commissions.
 
 ---
 

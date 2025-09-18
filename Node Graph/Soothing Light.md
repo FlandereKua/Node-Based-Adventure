@@ -2,16 +2,16 @@
  Grants a minor bonus to resisting fear or confusion effects.
 
 ## Quick Info
-| Property | Value                                 |
-| -------- | ------------------------------------- |
-| **Tier** | 1 #Common                             |
-| **Type** | #Passive #Beneficial #Confusion #Fear |
+| Property | Value                           |
+| -------- | --------------------------------|
+| **Tier** | 1 #Common                       |
+| **Type** | #Passive #Mental #Fear #Stun    |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - 10% chance to resist being **Fear** or **Confused**.
+    - **Status Resistance**: Small chance to resist fear or confusion effects.
 
 ---
 

@@ -2,17 +2,17 @@
  A basic understanding of spear.
 
 ## Quick Info
-| Property | Value                                 |
-| -------- | ------------------------------------- |
-| **Tier** | 1 #Common                             |
+| Property | Value                             |
+| -------- | ----------------------------------|
+| **Tier** | 1 #Common                         |
 | **Type** | #Spear #Passive #Physical         |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Unlocks basic spear combat maneuvers
-    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with spears
+    - Unlocks basic spear combat maneuvers.
+    - **Weapon Bonus**: +1 to attack rolls and +1 to damage with spears.
 
 ---
 

@@ -2,17 +2,17 @@
  Can identify any plant or animal in a tier 1 forest and knows its properties.
 
 ## Quick Info
-| Property | Value                                                       |
-| -------- | ----------------------------------------------------------- |
-| **Tier** | 1 #Common                                                   |
-| **Type** | #Knowledge #Passive #Wood #Herb #Beneficial #Forest #Animal |
+| Property | Value                                         |
+| -------- | ----------------------------------------------|
+| **Tier** | 1 #Common                                     |
+| **Type** | #Passive #Knowledge #Nature #Wood #Herb #Beast|
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Identify any creatures and plants in a tier 1 forest.
-    - **Identify**: Understand their nodes and acquisition methods.
+    - **Identify**: Recognize all creatures and plants in Tier 1 forests and understand their properties.
+    - **Forest Knowledge**: Understand creature behaviors, plant uses, and ecosystem relationships.
 
 ---
 

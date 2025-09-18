@@ -1,21 +1,20 @@
 ## Description
- [[Zilu]]'s personal understanding of the skill, swift and lethal.
+ Zilu's personal mastery of wind cutting, emphasizing agility and precision over raw power.
 
 ## Quick Info
-| Property | Value                                  |
-| -------- | -------------------------------------- |
-| **Tier** | 4 #Renowed                             |
-| **Type** | #Active #Physical #Slashing #Deathrite |
+| Property | Value                                    |
+| -------- | ---------------------------------------- |
+| **Tier** | 4 #Renowned                              |
+| **Type** | #Active #Physical #Slash #Movement #Deathrite #Unique|
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Deal 3D10 STR/DEX Slashing DMG.
-    - Deal +20% DMG for each 2 DEX differences (Maximum: 60%)
-    - Apply 1 **Deathrite** to enemy 
-    - **Deathrite**: At 3 stacks, lose 20% of your maximum HP.
-    - Cost: 20 MP
+    - **Attack**: Roll 1D25, add DEX modifier for slashing damage.
+    - **Agility Boost**: +4 SPD and +4 DEX for 2 turns.
+    - **Movement**: Moves user forward 2 tiles during attack.
+    - **Resource Cost**: 6 MP
 
 ---
 
@@ -29,5 +28,5 @@
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
-- [ ] **Other:** 
+- [x] **Other:** Learned from Zilu herself
 

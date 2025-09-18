@@ -5,13 +5,13 @@
 | Property | Value                       |
 | -------- | --------------------------- |
 | **Tier** | 1 #Common                   |
-| **Type** | #Passive #Magic #Beneficial |
+| **Type** | #Passive #Mental #Magic      |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +3 MP
+    - **Resource Boost**: +3 MP.
 
 ---
 
@@ -22,7 +22,7 @@
 ### Acquisition Method(s)
 - [ ] **Combat:** 
 - [ ] **Research:** 
-- [x] **Activities:** 20% Chance to acquire it upon using a Tier 1 **Magic Crystal**.
+- [x] **Activities:** Small chance to acquire upon using a Tier 1 **Magic Crystal**.
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
 - [x] **Other:** Born with it.

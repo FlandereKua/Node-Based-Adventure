@@ -5,15 +5,14 @@
 | Property | Value                                 |
 | -------- | ------------------------------------- |
 | **Tier** | 1 #Common                             |
-| **Type** | #Knowledge #Passive #Beneficial #Wood |
+| **Type** | #Passive #Knowledge #Nature #Wood |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Identify tier 1 wood.
-    - **Identify**: Understand their nodes and acquisition methods.
-    - +1 timber when harvesting **Common** wood.
+    - **Identify**: Recognize Tier 1 wood types and understand their properties and uses.
+    - **Harvest Bonus**: Gain additional timber when harvesting Common wood.
 
 ---
 

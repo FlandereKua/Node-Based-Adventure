@@ -11,8 +11,8 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Identify**: Recognize Tier 1 herbs and understand their properties and uses
-    - **Harvest Bonus**: Small chance to gather additional herbs when collecting Common herbs
+    - **Identify**: Recognize Tier 1 herbs and understand their properties and uses.
+    - **Harvest Bonus**: Small chance to gather additional herbs when collecting Common herbs.
 
 ---
 

@@ -2,16 +2,16 @@
  Deals more damage when near other wolves.
 
 ## Quick Info
-| Property | Value                             |
-| -------- | --------------------------------- |
-| **Tier** | 1 #Common                         |
-| **Type** | #Beneficial #Passive #Wolf #Party |
+| Property | Value                        |
+| -------- | -----------------------------|
+| **Tier** | 1 #Common                    |
+| **Type** | #Passive #Wolf #Party        |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +1 DMG when near other wolves (At least 1).
+    - **Pack Damage Bonus**: +1 damage when near other wolves (minimum 1 wolf ally nearby).
 
 ---
 

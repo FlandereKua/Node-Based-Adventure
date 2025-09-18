@@ -1,18 +1,18 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ Intermediate spear techniques that bridge basic training and advanced mastery.
 
 ## Quick Info
-| Property | Value                                 |
-| -------- | ------------------------------------- |
-| **Tier** | 2 #Uncommon                           |
-| **Type** | #Spear #Physical #Beneficial #Passive |
+| Property | Value                       |
+| -------- | --------------------------- |
+| **Tier** | 2 #Uncommon                 |
+| **Type** | #Spear #Passive #Physical   |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - +3 Piercing DMG when using a spear.
-    - **Enhancement**: +1 STR/DEX if all prerequisites Nodes are acquired.
+    - **Weapon Bonus**: +3 to damage with spears.
+    - **Mastery Enhancement**: +1 STR/DEX if all prerequisite nodes are acquired.
 
 ---
 

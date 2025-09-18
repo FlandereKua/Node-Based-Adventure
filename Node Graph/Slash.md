@@ -1,5 +1,5 @@
 ## Description
- A brief, flavourful quote or summary of the node.
+ A swift slashing attack.
 
 ## Quick Info
 | Property | Value                       |
@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Roll 1D3, add STR modifier for slashing damage
+    - **Attack**: Roll 1D3, add STR modifier for slashing damage.
     - **Resource Cost**: 1 MP
 - **Range:**
 ```

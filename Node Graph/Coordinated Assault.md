@@ -2,24 +2,26 @@
  An advanced tactical maneuver that allows a leader to coordinate simultaneous attacks from multiple allies.
 
 ## Quick Info
-| Property | Value                                    |
-| -------- | ---------------------------------------- |
-| **Tier** | 2 #Uncommon                              |
-| **Type** | #Leadership #Tactics #Active #Beneficial |
+| Property | Value                        |
+| -------- | -----------------------------|
+| **Tier** | 2 #Uncommon                  |
+| **Type** | #Active #Party #Physical     |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - Command up to 3 allies to attack the same target simultaneously
-    - Each participating ally gains +3 to their attack roll
-    - If all attacks hit, the target suffers additional bleeding damage
-    - Requires clear line of sight to all participating allies
+    - **Attack**: Roll 1D3, add both STR and WIS modifier for slashing damage.
+    - **Party Effect**: Command up to 2 allies to attack the same target simultaneously.
+    - **Attack Coordination**: Each participating ally gains +3 to their attack roll.
+    - **Resource Cost**: 4 MP
+    - **Limitation**: Participating ally could only use tier 1 attack.
 
 ---
 
 ## Acquisition
 ### Prerequisites
+- [[Command Strike]]
 - [[Basic Leadership]]
 - [[Life]]
 

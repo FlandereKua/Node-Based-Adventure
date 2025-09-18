@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attribute Bonus**: +2 CHA
+    - **Attribute Bonus**: +2 CHA.
 
 ---
 

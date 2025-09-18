@@ -2,25 +2,24 @@
 A primal hunting instinct that surges when prey is wounded, temporarily enhancing physical prowess.
 
 ## Quick Info
-| Property | Value                                  |
-| -------- | -------------------------------------- |
-| **Tier** | 1 #Common                              |
-| **Type** | #Beastman #Bloodlust #Passive #Beneficial |
+| Property | Value                            |
+| -------- | ---------------------------------|
+| **Tier** | 1 #Common                        |
+| **Type** | #Passive #Physical #Beast #Bleed |
 
 ---
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - When an enemy within sight is bleeding, gain +2 STR for the duration of combat
-    - Effect stacks up to +4 STR if multiple enemies are bleeding
-    - Enhanced senses allow detection of wounded prey at greater distances
+    - **Bloodlust**: +2 STR when any enemy within sight is bleeding.
+    - **Stacking Effect**: Each additional bleeding enemy grants +1 STR (stacks up to 2 times).
+    - **Enhanced Senses**: Improved detection of wounded prey at greater distances.
 
 ---
 
 ## Acquisition
 ### Prerequisites
 - [[Life]]
-- Must be a beastman or have beast heritage
 
 ### Acquisition Method(s)
 - [ ] **Combat:** 
@@ -28,4 +27,4 @@ A primal hunting instinct that surges when prey is wounded, temporarily enhancin
 - [ ] **Activities:** 
 - [ ] **Dialogue & Exchange:** 
 - [ ] **Discovery:** 
-- [ ] **Other:** Awakens naturally in beastmen during intense combat involving bloodshed
+- [ ] **Other:** Awakens naturally in beastmen during intense combat involving bloodshed.
