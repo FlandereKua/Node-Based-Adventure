@@ -1,5 +1,5 @@
 ## Description
- A basic understanding of movement, granting bonus speed and dexterity.
+ A basic understanding of movement.
 
 ## Quick Info
 | Property | Value                          |

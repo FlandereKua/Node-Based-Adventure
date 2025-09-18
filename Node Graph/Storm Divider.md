@@ -11,10 +11,15 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Roll 1D45, add STR modifier for slashing damage.
+    - **Attack**: Roll 1D15, add STR modifier for slashing damage.
+    - **Range**: AOE.
     - **Armor Penetration**: Ignores half of target's AC.
-    - **Stacking Effect**: Each use grants +1D15 slashing damage bonus (stacks up to 3 times).
+    - **Stacking Effect**: Each use grants +1D5 slashing damage bonus (stacks up to 3 times).
     - **Resource Cost**: 8 MP
+- **Range:**
+```
+[o][x][x][x]
+```
 
 ---
 

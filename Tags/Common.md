@@ -12,7 +12,7 @@
 | [[Pierce]]                 |
 | [[Root Snare]]             |
 | [[Soothing Poultice]]      |
-| [[Soothing Light]]         |
+| [[Soothing Spark]]         |
 | [[Sure-Footed]]            |
 | [[Tracking]]               |
 | [[Vicious Bite]]           |

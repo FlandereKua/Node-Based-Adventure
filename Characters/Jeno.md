@@ -1,5 +1,7 @@
 # Character Stat Sheet
 
+![[Jeno.png]]
+
 ---
 
 ## Character Information
@@ -10,40 +12,41 @@
 ---
 
 ## Core Attributes
-- **Strength (STR)**: `8`
+- **Strength (STR)**: `8` (+2)
 - **Dexterity (DEX)**: `7`
-- **Intelligence (INT)**: `6`
+- **Intelligence (INT)**: `4`
 - **Wisdom (WIS)**: `5`
-- **Charisma (CHA)**: `9`
+- **Charisma (CHA)**: `6`
 - **Luck (LCK)**: `4`
 - **Faith (FTH)**: `0`
 
 ---
 
 ## Combat Stats
-- **Health Points (HP)**: `65 / 65`
+- **Health Points (HP)**: `30 / 30`
 - **Resource (Mana/Stamina)**: `35 / 35`
-- **Armor Class (AC)**: `5`
-- **SPD**: `+3`
+- **Armor Class (AC)**: `5` (+1)
+- **Movement (MV)**: `+0` (+1)
+- **Speed (SPD)**: `+0`
 
 ---
 
 ## Nodes
 ### Active Nodes
 #### Tier 1 (4/4)
-- **[[Slash]]**: A swift axe strike that deals moderate damage and can potentially cause bleeding.
-- **[[Command Strike]]**: An authoritative axe attack that inspires nearby allies while striking a foe.
-- **[[Pierce]]**: A focused thrust attack that can penetrate armor more effectively than slashing attacks.
-- **[[Vicious Bite]]**: A brutal bite attack using his wolf heritage, dealing damage and potentially causing fear.
+>**[[Slash]]**
+>**[[Command Strike]]**
+>**[[Pierce]]**
+>**[[Vicious Bite]]**
 
 #### Tier 2 (1/4)
-- **[[Coordinated Assault]] (Tier 2)**: Commands up to 3 allies to attack the same target simultaneously, granting attack bonuses and potential bleeding damage.
+>**[[Coordinated Assault]]
 
 ### Passive Nodes
 #### Tier 1 (3/6)
-- **[[Basic Axemanship]]**: Fundamental axe techniques providing accuracy and damage bonuses with axe weapons.
-- **[[Basic Leadership]]**: Natural authority that allows effective command of small groups and intimidation of enemies.
-- **[[Predator's Instinct]]**: Beast man bloodlust that grants +2 STR when enemies are bleeding, stacking up to +4 STR.
+>**[[Basic Axemanship]]**
+>**[[Basic Leadership]]**
+>**[[Predator's Instinct]]**
 
 #### Tier 2 (1/4)
 - **[[Bandit Lord's Presence]] (Tier 2)**: An aura of menace and authority that reduces enemy morale while boosting ally confidence in combat.
@@ -52,8 +55,8 @@
 - **[[Failed Knight]]**: A title representing his fallen status, granting knowledge of knightly tactics but also carrying shame that can be exploited.
 
 ### Proficiencies
-- **Wilderness Survival**: Years of bandit life have taught him to survive in harsh conditions.
-- **Intimidation**: His reputation and presence make him naturally frightening to common folk.
+- **Wilderness Survival**: Small resistance against bleed.
+- **Intimidation**: Enemies deal -1 damage against him.
 
 ---
 

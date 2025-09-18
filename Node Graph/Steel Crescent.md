@@ -11,9 +11,14 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Attack**: Roll 1D30, add STR modifier for slashing damage.
+    - **Attack**: Roll 1D15, add STR modifier for slashing damage.
+    - **Target**: Up to 2 targets.
     - **Critical Enhancement**: Medium increase in critical hit range.
     - **Resource Cost**: 6 MP
+- **Range:**
+```
+[o][x][x][x]
+```
 
 ---
 

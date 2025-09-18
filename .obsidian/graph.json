@@ -29,7 +29,7 @@
       }
     },
     {
-      "query": "tag:#Renowed  t",
+      "query": "tag:#Renowned",
       "color": {
         "a": 1,
         "rgb": 5431378
@@ -50,7 +50,7 @@
       }
     },
     {
-      "query": "",
+      "query": "tag:#Legendary",
       "color": {
         "a": 1,
         "rgb": 5395168
@@ -88,6 +88,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.6666666666666662,
-  "close": true
+  "scale": 0.6666666666666659,
+  "close": false
 }

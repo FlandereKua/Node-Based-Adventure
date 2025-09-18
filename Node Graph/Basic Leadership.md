@@ -1,5 +1,5 @@
 ## Description
-Natural charisma and tactical knowledge that inspires allies and coordinates group efforts.
+Natural charisma and tactical knowledge.
 
 ## Quick Info
 | Property | Value                        |
