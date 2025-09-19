@@ -30,27 +30,19 @@
 
 ## Nodes
 ### Active Nodes
+#### Tier 1 (1/3)
 > [[Bite]]
 
 ### Passive Nodes
+#### Tier 1 (2/4)
 >[[Swift]]
 >[[Pack Tactics]]
-
-### Proficiencies 
-- **Node Name**: Description.
-
----
-
-## Equipment
-### Worn
-- **Weapon(s)**: 
-- **Armor**: 
-- **Amulet/Ring**: 
-
-### Inventory
 
 ---
 
 ## Background & Notes
-**Tag**: 
-- 
+**Tag**: #Beast #Wolf
+
+**Research Notes**: A common brown wolf that lurk amidst the forest of the Empire. Their sleek bodies and sharp fangs, in combination with their fast productive rate has caused headache for many small towns.
+
+**Pattern**: They tend to appear in a pack of 3~5, sometimes even with an Alpha.
