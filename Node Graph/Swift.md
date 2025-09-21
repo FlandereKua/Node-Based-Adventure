@@ -11,7 +11,7 @@
 
 ## Mechanics & Effects
 - **Effect Details:**
-    - **Speed Bonus**: +1 SPD.
+    - **Speed Boost**: +1 SPD.
 
 ---
 

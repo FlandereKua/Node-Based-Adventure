@@ -1,6 +1,6 @@
 # Character Stat Sheet
 
-![[Jeno.png]]
+![[Resources/Image/Character/Jeno.png]]
 
 ---
 
@@ -15,7 +15,7 @@
 - **Strength (STR)**: `8` (+2)
 - **Dexterity (DEX)**: `7`
 - **Intelligence (INT)**: `4`
-- **Wisdom (WIS)**: `5`
+- **Wisdom (WIS)**: `5` (-1)
 - **Charisma (CHA)**: `6`
 - **Luck (LCK)**: `4`
 - **Faith (FTH)**: `0`(-1)
@@ -26,8 +26,8 @@
 - **Health Points (HP)**: `30 / 30`
 - **Resource (Mana/Stamina)**: `15 / 15`
 - **Armor Class (AC)**: `3` (+1)
-- **Movement (MV)**: `+0` (+1)
-- **Speed (SPD)**: `+0`
+- **Movement (MV)**: `+0` 
+- **Speed (SPD)**: `+0` (+1)
 
 ---
 
@@ -53,7 +53,7 @@
 - **[[Bandit Lord's Presence]] (Tier 2)**
 
 ### Title Nodes
-- **[[Failed Knight]]**: A title representing his fallen status, granting knowledge of knightly tactics but also carrying shame that can be exploited.
+- **[[Failed Knight]]**
 
 ### Proficiencies
 - **Wilderness Survival**: Small resistance against bleed.

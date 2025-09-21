@@ -2,10 +2,10 @@
  Intermediate spear techniques that bridge basic training and advanced mastery.
 
 ## Quick Info
-| Property | Value                       |
-| -------- | --------------------------- |
-| **Tier** | 2 #Uncommon                 |
-| **Type** | #Spear #Passive #Physical   |
+| Property | Value                     |
+| -------- | ------------------------- |
+| **Tier** | 2 #Uncommon               |
+| **Type** | #Spear #Passive #Physical |
 
 ---
 

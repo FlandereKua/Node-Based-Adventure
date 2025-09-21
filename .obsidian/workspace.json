@@ -8,73 +8,68 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ab7a971087c64253",
+            "id": "9835ac033bd5461e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "Node Graph/Swift Cut.md",
-                "mode": "source",
-                "source": false
+                "file": "Wiki.base",
+                "viewName": "Table"
               },
-              "icon": "lucide-file",
-              "title": "Swift Cut"
+              "icon": "lucide-table",
+              "title": "Wiki"
             }
           },
           {
-            "id": "172a241bc46d9f5f",
+            "id": "b115955378b3e95f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Node Graph/Steel Crescent.md",
+                "file": "Node Graph/Poison Shot.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Steel Crescent"
+              "title": "Poison Shot"
             }
           },
           {
-            "id": "2e44b20af4bde4c6",
+            "id": "d9e40b931aebccfd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Node Graph/Slash.md",
+                "file": "Characters/Cermia.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Slash"
+              "title": "Cermia"
             }
           },
           {
-            "id": "4c4bedb4f2fb013d",
+            "id": "9d447d2b9fad8431",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Node Graph/Razor Arc.md",
+                "file": "Node Graph/Pressing Advantage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Razor Arc"
+              "title": "Pressing Advantage"
             }
           },
           {
             "id": "90829b5a2a865cbe",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Node Graph/X-Slash.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "X-Slash"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           },
           {
@@ -90,23 +85,8 @@
               "icon": "lucide-file",
               "title": "Stat Threshold"
             }
-          },
-          {
-            "id": "29192a567428f2ac",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Characters/Zilu.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Zilu"
-            }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -138,7 +118,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Vic",
+                "query": "tag:#Gamble",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -264,53 +244,54 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "90829b5a2a865cbe",
+  "active": "9835ac033bd5461e",
   "lastOpenFiles": [
-    "Node Graph/Wind Cutter - Rabbit.md",
-    "Node Graph/Wind Cutter.md",
-    "Node Graph/Vicious Bite.md",
-    "Node Graph/Tracking.md",
-    "Node Graph/Swift Cut.md",
-    "Node Graph/Swift.md",
-    "Node Graph/Sure-Footed.md",
-    "Node Graph/Storm Divider.md",
-    "Node Graph/Steel Crescent.md",
-    "Node Graph/Spearmanship.md",
-    "Node Graph/Soothing Spark.md",
-    "Node Graph/Soothing Poultice.md",
-    "Node Graph/Slash.md",
-    "Node Graph/Root Snare.md",
-    "Node Graph/Razor Arc.md",
-    "Node Graph/Pierce.md",
-    "Node Graph/Focused Cleave.md",
-    "Node Graph/Coordinated Assault.md",
-    "Node Graph/Command Strike.md",
-    "Node Graph/Aimed Shot.md",
-    "Node Graph/Bite.md",
-    "Monsters/Forest Wolf.md",
-    "Node Graph/Basic Leadership.md",
-    "Guide/Node Description.prompt.md",
-    "Characters/Jeno.md",
-    "Node Graph/Basic Woodcraft.md",
-    "Node Graph",
-    "Resources/Image/Jeno.png",
-    "Resources/Image/Npc_zoom_3992152000_01.png.download",
-    "Wiki.base",
-    "Node Graph/Untitled 1.base",
-    "Node Graph/Untitled.base",
-    "Node Graph/Untitled",
-    "Resources/Image/Zilu.png",
-    "Resources/Image",
-    "Resources",
+    "Zone/Eternal Empire/Northen Province/Harken Town.md",
+    "Zone/Eternal Empire/Northen Province/Arken Forest.md",
+    "Zone/Eternal Empire/Central Province/Throne of Dawn.md",
+    "Zone/Eternal Empire/Central Province/Eterna Castle.md",
+    "Zone/Eternal Empire/Central Province/Eterna Castle (Eternity).md",
+    "Zone/Murim Confederation/Hidden Valleys/Ice and Fire Yin Yang Well.md",
+    "Zone/Murim Confederation/Central Plains/Qingyun Sect Outer Courtyard.md",
+    "Zone/Murim Confederation/Central Plains/Qingxi Village.md",
+    "Zone/Eternal Empire/Northen Province",
+    "Zone/Eternal Empire/Central Province",
+    "Zone/Murim Confederation/Hidden Valleys",
     "Zone/Murim Confederation/Central Plains",
-    "Monsters",
-    "Assets/Pasted image 20241217031050.png",
-    "Assets/ZangyinPor.png",
-    "Assets/radiasPNG.png",
-    "Assets/HolmesPor.png",
-    "Assets/Holmes.png",
-    "Assets/1702741069946.jpg",
-    "Assets/output-onlinepngtools(1).png",
+    "Zone/Murim Confederation",
+    "Zone/Map.md",
+    "Zone/Eternal Empire",
+    "Zone",
+    "Template/Town Template.md",
+    "Template/Stat Template.md",
+    "Template/Secret Character Quest Template.md",
+    "Template/Node Template.md",
+    "Template/Monster Template.md",
+    "Template/Enemy Zone Template.md",
+    "Template",
+    "Tags/Uncommon.md",
+    "Tags/Rare.md",
+    "Tags/Eternal Empire.md",
+    "Tags/Common.md",
+    "Tags",
+    "Resources/Token/Monster/Fwolf/FWolfToken.png",
+    "Resources/Token/Monster/Fwolf/FWolf.rptok",
+    "Resources/Token/Character/Keylos/Keylos.png",
+    "Resources/Token/Character/Jeno/Jeno.png",
+    "Resources/Token/Character/Cermia/Cermia.png",
+    "Resources/Map/Harken Town/Harken Town Night.jpg",
+    "Resources/Map/Harken Town/Harken Town Day.jpg",
+    "Resources/Image/Monster/Forest Wolf.png",
+    "Resources/Image/Character/Zilu.png",
+    "Resources/Image/Character/Sven.png",
+    "Resources/Image/Character/Pete.png",
+    "Resources/Map Resources.md",
+    "Resources/Naming.md",
+    "Resources/Attack Descriptor.md",
+    "Nodes/Node.md",
+    "Nodes/Node List.md",
+    "Node Graph/X-Slash.md",
+    "Node Graph/Wind Cutter.md",
     "Untitled.canvas"
   ]
 }

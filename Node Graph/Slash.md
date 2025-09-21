@@ -2,10 +2,10 @@
  A swift slashing attack.
 
 ## Quick Info
-| Property | Value                       |
-| -------- | --------------------------- |
-| **Tier** | 1 #Common                   |
-| **Type** | #Active #Physical #Slash    |
+| Property | Value                    |
+| -------- | ------------------------ |
+| **Tier** | 1 #Common                |
+| **Type** | #Active #Physical #Slash |
 
 ---
 
