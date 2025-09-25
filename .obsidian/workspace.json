@@ -24,12 +24,14 @@
             "id": "9363f1db68775fa2",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Resources/Image/Character/Cermia.png"
+                "file": "Characters/Meryll.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Cermia"
+              "icon": "lucide-file",
+              "title": "Meryll"
             }
           },
           {
@@ -242,7 +244,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -256,9 +259,29 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3d5ddf33475ff15b",
+  "active": "9363f1db68775fa2",
   "lastOpenFiles": [
+    "Characters/Keylos.md",
+    "Characters/Ashtear.md",
+    "Node Graph/Basic Axemanship.md",
+    "Node Graph/Basic Daggerwork.md",
+    "Node Graph/Basic Cooking.md",
+    "Node Graph/Basic Swordsmanship.md",
+    "Node Graph/Basic Spearmanship.md",
+    "Characters/Meryll.md",
+    "Resources/Image/Character/Trae-Setup-x64.exe",
+    "Resources/Image/Character/Trae-Setup-x64.exe.download",
+    "Node Graph/Spearmanship.md",
+    "Node Graph/Advanced Spearmanship.md",
+    "Resources/Image/Character/Ashtear.png",
+    "Resources/Image/Character/101060161_rank5_base.png.download",
+    "Characters/Cermia.md",
     "Resources/Image/Character/Cermia.png",
+    "Node Graph/Soothing Light.md",
+    "Node Graph/Happy Delusion.md",
+    "Node Graph/Circle Merryship.md",
+    "Node Graph/Bookworm.md",
+    "Node Graph/Basic Writing.md",
     "Resources/Image/Character/Charlotte Holmes.png",
     "Resources/Image/Character/Gemini_Generated_Image_ocbd32ocbd32ocbd_X-Design.png",
     "Node Graph/Life.md",
@@ -266,44 +289,24 @@
     "Node Graph/Basic Leadership.md",
     "Node Graph/Command Strike.md",
     "Node Graph/Coordinated Assault.md",
-    "Characters/Meryll.md",
     "Node Graph/Force Push.md",
     "Node Graph/Bite.md",
     "Node Graph/Pressing Advantage.md",
     "Node Graph/Cheering.md",
     "Node Graph/Poison Shot.md",
-    "Game Play Flow.md",
     "Wiki.base",
-    "Zone/Eternal Empire/Northen Province/Harken Town.md",
-    "Zone/Eternal Empire/Northen Province/Arken Forest.md",
-    "Zone/Eternal Empire/Central Province/Throne of Dawn.md",
-    "Zone/Eternal Empire/Central Province/Eterna Castle.md",
-    "Zone/Eternal Empire/Central Province/Eterna Castle (Eternity).md",
-    "Zone/Murim Confederation/Hidden Valleys/Ice and Fire Yin Yang Well.md",
-    "Zone/Murim Confederation/Central Plains/Qingyun Sect Outer Courtyard.md",
-    "Zone/Murim Confederation/Central Plains/Qingxi Village.md",
     "Zone/Eternal Empire/Northen Province",
     "Zone/Eternal Empire/Central Province",
     "Zone/Murim Confederation/Hidden Valleys",
     "Zone/Murim Confederation/Central Plains",
     "Zone/Murim Confederation",
-    "Zone/Map.md",
     "Zone/Eternal Empire",
-    "Zone",
-    "Template/Town Template.md",
-    "Template/Stat Template.md",
-    "Template/Secret Character Quest Template.md",
-    "Template/Node Template.md",
-    "Template",
-    "Tags",
     "Resources/Token/Monster/Fwolf/FWolfToken.png",
     "Resources/Token/Character/Keylos/Keylos.png",
     "Resources/Token/Character/Jeno/Jeno.png",
     "Resources/Token/Character/Cermia/Cermia.png",
     "Resources/Map/Harken Town/Harken Town Night.jpg",
     "Resources/Map/Harken Town/Harken Town Day.jpg",
-    "Resources/Image/Monster/Forest Wolf.png",
-    "Resources/Image/Character/Zilu.png",
     "Untitled.canvas"
   ]
 }
