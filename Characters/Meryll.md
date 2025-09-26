@@ -15,7 +15,7 @@
 - **Strength (STR)**: `1`
 - **Dexterity (DEX)**: `1`
 - **Intelligence (INT)**: `3`
-- **Wisdom (WIS)**: `3`
+- **Wisdom (WIS)**: `3` (+1)
 - **Charisma (CHA)**: `2`
 - **Luck (LCK)**: `2`
 - **Faith (FTH)**: `1`
@@ -54,11 +54,13 @@
 
 ## Equipment
 ### Worn
-- **Weapon(s)**: 
-- **Armor**: 
+- **Weapon(s)**: Worn Notebook
+- **Armor**: Wool Cloak
 - **Amulet/Ring**: 
 
 ### Inventory
+- 5 random common books. 
+- Gold pouch (10 golds).
 
 ---
 
@@ -68,4 +70,3 @@
 **Description**: Reserved and new to the adventuring game, Meryll loves nothing more than reading a good book or writing a good story. After all, what could be better than indulging in one's fantasies?
 
 **Personality**: Reserved and shy, with a hidden enthusiastic side in regard to literature and the romance of adventuring. 
-- 

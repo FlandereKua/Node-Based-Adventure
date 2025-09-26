@@ -13,7 +13,7 @@
 - **Effect Details:**
     - **Buffing**: Allied attack deal +1 damage for 2 turns.
     - **Moral Boost**: Recover 1 MP for allies in range.
-    - **Resource Cost**: 2 MP
+    - **Resource Cost**: 3 MP
 - **Range:**
 ```
          [x]

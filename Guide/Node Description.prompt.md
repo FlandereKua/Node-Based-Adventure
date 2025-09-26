@@ -23,10 +23,10 @@ When creating a new node, you **MUST** use the structure defined in the [Node Te
 
 ### Key Sections:
 -   `## Description`
-    -   A brief, flavorful quote or summary of the node.
+    -   A brief, flavorful quote or summary of the node. Should only be 1-2 short sentences.
 -   `## Quick Info`
     -   **Tier:** The power level of the node (e.g., Tier 1, Tier 2).
-    -   **Type:** The category of the node (e.g., Skill, Combat, Utility, Trait).
+    -   **Type:** The category of the node, comprised of multiple Tags. The tag is defined in [Node Tag](../Tags/Node Tag.md)
 -   `## Mechanics & Effects`
     -   This is the most critical section. List the specific, mechanical effects using standardized formatting.
     -   Use the standardized formats below based on node type to ensure consistency.
@@ -103,6 +103,15 @@ When creating a new node, you **MUST** use the structure defined in the [Node Te
 - **Leadership Aura**: Inspires confidence in group members
 ```
 
+**Stat Bonus Nodes:**
+```
+- **[Stat] Bonus**: +X to [stat] (MP and HP are both defined as Attributes Bonus)
+```
+*Example from [[Swift]]:*
+```
+- **Speed Boost**: +1 SPD.
+```
+
 -   `## Acquisition`
     -   **Prerequisites:** List any nodes required to unlock this one.
     -   **Acquisition Method(s):** Describe how the node is learned or obtained in the world.
@@ -144,39 +153,4 @@ By following these instructions, you will create a consistent, balanced, and eng
 
 ---
 
-### Standardized Tag System
 
-Node types must use the current standardized tags. **Note**: This tag list is actively maintained and may be expanded in the future.
-
-**Current Tag Categories:**
-
-**Weapon Types** (for weapon proficiency nodes):
-`#Sword`, `#Axe`, `#Spear`, `#Dagger`
-
-**Damage Types** (for attack nodes - do NOT combine with weapon tags unless specifically required):
-`#Pierce`, `#Blunt`, `#Slash`, `#Magic`, `#Mental`
-
-**Combat Types**:
-`#Active`, `#Passive`, `#Physical`, `#Mental`
-
-**Skill Categories**:
-`#Crafting`, `#Knowledge`, `#Party`, `#Survival`
-
-**Knowledge Subcategories** (combine with #Knowledge):
-`#Nature`, `#Social`, `#Crafting`
-
-**Race/Heritage Categories**:
-`#Wolf`, `#Wood`, `#Herb`
-
-**Status Effect Types**:
-`#Bleed`, `#Stun`, `#Freeze`
-
-**Special Categories**:
-`#Healing`, `#Ranged`
-
-**Tag Usage Rules:**
-- Attack nodes use damage type tags (#Slash, #Pierce, etc.) NOT weapon tags
-- Weapon proficiency nodes use weapon type tags (#Sword, #Axe, etc.)
-- Combine categories as needed (e.g., `#Passive #Knowledge #Nature` for nature lore)
-- Active crafting nodes that create items use `#Active #Crafting`
-- Passive crafting nodes that enhance crafting use `#Passive #Crafting`
