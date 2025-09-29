@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node-Based Adventure Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Node-Based Adventure Tracker</h1>
+    <p>Manage turns, track stats, and keep buffs & debuffs in check.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel session-panel">
+      <h2>Session</h2>
+      <div class="session-info">
+        <div>
+          <span class="label">Round</span>
+          <span id="round-counter" class="value">1</span>
+        </div>
+        <div>
+          <span class="label">Turn</span>
+          <span id="turn-counter" class="value">1</span>
+        </div>
+        <div>
+          <span class="label">Active</span>
+          <span id="active-character" class="value">–</span>
+        </div>
+      </div>
+      <div class="session-actions">
+        <button id="end-turn-btn" class="primary">End Turn</button>
+        <button id="reset-session-btn" class="secondary">Reset</button>
+      </div>
+    </section>
+
+    <section class="panel library-panel">
+      <h2>Character Library</h2>
+      <div id="library-list" class="library-list"></div>
+    </section>
+
+    <section class="panel tracker-panel">
+      <div class="tracker-header">
+        <h2>Initiative Tracker</h2>
+        <div class="tracker-controls">
+          <button id="export-session-btn" class="secondary">Export State</button>
+          <button id="import-session-btn" class="secondary">Import State</button>
+          <input id="import-session-input" type="file" accept="application/json" hidden>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="tracker-table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Name</th>
+              <th>SPD</th>
+              <th>MV</th>
+              <th>HP</th>
+              <th>Resource</th>
+              <th>AC</th>
+              <th>Buffs / Debuffs</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tracker-table-body">
+            <tr class="empty-row">
+              <td colspan="9">Add characters from the library to begin.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="effect-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="effect-modal-title">
+    <div class="modal-content">
+      <h3 id="effect-modal-title">Add Effect</h3>
+      <form id="effect-form">
+        <label>
+          Name
+          <input type="text" id="effect-name" required>
+        </label>
+        <label>
+          Type
+          <select id="effect-type">
+            <option value="buff">Buff</option>
+            <option value="debuff">Debuff</option>
+          </select>
+        </label>
+        <label>
+          Target Stat (optional)
+          <input type="text" id="effect-stat" placeholder="e.g. STR, SPD">
+        </label>
+        <label>
+          Value / Notes (optional)
+          <input type="text" id="effect-value" placeholder="e.g. +2, Disadvantage">
+        </label>
+        <label>
+          Duration (turns)
+          <input type="number" id="effect-duration" min="1" value="1" required>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="primary">Save Effect</button>
+          <button type="button" id="effect-cancel" class="secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>Movement (MV) is automatically calculated as one third of Speed (SPD).</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
