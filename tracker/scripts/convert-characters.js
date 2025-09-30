@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const { loadCharacters } = require("../lib/characterParser");
+const { loadSheets } = require("../lib/characterParser");
 
 const TRACKER_ROOT = path.resolve(__dirname, "..");
 const PROJECT_ROOT = path.resolve(TRACKER_ROOT, "..");
 const CHARACTERS_DIR = path.join(PROJECT_ROOT, "Characters");
+const MONSTERS_DIR = path.join(PROJECT_ROOT, "Monsters");
 const OUTPUT_DIR = path.join(TRACKER_ROOT, "output");
 
 function ensureDirectory(dirPath) {
@@ -20,60 +21,74 @@ function writeJson(filePath, data) {
 function escapeCsvValue(value) {
   if (value === null || value === undefined) return "";
   const stringValue = String(value);
-  if (/[",\n]/.test(stringValue)) {
-    return '"' + stringValue.replace(/"/g, '""') + '"';
-  }
-  return stringValue;
+  return /[",\n]/.test(stringValue)
+    ? '"' + stringValue.replace(/"/g, '""') + '"'
+    : stringValue;
 }
 
-function writeCsv(filePath, characters) {
-  const header = [
-    "Name",
-    "Tier",
-    "Race",
-    "SPD",
-    "MV",
-    "HP (max)",
-    "Resource (max)",
-    "AC"
+function buildCsvRow(record) {
+  const hp = record.combat?.hp?.max ?? record.combat?.hp?.current ?? "";
+  const mp = record.combat?.resource?.max ?? record.combat?.resource?.current ?? "";
+  const values = [
+    record.name || record.id,
+    record.category,
+    record.tier ?? "",
+    record.race ?? "",
+    record.combat?.spd ?? "",
+    record.combat?.mv ?? "",
+    hp,
+    mp,
+    record.combat?.ac ?? ""
   ];
-
-  const rows = characters.map(character => {
-    const { name, tier, race, combat } = character;
-    const hpMax = combat?.hp?.max ?? "";
-    const resourceMax = combat?.resource?.max ?? "";
-    const spd = combat?.spd ?? "";
-    const mv = combat?.mv ?? "";
-    const ac = combat?.ac ?? "";
-    return [name, tier ?? "", race ?? "", spd, mv, hpMax, resourceMax, ac]
-      .map(escapeCsvValue)
-      .join(",");
-  });
-  const csvContent = [header.join(","), ...rows].join("\n");
-  fs.writeFileSync(filePath, csvContent, "utf8");
+  return values.map(escapeCsvValue).join(",");
 }
 
 function convertCharacters() {
   ensureDirectory(OUTPUT_DIR);
 
-  const characters = loadCharacters(CHARACTERS_DIR);
-  if (!characters.length) {
-    console.warn("No characters found to convert.");
+  const characters = loadSheets(CHARACTERS_DIR).map(sheet => ({
+    ...sheet,
+    category: "character"
+  }));
+  const monsters = loadSheets(MONSTERS_DIR).map(sheet => ({
+    ...sheet,
+    category: "monster"
+  }));
+
+  if (!characters.length && !monsters.length) {
+    console.warn("No character or monster sheets found to convert.");
     return;
   }
 
+  const allSheets = { characters, monsters };
+  writeJson(path.join(OUTPUT_DIR, "all-sheets.json"), allSheets);
   writeJson(path.join(OUTPUT_DIR, "characters.json"), characters);
+  writeJson(path.join(OUTPUT_DIR, "monsters.json"), monsters);
 
-  const charactersDir = path.join(OUTPUT_DIR, "characters");
-  ensureDirectory(charactersDir);
-  characters.forEach(character => {
-    const filename = `${character.id}.json`;
-    writeJson(path.join(charactersDir, filename), character);
-  });
+  const rows = [
+    [
+      "Name",
+      "Category",
+      "Tier",
+      "Race",
+      "SPD",
+      "MV",
+      "HP",
+      "MP",
+      "AC"
+    ].join(","),
+    ...characters.map(buildCsvRow),
+    ...monsters.map(buildCsvRow)
+  ];
+  fs.writeFileSync(
+    path.join(OUTPUT_DIR, "sheets-summary.csv"),
+    rows.join("\n"),
+    "utf8"
+  );
 
-  writeCsv(path.join(OUTPUT_DIR, "characters-summary.csv"), characters);
-
-  console.log(`Converted ${characters.length} character sheet(s) to JSON and CSV in ${OUTPUT_DIR}`);
+  console.log(
+    `Converted ${characters.length} character sheet(s) and ${monsters.length} monster sheet(s) to JSON/CSV in ${OUTPUT_DIR}`
+  );
 }
 
 convertCharacters();

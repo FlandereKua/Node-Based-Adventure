@@ -1,52 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node-Based Adventure Tracker</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Session Tracker - Node-Based Adventure</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="top-bar">
       <div class="brand">
-        <h1>Node-Based Adventure Tracker</h1>
-        <span class="breadcrumb">Main Menu</span>
+        <h1>Session Tracker</h1>
+        <span id="session-breadcrumb" class="breadcrumb">No session loaded</span>
       </div>
       <div class="top-bar-actions">
-        <button id="open-menu-btn" class="ghost">Menu</button>
-        <a href="session.html" class="primary" style="text-decoration:none;display:inline-block;">Session</a>
+        <a href="index.html" class="ghost" style="text-decoration:none;display:inline-block;padding:0.65rem 1.1rem;border:1px solid rgba(148,163,184,0.35);border-radius:12px;">Menu</a>
+        <button id="open-menu-btn" class="ghost">Overlay</button>
       </div>
     </header>
+
     <main class="content">
       <section id="menu-placeholder" class="menu-placeholder">
         <div class="menu-card">
-          <h2>Main Menu</h2>
-          <p class="menu-subtitle">Create or load sessions, or convert sheets.</p>
+          <h2>Start or Load</h2>
+          <p class="menu-subtitle">Create or load a session.</p>
           <div class="menu-buttons">
-            <a class="primary" style="text-decoration:none;display:block" href="session.html?action=create">Create New Session</a>
-            <a class="secondary" style="text-decoration:none;display:block" href="session.html?action=load">Load Session</a>
-            <button class="secondary" id="convert-all-btn">Convert All Sheets</button>
-            <button class="ghost" id="convert-select-btn">Convert Selected Sheets</button>
+            <button class="primary" data-menu-action="create">Create New Session</button>
+            <button class="secondary" data-menu-action="load">Load Session</button>
+            <button class="secondary" data-menu-action="settings">Settings</button>
+            <button class="ghost" data-menu-action="convert">Convert Sheets</button>
           </div>
-          <p class="menu-note">Use the Session button (top right) for live tracking.</p>
+          <p class="menu-note">Sessions track allies, enemies and turns.</p>
+        </div>
+      </section>
+
+      <section id="session-view" class="session-view hidden" aria-live="polite">
+        <div class="session-columns">
+          <aside class="tracker-column allies" aria-label="Allies">
+            <div class="column-header">
+              <h2>Allies</h2>
+              <span id="ally-count" class="count-chip">0</span>
+            </div>
+            <div id="ally-card-container" class="card-stack" data-role="ally"></div>
+          </aside>
+
+          <section class="turn-center" aria-label="Turn management">
+            <div class="turn-counter">
+              <div>
+                <span class="label">Session</span>
+                <span id="session-name-display" class="value">-</span>
+              </div>
+              <div>
+                <span class="label">Turn</span>
+                <span id="turn-number" class="value">1</span>
+              </div>
+            </div>
+
+            <div class="turn-order-panel">
+              <div class="panel-header">
+                <h3>Turn Order</h3>
+                <span id="pending-sort-indicator" class="tag hidden">Pending update</span>
+              </div>
+              <div id="turn-order-bar" class="turn-order-bar empty" role="list" aria-label="Turn order">
+                <p>No participants yet.</p>
+              </div>
+            </div>
+
+            <div class="session-controls">
+              <button id="load-sheet-btn" class="primary">Load Sheet</button>
+              <button id="end-turn-btn" class="accent">End Turn</button>
+            </div>
+          </section>
+
+          <aside class="tracker-column enemies" aria-label="Enemies">
+            <div class="column-header">
+              <h2>Enemies</h2>
+              <span id="enemy-count" class="count-chip">0</span>
+            </div>
+            <div id="enemy-card-container" class="card-stack" data-role="enemy"></div>
+          </aside>
         </div>
       </section>
     </main>
   </div>
 
-  <!-- Primary Menu Overlay -->
+  <!-- Reuse existing overlays from original index -->
   <div id="menu-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="menu-overlay-title">
     <div class="overlay-card">
       <div class="overlay-header">
-        <h2 id="menu-overlay-title">Menu</h2>
+        <h2 id="menu-overlay-title">Overlay Menu</h2>
         <button class="icon-btn" data-close-overlay>&times;</button>
       </div>
       <div class="overlay-body menu-overlay">
         <button class="primary" data-menu-action="create">Create New Session</button>
         <button class="secondary" data-menu-action="load">Load Session</button>
         <button class="secondary" data-menu-action="settings">Settings</button>
-        <button class="ghost" data-menu-action="convert">Convert CSV / JSON</button>
+        <button class="ghost" data-menu-action="convert">Convert Sheets</button>
       </div>
     </div>
   </div>
@@ -147,10 +196,8 @@
       </div>
     </div>
   </div>
-
   <div id="toast" class="toast hidden" role="alert"></div>
 
   <script src="app.js" defer></script>
-  <script src="menu.js" defer></script>
 </body>
 </html>

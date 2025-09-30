@@ -60,6 +60,7 @@ function parseCharacterMarkdown(content, filePath) {
   const character = {
     id: getFileId(filePath),
     name: null,
+    displayName: path.basename(filePath, path.extname(filePath)),
     tier: null,
     race: null,
     core: {},
@@ -70,11 +71,17 @@ function parseCharacterMarkdown(content, filePath) {
       spd: null,
       mv: null
     },
-    sourcePath: filePath
+    sourcePath: filePath,
+    rawContent: content
   };
 
   const nameValue = findBacktickValue(content, "Name");
-  if (nameValue) character.name = nameValue;
+  if (nameValue) {
+    character.name = nameValue;
+  } else {
+    // Fallback: keep original file casing instead of lower-cased id
+    character.name = character.displayName;
+  }
 
   const raceValue = findBacktickValue(content, "Race/Origin");
   if (raceValue) character.race = raceValue;
@@ -119,7 +126,7 @@ function parseCharacterMarkdown(content, filePath) {
   return character;
 }
 
-function loadCharacters(directory) {
+function loadSheets(directory) {
   const entries = fs.readdirSync(directory, { withFileTypes: true });
   return entries
     .filter(entry => entry.isFile() && entry.name.toLowerCase().endsWith(".md"))
@@ -130,7 +137,12 @@ function loadCharacters(directory) {
     });
 }
 
+function loadCharacters(directory) {
+  return loadSheets(directory);
+}
+
 module.exports = {
   loadCharacters,
-  parseCharacterMarkdown
+  parseCharacterMarkdown,
+  loadSheets
 };
