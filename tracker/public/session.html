@@ -14,8 +14,8 @@
         <span id="session-breadcrumb" class="breadcrumb">No session loaded</span>
       </div>
       <div class="top-bar-actions">
-        <a href="index.html" class="ghost" style="text-decoration:none;display:inline-block;padding:0.65rem 1.1rem;border:1px solid rgba(148,163,184,0.35);border-radius:12px;">Menu</a>
-        <button id="open-menu-btn" class="ghost">Overlay</button>
+        <a href="index.html" class="ghost top-nav-btn">Menu</a>
+        <button id="open-menu-btn" class="secondary top-nav-btn">Session Menu</button>
       </div>
     </header>
 
@@ -39,7 +39,11 @@
           <aside class="tracker-column allies" aria-label="Allies">
             <div class="column-header">
               <h2>Allies</h2>
-              <span id="ally-count" class="count-chip">0</span>
+              <div style="display:flex;align-items:center;gap:0.4rem;">
+                <button type="button" class="ghost" data-bulk="ally-complete" title="Mark all allies done" style="padding:0.25rem 0.5rem;font-size:0.65rem;">All ✓</button>
+                <button type="button" class="ghost" data-bulk="ally-reset" title="Reset all allies" style="padding:0.25rem 0.5rem;font-size:0.65rem;">Reset</button>
+                <span id="ally-count" class="count-chip">0</span>
+              </div>
             </div>
             <div id="ally-card-container" class="card-stack" data-role="ally"></div>
           </aside>
@@ -75,7 +79,11 @@
           <aside class="tracker-column enemies" aria-label="Enemies">
             <div class="column-header">
               <h2>Enemies</h2>
-              <span id="enemy-count" class="count-chip">0</span>
+              <div style="display:flex;align-items:center;gap:0.4rem;">
+                <button type="button" class="ghost" data-bulk="enemy-complete" title="Mark all enemies done" style="padding:0.25rem 0.5rem;font-size:0.65rem;">All ✓</button>
+                <button type="button" class="ghost" data-bulk="enemy-reset" title="Reset all enemies" style="padding:0.25rem 0.5rem;font-size:0.65rem;">Reset</button>
+                <span id="enemy-count" class="count-chip">0</span>
+              </div>
             </div>
             <div id="enemy-card-container" class="card-stack" data-role="enemy"></div>
           </aside>
@@ -194,6 +202,43 @@
       <div class="overlay-body detail-body">
         <pre id="sheet-detail-content"></pre>
       </div>
+    </div>
+  </div>
+  <!-- Effect Editor Modal -->
+  <div id="effect-editor-modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="effect-editor-title">
+    <div class="overlay-card">
+      <div class="overlay-header">
+        <h2 id="effect-editor-title">Add / Edit Effect</h2>
+        <button class="icon-btn" data-close-overlay>&times;</button>
+      </div>
+      <form id="effect-editor-form" class="overlay-body" novalidate>
+        <div class="form-row">
+          <label>Template
+            <select id="effect-template-select">
+              <option value="__custom">Custom...</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row two-col">
+          <label>Name
+            <input type="text" id="effect-name-input" required maxlength="60" placeholder="e.g. Haste" />
+          </label>
+          <label>Turns
+            <input type="number" id="effect-turns-input" required min="1" value="2" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Targets (stat:delta per line)
+            <textarea id="effect-targets-input" rows="4" placeholder="SPD:+2\nMV:+0"></textarea>
+          </label>
+          <p class="form-hint">Format each line: STAT:+N or STAT:-N (e.g. HP:-1, STR:+2, SPD:+3). Invalid lines are ignored.</p>
+          <p id="effect-error" class="form-hint" style="color: var(--danger); display:none;"></p>
+        </div>
+        <div class="overlay-actions">
+          <button type="submit" class="primary">Save Effect</button>
+          <button type="button" class="ghost" data-close-overlay>Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
   <div id="toast" class="toast hidden" role="alert"></div>

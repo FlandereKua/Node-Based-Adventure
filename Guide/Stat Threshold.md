@@ -1,7 +1,5 @@
 # Stat Thresholds
 
-This document provides a general benchmark for the expected stats of an enemy or ally at each of the standard power Tiers. These are guidelines, not strict rules, and individual characters may have unique distributions of power.
-
 ---
 
 ## Tier 1: Common
@@ -75,7 +73,7 @@ This document provides a general benchmark for the expected stats of an enemy or
 ---
 
 ## Tier 8: Immortal
-*Represents beings who have transcended mortality. Demigods, ancient archmages, or mythical beasts. Their power can alter reality on a massive scale.*
+*Represents beings who have transcended mortality. Demigods, ancient archmages, or mythical beasts.*
 - **Primary Attribute(s)**: 70-99
 - **Secondary Attributes**: 40-80
 - **Health Points (HP)**: 580-960
@@ -85,7 +83,7 @@ This document provides a general benchmark for the expected stats of an enemy or
 ---
 
 ## Tier 9: Ascendance
-*Represents beings who are becoming one with a concept. They are less characters and more walking forces of nature, on the verge of true godhood.*
+*Represents beings who are becoming one with a concept.*
 - **Primary Attribute(s)**: 100+ 
 - **Secondary Attributes**: 50+
 - **Health Points (HP)**: 870-1,440+
@@ -97,7 +95,7 @@ This document provides a general benchmark for the expected stats of an enemy or
 ## Node Structure Guidelines
 
 **For NPCs:**
-- Each tier allows up to **4 Active Nodes** and **6 Passive Nodes**
+- Each tier allows up to **4 Active Nodes** and **10 Passive Nodes** (Average 5)
 - NPCs may have unique or significantly more powerful versions of standard nodes
 
 **For Player Characters:**

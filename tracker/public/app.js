@@ -10,6 +10,8 @@
   const state = {
     sheets: { characters: [], monsters: [] },
     session: null,
+    effectTemplates: [],
+    _effectEditingFor: null,
     settings: {
       lightTheme: false,
       compactCards: false
@@ -29,8 +31,18 @@
     loadSettings();
     applySettings();
     fetchSheets();
+    fetchEffectTemplates();
     restoreLastSession();
     handleActionParam();
+  }
+
+  async function fetchEffectTemplates() {
+    try {
+      const res = await fetch('effects.json');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (Array.isArray(data)) state.effectTemplates = data;
+    } catch (_) { /* ignore */ }
   }
 
   function cacheDom() {
@@ -84,12 +96,20 @@
     dom.importInput.addEventListener("change", handleImportSession);
     dom.themeToggle.addEventListener("change", handleThemeToggle);
     dom.compactToggle.addEventListener("change", handleCompactToggle);
+    document.addEventListener('change', handleGlobalChange);
+    document.addEventListener('submit', handleGlobalSubmit);
   }
 
   function handleDocumentClick(event) {
     const action = event.target.getAttribute("data-menu-action");
     if (action) {
       handleMenuAction(action);
+      return;
+    }
+
+    const bulk = event.target.getAttribute('data-bulk');
+    if (bulk) {
+      handleBulkAction(bulk);
       return;
     }
 
@@ -255,16 +275,44 @@
     header.appendChild(title);
     header.appendChild(meta);
 
-    const statGrid = document.createElement("div");
-    statGrid.className = "stat-grid";
+  // Removed inline Details toggle button; card body click will toggle collapse.
 
-  statGrid.appendChild(buildStatInput(entry, "hp", "HP"));
-  statGrid.appendChild(buildStatInput(entry, "resource", entry.stats.resourceLabel || "MP"));
-  statGrid.appendChild(buildEditableNumber(entry, "spd", "SPD"));
-  statGrid.appendChild(buildStatDisplay("MV", formatNumber(entry.stats.mv)));
-  statGrid.appendChild(buildStatDisplay("AC", formatNumber(entry.stats.ac)));
+  const statGrid = document.createElement("div");
+  statGrid.className = "stat-grid";
 
-    const footer = document.createElement("div");
+    const deltas = computeEffectDeltas(entry);
+    statGrid.appendChild(buildStatInput(entry, "hp", withDeltaLabel("HP", deltas.HP)));
+    statGrid.appendChild(buildStatInput(entry, "resource", entry.stats.resourceLabel || "MP"));
+    statGrid.appendChild(buildEditableNumber(entry, "spd", withDeltaLabel("SPD", deltas.SPD)));
+    statGrid.appendChild(buildStatDisplay(withDeltaLabel("MV", deltas.MV), formatNumber(applyDelta(entry.stats.mv, deltas.MV))));
+    statGrid.appendChild(buildStatDisplay(withDeltaLabel("AC", deltas.AC), formatNumber(applyDelta(entry.stats.ac, deltas.AC))));
+  // Effects section
+  const effectsWrap = document.createElement("div");
+  effectsWrap.className = "effects-wrap";
+  const effectsHeader = document.createElement("div");
+  effectsHeader.className = "effects-header";
+  const effectsTitle = document.createElement("span");
+  effectsTitle.textContent = "Effects";
+  const addEffectBtn = document.createElement("button");
+  addEffectBtn.type = "button";
+  addEffectBtn.className = "ghost";
+  addEffectBtn.dataset.action = "add-effect";
+  addEffectBtn.textContent = "+";
+  effectsHeader.appendChild(effectsTitle);
+  effectsHeader.appendChild(addEffectBtn);
+  const effectsList = document.createElement("div");
+  effectsList.className = "effects-list";
+  entry.effects.forEach(effect => effectsList.appendChild(buildEffectBadge(effect)));
+  effectsWrap.appendChild(effectsHeader);
+  effectsWrap.appendChild(effectsList);
+
+  // Collapsible extended info
+  const collapse = document.createElement("div");
+  collapse.className = "card-collapse hidden";
+  collapse.dataset.section = "extra";
+  collapse.appendChild(buildInfoSection(entry));
+
+  const footer = document.createElement("div");
     footer.className = "card-footer";
 
     const toggle = document.createElement("label");
@@ -285,7 +333,7 @@
     viewBtn.type = "button";
     viewBtn.className = "ghost";
     viewBtn.dataset.action = "view-sheet";
-    viewBtn.textContent = "View Sheet";
+    viewBtn.textContent = "Detail";
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
@@ -301,7 +349,9 @@
 
     card.appendChild(header);
     card.appendChild(statGrid);
-    card.appendChild(footer);
+  card.appendChild(effectsWrap);
+  card.appendChild(collapse);
+  card.appendChild(footer);
 
     if (!entry.hasActed) {
       card.classList.remove("complete");
@@ -310,6 +360,88 @@
     }
 
     return card;
+  }
+
+  function buildInfoSection(entry) {
+    const wrap = document.createElement("div");
+    wrap.className = "info-grid";
+    const core = document.createElement("div");
+    core.className = "info-block";
+    const coreTitle = document.createElement("h4"); coreTitle.textContent = "Core Attributes"; core.appendChild(coreTitle);
+    const coreList = document.createElement("div"); coreList.className = "info-stats";
+    const coreDeltas = computeEffectDeltas(entry).core || {};
+    Object.entries(entry.core || {}).forEach(([k,v]) => {
+      const up = k.toUpperCase();
+      const delta = coreDeltas[up] || 0;
+      const effective = applyDelta(v, delta);
+      const row = document.createElement('span');
+      if (delta) {
+        const sign = delta > 0 ? '+' : '';
+        row.innerHTML = `${k}: <strong class="${delta>0?'delta-pos':'delta-neg'}">${effective}</strong> <small class="delta">(base ${v} ${sign}${delta})</small>`;
+      } else {
+        row.textContent = `${k}: ${v ?? '-'}`;
+      }
+      coreList.appendChild(row);
+    });
+    core.appendChild(coreList);
+    const info = document.createElement("div"); info.className = "info-block";
+    const infoTitle = document.createElement("h4"); infoTitle.textContent = "Character Info"; info.appendChild(infoTitle);
+    const infoBody = document.createElement("div"); infoBody.className = "info-stats";
+    infoBody.innerHTML = [
+      entry.race ? `<span>Race: ${entry.race}</span>`: "",
+      entry.tier != null ? `<span>Tier: ${entry.tier}</span>`: ""
+    ].filter(Boolean).join("");
+    info.appendChild(infoBody);
+    // Effective stats block (includes effect deltas)
+    const eff = document.createElement('div');
+    eff.className = 'info-block';
+    const effTitle = document.createElement('h4'); effTitle.textContent = 'Effective Stats'; eff.appendChild(effTitle);
+    const effBody = document.createElement('div'); effBody.className = 'info-stats';
+    const d = computeEffectDeltas(entry);
+    const rows = [
+      ['HP', entry.stats.hp, d.HP],
+      [entry.stats.resourceLabel || 'MP', entry.stats.resource, d.MP],
+      ['SPD', entry.stats.spd, d.SPD],
+      ['MV', entry.stats.mv, d.MV],
+      ['AC', entry.stats.ac, d.AC]
+    ];
+    effBody.innerHTML = rows.map(([label, base, delta]) => {
+      const effective = applyDelta(base, delta);
+      if (delta) {
+        const sign = delta > 0 ? '+' : '';
+        return `<span>${label}: ${effective} <small class="delta">(base ${base} ${sign}${delta})</small></span>`;
+      }
+      return `<span>${label}: ${effective}</span>`;
+    }).join('');
+    eff.appendChild(effBody);
+
+    wrap.appendChild(core);
+    wrap.appendChild(info);
+    wrap.appendChild(eff);
+    return wrap;
+  }
+
+  function buildEffectBadge(effect) {
+    const badge = document.createElement('span');
+    badge.className = 'effect-badge';
+    badge.dataset.effectId = effect.id;
+    badge.dataset.action = 'edit-effect';
+    const text = document.createElement('span');
+    let targetText = '';
+    if (Array.isArray(effect.targets)) {
+      targetText = effect.targets.map(t => `${t.stat}${t.delta>=0?'+':''}${t.delta}`).join(',');
+    } else if (effect.stat) {
+      targetText = `${effect.stat}${effect.delta>=0?'+':''}${effect.delta}`;
+    }
+    text.textContent = `${effect.label}${targetText ? ' ('+targetText+')' : ''}`;
+    const turnsBtn = document.createElement('button');
+    turnsBtn.type = 'button'; turnsBtn.className = 'ghost'; turnsBtn.dataset.action = 'edit-effect-turns'; turnsBtn.dataset.effectId = effect.id; turnsBtn.textContent = `${effect.turns}t`;
+    const remove = document.createElement('button');
+    remove.type = 'button'; remove.className = 'ghost'; remove.dataset.action = 'remove-effect'; remove.dataset.effectId = effect.id; remove.textContent = 'x';
+    badge.appendChild(text);
+    badge.appendChild(turnsBtn);
+    badge.appendChild(remove);
+    return badge;
   }
 
   function buildStatInput(entry, field, label) {
@@ -356,9 +488,50 @@
     title.textContent = label;
     const span = document.createElement("span");
     span.textContent = value;
+    if (/Δ/.test(label)) span.classList.add("delta-applied");
     wrapper.appendChild(title);
     wrapper.appendChild(span);
     return wrapper;
+  }
+
+  function withDeltaLabel(base, delta) {
+    if (!delta || delta === 0) return base;
+    const sign = delta > 0 ? "+" : "";
+    return `${base} (Δ${sign}${delta})`;
+  }
+
+  function applyDelta(value, delta) {
+    if (!delta) return value;
+    const base = Number(value) || 0;
+    return base + delta;
+  }
+
+  function computeEffectDeltas(entry) {
+    const result = { HP: 0, MP: 0, SPD: 0, MV: 0, AC: 0, core: {} };
+    (entry.effects || []).forEach(effect => {
+      if (Array.isArray(effect.targets)) {
+        effect.targets.forEach(t => applyTarget(t));
+      } else if (effect.stat) { // legacy structure
+        applyTarget({ stat: effect.stat, delta: effect.delta });
+      }
+    });
+    function applyTarget(t) {
+      if (!t || !t.stat || !Number.isFinite(t.delta)) return;
+      const key = t.stat.toUpperCase();
+      switch (key) {
+        case 'HP': result.HP += t.delta; break;
+        case 'MP': case 'RESOURCE': result.MP += t.delta; break;
+        case 'SPD': result.SPD += t.delta; break;
+        case 'AC': result.AC += t.delta; break;
+        default: result.core[key] = (result.core[key] || 0) + t.delta; break;
+      }
+    }
+    if (result.SPD) {
+      const newMv = computeMovement(applyDelta(entry.stats.spd, result.SPD));
+      result.MV = Number(newMv.toFixed(2)) - entry.stats.mv;
+    }
+    Object.keys(result).forEach(k => { if (k !== 'core' && !result[k]) result[k] = 0; });
+    return result;
   }
 
   function formatNumber(value) {
@@ -424,16 +597,51 @@
       return;
     }
 
+    // Clicking on card unused areas toggles collapse (not on buttons or inputs)
+    if (!target.closest('.card-actions') && !target.closest('.stat-group') && !target.closest('.complete-toggle') && target.closest('.tracker-card')) {
+      if (!target.matches('[data-action]') && !target.closest('button')) {
+        const collapse = card.querySelector('.card-collapse');
+        if (collapse) collapse.classList.toggle('hidden');
+      }
+    }
+
+    if (target.matches("[data-action='add-effect']")) { openEffectEditor(entry.instanceId); return; }
+
+    if (target.matches("[data-action='remove-effect']")) {
+      const id = target.dataset.effectId;
+      entry.effects = entry.effects.filter(e => e.id !== id);
+      persistSession();
+      updateActiveView();
+      return;
+    }
+
+    if (target.closest('.effect-badge') && target.closest('.effect-badge').dataset.action === 'edit-effect' && !target.matches('[data-action="remove-effect"],[data-action="edit-effect-turns"]')) {
+      openEffectEditor(entry.instanceId, target.closest('.effect-badge').dataset.effectId);
+      return;
+    }
+
+    if (target.matches("[data-action='edit-effect-turns']")) {
+      const effectId = target.dataset.effectId;
+      const effect = entry.effects.find(e => e.id === effectId);
+      if (!effect) return;
+      const raw = window.prompt("New turns remaining", effect.turns);
+      if (raw === null) return;
+      const val = parseInt(raw, 10);
+      if (Number.isFinite(val) && val > 0) {
+        effect.turns = val;
+        persistSession();
+        updateActiveView();
+      }
+      return;
+    }
+
     if (target.matches("[data-action='remove-entry']")) {
       removeEntry(entry.instanceId);
       return;
     }
 
-    if (target.closest(".card-actions") || target.closest(".stat-group") || target.closest(".complete-toggle")) {
-      return;
-    }
-
-    openSheetDetail(entry);
+    // Removed automatic sheet detail opening on generic card click.
+    return;
   }
 
   function handleTurnOrderClick(event) {
@@ -463,6 +671,18 @@
     state.session.turn += 1;
     participants.forEach(entity => {
       entity.hasActed = false;
+      // Apply HP/MP deltas before decrementing effect durations
+      const deltas = computeEffectDeltas(entity);
+      if (deltas.HP) {
+        entity.stats.hp = Math.max(0, entity.stats.hp + deltas.HP);
+      }
+      if (deltas.MP) {
+        entity.stats.resource = Math.max(0, entity.stats.resource + deltas.MP);
+      }
+      entity.effects = entity.effects.filter(effect => {
+        effect.turns -= 1;
+        return effect.turns > 0;
+      });
     });
 
     // Recompute at the end of each turn, applying any SPD changes made during the turn.
@@ -704,6 +924,7 @@
         ac: firstFinite(sheet.combat?.ac, 0)
       },
       hasActed: false,
+      effects: [], // { id, label, stat, delta, turns }
       rawContent: sheet.rawContent || "",
       sourcePath: sheet.sourcePath || "",
       addedAt: new Date().toISOString()
@@ -754,7 +975,7 @@
   }
 
   function openSheetDetail(entry) {
-    dom.sheetDetailContent.textContent = entry.rawContent || "No additional information available.";
+    dom.sheetDetailContent.innerHTML = renderMarkdown(entry.rawContent || "");
     dom.sheetDetailModal.querySelector("#sheet-detail-title").textContent = entry.name;
     closeAllOverlays();
     openOverlay(dom.sheetDetailModal);
@@ -1063,6 +1284,17 @@
     };
 
     clone.hasActed = Boolean(source.hasActed);
+    clone.effects = Array.isArray(source.effects) ? source.effects.filter(e => e && e.label).map(e => {
+      if (e && !e.targets && e.stat) {
+        return {
+          id: e.id || (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2)),
+          label: e.label,
+          targets: [{ stat: e.stat, delta: Number.isFinite(e.delta) ? e.delta : 0 }],
+          turns: Number.isFinite(e.turns) ? e.turns : 1
+        };
+      }
+      return e;
+    }) : [];
     return clone;
   }
 
@@ -1128,6 +1360,172 @@
   function capitalize(value) {
     if (!value) return "";
     return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  function handleBulkAction(code) {
+    if (!state.session) return;
+    const map = {
+      'ally-complete': ['allies', true],
+      'ally-reset': ['allies', false],
+      'enemy-complete': ['enemies', true],
+      'enemy-reset': ['enemies', false]
+    };
+    if (!map[code]) return;
+    const [group, val] = map[code];
+    state.session[group].forEach(e => { e.hasActed = val; });
+    persistSession();
+    updateActiveView();
+  }
+
+  function openEffectEditor(instanceId, effectId) {
+    const entry = findEntry(instanceId); if (!entry) return;
+    state._effectEditingFor = instanceId;
+    state._editingEffectId = effectId || null;
+    populateEffectTemplateSelect();
+    const form = document.getElementById('effect-editor-form');
+    if (form) form.reset();
+    const nameInput = document.getElementById('effect-name-input');
+    const turnsInput = document.getElementById('effect-turns-input');
+    const targetsInput = document.getElementById('effect-targets-input');
+    if (nameInput) nameInput.value = '';
+    if (turnsInput) turnsInput.value = '2';
+    if (targetsInput) targetsInput.value = '';
+    if (effectId) {
+      const eff = entry.effects.find(e => e.id === effectId);
+      if (eff) {
+        if (nameInput) nameInput.value = eff.label;
+        if (turnsInput) turnsInput.value = eff.turns;
+        if (targetsInput) targetsInput.value = (eff.targets || []).map(t => `${t.stat}:${t.delta>=0?'+':''}${t.delta}`).join('\n');
+      }
+    }
+    closeAllOverlays();
+    const modal = document.getElementById('effect-editor-modal');
+    if (modal) openOverlay(modal);
+  }
+
+  function loadRecentCustomEffects() {
+    try {
+      const raw = localStorage.getItem('nba-recent-effects');
+      if (!raw) return [];
+      const list = JSON.parse(raw);
+      return Array.isArray(list) ? list : [];
+    } catch (_) { return []; }
+  }
+
+  function populateEffectTemplateSelect() {
+    const sel = document.getElementById('effect-template-select');
+    if (!sel) return;
+    const recent = loadRecentCustomEffects();
+    let recentBlock = '';
+    if (recent.length) {
+      recentBlock = '<optgroup label="Recent">' + recent.map((r,i)=>`<option value="recent:${i}">${r.label}</option>`).join('') + '</optgroup>';
+    }
+    const templateBlock = state.effectTemplates.map(t => `<option value="${t.id}">${t.label}</option>`).join('');
+    sel.innerHTML = '<option value="__custom">Custom...</option>' + recentBlock + templateBlock;
+  }
+
+  function handleGlobalChange(e) {
+    if (e.target && e.target.id === 'effect-template-select') {
+      const val = e.target.value;
+      if (val === '__custom') return;
+      let tpl = null;
+      if (val.startsWith('recent:')) {
+        const idx = parseInt(val.split(':')[1],10);
+        tpl = loadRecentCustomEffects()[idx];
+      } else {
+        tpl = state.effectTemplates.find(t => t.id === val);
+      }
+      if (!tpl) return;
+      const nameInput = document.getElementById('effect-name-input');
+      const turnsInput = document.getElementById('effect-turns-input');
+      const targetsInput = document.getElementById('effect-targets-input');
+      if (nameInput) nameInput.value = tpl.label;
+      if (turnsInput) turnsInput.value = tpl.turns || 1;
+      if (targetsInput) targetsInput.value = (tpl.targets || []).map(t => `${t.stat}:${t.delta>=0?'+':''}${t.delta}`).join('\n');
+    }
+  }
+
+  function cacheRecentCustomEffect(effect) {
+    try {
+      if (!effect || !effect.label) return;
+      if (state.effectTemplates.some(t => t.label === effect.label)) return; // skip if template label duplicate
+      const key = 'nba-recent-effects';
+      const raw = localStorage.getItem(key);
+      let list = [];
+      if (raw) list = JSON.parse(raw) || [];
+      list = list.filter(e => e.label !== effect.label);
+      list.unshift({ label: effect.label, targets: effect.targets, turns: effect.turns });
+      if (list.length > 8) list.length = 8;
+      localStorage.setItem(key, JSON.stringify(list));
+    } catch (_) {}
+  }
+
+  function handleGlobalSubmit(e) {
+    if (e.target && e.target.id === 'effect-editor-form') {
+      e.preventDefault();
+      const entry = findEntry(state._effectEditingFor);
+      if (!entry) return;
+      const name = document.getElementById('effect-name-input')?.value.trim();
+      const turns = parseInt(document.getElementById('effect-turns-input')?.value, 10) || 1;
+      const rawTargets = (document.getElementById('effect-targets-input')?.value || '').split(/\n+/).map(l => l.trim()).filter(Boolean);
+      const errorEl = document.getElementById('effect-error');
+      if (errorEl) errorEl.style.display = 'none';
+      const targets = [];
+      const invalid = [];
+      rawTargets.forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) { invalid.push(line); return; }
+        const stat = line.slice(0, idx).trim().toUpperCase();
+        const deltaRaw = line.slice(idx + 1).trim();
+        const delta = Number(deltaRaw);
+        if (!stat || !/^[-+]?\d+(?:\.\d+)?$/.test(deltaRaw) || !Number.isFinite(delta)) { invalid.push(line); return; }
+        targets.push({ stat, delta });
+      });
+      if (!name || !targets.length) {
+        if (errorEl) { errorEl.textContent = 'Provide a name and at least one valid target line.'; errorEl.style.display = 'block'; }
+        return;
+      }
+      if (invalid.length && errorEl) {
+        errorEl.textContent = `Ignored invalid line(s): ${invalid.join(', ')}`;
+        errorEl.style.display = 'block';
+      }
+      const existing = state._editingEffectId ? entry.effects.find(e => e.id === state._editingEffectId) : null;
+      if (existing) {
+        existing.label = name;
+        existing.targets = targets;
+        existing.turns = Math.max(1, turns);
+      } else {
+        const newEffect = { id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(16).slice(2), label: name, targets, turns: Math.max(1, turns) };
+        entry.effects.push(newEffect);
+        cacheRecentCustomEffect(newEffect);
+      }
+      persistSession();
+      updateActiveView();
+      const modal = document.getElementById('effect-editor-modal');
+      if (modal) closeOverlay(modal);
+    }
+  }
+
+  function renderMarkdown(raw) {
+    if (!raw) return '<em>No content</em>';
+    const esc = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    let html = esc
+      .replace(/!\[\[([^\]]+)\]\]/g, (m, p1) => `<img src="${resolveImage(p1)}" alt="${p1}" class="sheet-img" />`)
+      .replace(/\[\[([^\]|]+\.(?:png|jpg|jpeg|gif))\]\]/gi, (m,p1) => `<img src="${resolveImage(p1)}" alt="${p1}" class="sheet-img" />`);
+    // Standalone image filename on its own line -> image
+    html = html.replace(/^(?:\s*)([A-Za-z0-9_\- ]+\.(?:png|jpg|jpeg|gif))(?:\s*)$/gmi, (m, p1) => `<img src="${resolveImage(p1.trim())}" alt="${p1.trim()}" class="sheet-img" />`);
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/^###\s+(.+)$/gm,'<h3>$1</h3>')
+               .replace(/^##\s+(.+)$/gm,'<h2>$1</h2>')
+               .replace(/^#\s+(.+)$/gm,'<h1>$1</h1>');
+    html = html.replace(/^(?:- \s*.*(?:\n|$))+?/gm, block => '<ul>' + block.trim().split(/\n/).map(l=>l.replace(/^-\s*/,'')).map(li=>`<li>${li}</li>`).join('') + '</ul>');
+    html = html.split(/\n{2,}/).map(p=> p.match(/^<h[1-3]|^<ul|<img|<p|<blockquote|<table|^<code/) ? p : `<p>${p.replace(/\n/g,'<br>')}</p>`).join('\n');
+    return html;
+  }
+
+  function resolveImage(rel) {
+    return rel.replace(/^\.\//,'');
   }
 
   document.addEventListener("DOMContentLoaded", init);
