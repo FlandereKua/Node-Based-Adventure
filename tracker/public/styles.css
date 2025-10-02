@@ -406,6 +406,34 @@ button.icon-btn:hover {
 .effects-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .effect-badge { background: rgba(96,165,250,0.15); border:1px solid rgba(96,165,250,0.3); padding:0.25rem 0.45rem; border-radius:999px; font-size:0.65rem; display:inline-flex; gap:0.25rem; align-items:center; }
 .effect-badge button { font-size:0.6rem; padding:0 0.3rem; }
+.effect-badge.buff { background:rgba(52,211,153,0.18); border-color:rgba(52,211,153,0.4); }
+.effect-badge.debuff { background:rgba(248,113,113,0.18); border-color:rgba(248,113,113,0.4); }
+.effect-badge.mixed { background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.4); }
+.quick-effects { display:flex; gap:0.35rem; flex-wrap:wrap; margin-bottom:0.4rem; }
+.quick-effects button { font-size:0.55rem; padding:0.25rem 0.5rem; border-radius:999px; }
+.stat-group.spd-group { position:relative; }
+.stat-group.spd-group .eff-delta-tag { position:absolute; top:-6px; right:6px; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.35); padding:0 0.35rem; line-height:1.1; font-size:0.55rem; border-radius:8px; font-weight:600; }
+
+/* Dice history crit highlight */
+.dice-line.crit .dice-total { color: var(--accent); font-weight:700; text-shadow:0 0 6px rgba(255,200,80,0.6); }
+.skill-toolbar { display:flex; gap:0.5rem; align-items:center; margin-bottom:0.75rem; }
+.skill-list { display:grid; gap:0.65rem; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); }
+.skill-card { border:1px solid var(--border); padding:0.65rem 0.75rem; border-radius:12px; background:rgba(30,41,59,0.5); display:grid; gap:0.4rem; position:relative; }
+.skill-card.disabled { opacity:0.45; filter:grayscale(0.6); }
+.skill-card.owned { outline:2px solid var(--accent); }
+.skill-head { display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; }
+.skill-tags em { font-style:normal; font-size:0.6rem; background:rgba(148,163,184,0.15); padding:0.15rem 0.4rem; border-radius:999px; }
+.skill-meta { font-size:0.6rem; display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; color:var(--text-muted); }
+.skill-eff { font-size:0.65rem; line-height:1.2; }
+.skill-rolls { display:flex; flex-wrap:wrap; gap:0.3rem; }
+.skill-rolls button { font-size:0.55rem; padding:0.25rem 0.5rem; }
+.skill-badge { width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; font-size:0.6rem; border-radius:6px; font-weight:600; color:#fff; }
+.skill-badge.passive { background:linear-gradient(135deg,#10b981,#047857); }
+.skill-badge.active { background:linear-gradient(135deg,#3b82f6,#1d4ed8); }
+.owned-flag { background:rgba(96,165,250,0.2); padding:0.1rem 0.4rem; border-radius:8px; font-size:0.55rem; }
+.prereq { background:rgba(248,113,113,0.15); padding:0.1rem 0.35rem; border-radius:6px; font-size:0.55rem; }
+.skill-actions { margin-top:0.25rem; }
+.skill-actions button.mini { font-size:0.55rem; padding:0.25rem 0.5rem; }
 .delta { opacity:0.75; }
 .delta-pos { color: var(--success); }
 .delta-neg { color: var(--danger); }

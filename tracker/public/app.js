@@ -14,7 +14,8 @@
     _effectEditingFor: null,
     settings: {
       lightTheme: false,
-      compactCards: false
+      compactCards: false,
+      keepSingleRoll: false
     },
     toastTimer: null
   };
@@ -34,6 +35,8 @@
     fetchEffectTemplates();
     restoreLastSession();
     handleActionParam();
+    initDiceUI();
+    fetchSkills();
   }
 
   async function fetchEffectTemplates() {
@@ -79,7 +82,94 @@
       themeToggle: query("theme-toggle"),
       compactToggle: query("compact-toggle")
     });
+    // Inject skill overlay if missing
+    if (!document.getElementById('skill-overlay')) {
+      const div = document.createElement('div');
+      div.id = 'skill-overlay';
+      div.className = 'overlay hidden';
+      div.innerHTML = `<div class="overlay-card large"><div class="overlay-header"><h2>Skills</h2><button class="icon-btn" data-close-overlay>&times;</button></div><div class="overlay-body" id="skill-body"><div class="skill-toolbar"><input type="search" id="skill-search" placeholder="Search skills"/><span id="skill-count" class="count-chip">0</span><button type="button" class="ghost" id="open-skill-refresh" title="Refresh skills">↻</button></div><div id="skill-list" class="skill-list"></div></div></div>`;
+      document.body.appendChild(div);
+      dom.skillOverlay = div;
+    } else {
+      dom.skillOverlay = document.getElementById('skill-overlay');
+    }
   }
+
+  async function fetchSkills() {
+    try {
+      const res = await fetch('/api/skills');
+      if (!res.ok) return;
+      const data = await res.json();
+      state.skills = Array.isArray(data.skills) ? data.skills : [];
+      // Restore search term
+      const saved = localStorage.getItem('nba-skill-search');
+      if (saved && document.getElementById('skill-search')) {
+        document.getElementById('skill-search').value = saved;
+      }
+    } catch (_) { /* ignore */ }
+  }
+
+  function openSkills() { if (dom.skillOverlay) { renderSkills(); openOverlay(dom.skillOverlay); } }
+
+  function renderSkills() {
+    const list = document.getElementById('skill-list'); if (!list) return;
+    const searchInput = document.getElementById('skill-search');
+    const queryVal = (searchInput?.value||'').toLowerCase();
+    if (searchInput) state.lastSkillSearch = searchInput.value;
+  if (state.lastSkillSearch != null) localStorage.setItem('nba-skill-search', state.lastSkillSearch);
+    list.innerHTML='';
+    const skills = (state.skills||[]).filter(s => !queryVal || s.name.toLowerCase().includes(queryVal) || (s.typeTags||[]).some(t=>t.toLowerCase().includes(queryVal)));
+    const count = document.getElementById('skill-count'); if (count) count.textContent = skills.length;
+    skills.forEach(skill => {
+      const card = document.createElement('div'); card.className='skill-card';
+      const isPassive = skill.passive;
+      const isActive = skill.active;
+      const acquired = (state.session?.acquiredSkills||[]).includes(skill.name);
+      const unmet = (skill.prerequisites||[]).some(pr => !(state.session?.acquiredSkills||[]).includes(pr));
+      if (unmet) card.classList.add('disabled');
+      if (acquired) card.classList.add('owned');
+      const badge = isPassive?'<span class="skill-badge passive" title="Passive">P</span>':(isActive?'<span class="skill-badge active" title="Active">A</span>':'');
+      card.innerHTML = `<div class="skill-head">${badge}<strong>${escapeHtml(skill.name)}</strong><span class="skill-tags">${(skill.typeTags||[]).map(t=>`<em>#${escapeHtml(t)}</em>`).join(' ')}</span></div>`+
+        `<div class="skill-meta">${skill.tier!==null?`Tier ${skill.tier}`:''} ${skill.rarity?`<span class='rarity ${skill.rarity.toLowerCase()}'>${skill.rarity}</span>`:''}`+
+        `${skill.prerequisites && skill.prerequisites.length?`<span class='prereq'>Req: ${skill.prerequisites.map(p=>escapeHtml(p)).join(', ')}</span>`:''}`+
+        `${acquired?`<span class='owned-flag'>Owned</span>`:''}</div>`+
+        `<div class="skill-eff">${(skill.effectDetails||[]).map(e=>`<div class='eff-line'>${escapeHtml(e)}</div>`).join('')}</div>`+
+        `${skill.rollHints && skill.rollHints.length?`<div class='skill-rolls'>${skill.rollHints.map(r=>`<button class='ghost mini' data-skill-roll='${r}'>Roll ${r}</button>`).join(' ')}</div>`:''}`+
+        `${isPassive && !acquired && !unmet ? `<div class='skill-actions'><button class='secondary mini' data-apply-passive='${escapeHtml(skill.name)}'>Apply Passive</button></div>`:''}`;
+      list.appendChild(card);
+    });
+  }
+
+  document.addEventListener('input', e => { if (e.target && e.target.id === 'skill-search') renderSkills(); });
+  document.addEventListener('click', e => {
+    if (e.target && e.target.matches('[data-open-skills]')) { openSkills(); }
+    if (e.target && e.target.id === 'open-skill-refresh') { fetchSkills().then(renderSkills); }
+    if (e.target && e.target.matches('[data-skill-roll]')) {
+      const expr = e.target.getAttribute('data-skill-roll');
+      openDiceRoller();
+      const input = document.getElementById('dice-expression');
+      if (input) { input.value = expr; input.focus(); }
+    }
+    if (e.target && e.target.matches('[data-apply-passive]')) {
+      const skillName = e.target.getAttribute('data-apply-passive');
+      const skill = (state.skills||[]).find(s => s.name === skillName);
+      if (!skill || !state.session) return;
+      // Parse effect lines like "+1 DEX" or "+2 SPD" -> effect targets
+      const targets = [];
+      (skill.effectDetails||[]).forEach(line => {
+        const m = line.match(/([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)/i);
+        if (m) { targets.push({ stat: m[2].toUpperCase(), delta: parseInt(m[1],10) }); }
+      });
+      if (!targets.length) return;
+      const eff = { id: crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2), label: skill.name, targets, turns: 9999 };
+      // Apply to all selected? For now apply to first ally entries; simple: active session allies owning prerequisites.
+      const recipients = [...state.session.allies, ...state.session.enemies].filter(e=>true); // could scope later
+      recipients.forEach(r => { r.effects.push({...eff}); });
+      state.session.acquiredSkills = Array.from(new Set([...(state.session.acquiredSkills||[]), skill.name]));
+      persistSession(); state.session.pendingSort = true; recomputeTurnOrder(true); updateActiveView();
+      showToast(`Passive ${skill.name} applied.`);
+    }
+  });
 
   function bindGlobalEvents() {
     document.addEventListener("click", handleDocumentClick);
@@ -265,6 +355,15 @@
     name.textContent = entry.name;
     title.appendChild(name);
 
+  // Per-card dice button
+  const diceBtn = document.createElement('button');
+  diceBtn.type = 'button';
+  diceBtn.className = 'ghost';
+  diceBtn.textContent = '🎲';
+  diceBtn.title = 'Open dice roller with this card context';
+  diceBtn.addEventListener('click', (e) => { e.stopPropagation(); openDiceRoller(entry.instanceId); });
+  title.appendChild(diceBtn);
+
     const meta = document.createElement("span");
     const metaParts = [];
     if (entry.tier !== null && entry.tier !== undefined) metaParts.push(`Tier ${entry.tier}`);
@@ -283,8 +382,31 @@
     const deltas = computeEffectDeltas(entry);
     statGrid.appendChild(buildStatInput(entry, "hp", withDeltaLabel("HP", deltas.HP)));
     statGrid.appendChild(buildStatInput(entry, "resource", entry.stats.resourceLabel || "MP"));
-    statGrid.appendChild(buildEditableNumber(entry, "spd", withDeltaLabel("SPD", deltas.SPD)));
-    statGrid.appendChild(buildStatDisplay(withDeltaLabel("MV", deltas.MV), formatNumber(applyDelta(entry.stats.mv, deltas.MV))));
+  // SPD input shows effective value; editing adjusts base so removal of effects reverts correctly
+  (function(){
+    const spdWrap = document.createElement('div');
+    spdWrap.className = 'stat-group spd-group';
+    const spdLabel = document.createElement('label');
+    spdLabel.textContent = 'SPD';
+    const spdInput = document.createElement('input');
+    spdInput.type = 'number'; spdInput.step='1';
+    spdInput.dataset.action = 'update-spd-effective';
+    spdInput.dataset.field = 'spd';
+    const effectiveSpd = applyDelta(entry.stats.spd, deltas.SPD);
+    spdInput.value = formatNumber(effectiveSpd);
+    if (deltas.SPD) spdInput.title = `Base ${entry.stats.spd} (Δ${deltas.SPD>0?'+':''}${deltas.SPD})`; else spdInput.title='No modifiers';
+    if (deltas.SPD) {
+      const tag = document.createElement('span');
+      tag.className = 'eff-delta-tag';
+      tag.textContent = `${deltas.SPD>0?'+':''}${deltas.SPD}`;
+      spdWrap.appendChild(spdLabel); spdWrap.appendChild(spdInput); spdWrap.appendChild(tag);
+    } else {
+      spdWrap.appendChild(spdLabel); spdWrap.appendChild(spdInput);
+    }
+    statGrid.appendChild(spdWrap);
+  })();
+  const effectiveMv = formatNumber(applyDelta(entry.stats.mv, deltas.MV));
+  statGrid.appendChild(buildStatDisplay(withDeltaLabel("MV", deltas.MV), effectiveMv));
     statGrid.appendChild(buildStatDisplay(withDeltaLabel("AC", deltas.AC), formatNumber(applyDelta(entry.stats.ac, deltas.AC))));
   // Effects section
   const effectsWrap = document.createElement("div");
@@ -302,6 +424,22 @@
   effectsHeader.appendChild(addEffectBtn);
   const effectsList = document.createElement("div");
   effectsList.className = "effects-list";
+  // Quick template buttons (first 3 templates)
+  if (state.effectTemplates && state.effectTemplates.length) {
+    const quick = document.createElement('div');
+    quick.className = 'quick-effects';
+    state.effectTemplates.slice(0,3).forEach(tpl => {
+      const qb = document.createElement('button');
+      qb.type = 'button'; qb.className='ghost'; qb.textContent=tpl.label; qb.title='Quick add effect';
+      qb.addEventListener('click', () => {
+        const inst = findEntry(entry.instanceId); if (!inst) return;
+        inst.effects.push({ id: crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2), label: tpl.label, targets: tpl.targets, turns: tpl.turns||1 });
+        persistSession(); state.session.pendingSort = true; recomputeTurnOrder(true); updateActiveView();
+      });
+      quick.appendChild(qb);
+    });
+    effectsWrap.appendChild(quick);
+  }
   entry.effects.forEach(effect => effectsList.appendChild(buildEffectBadge(effect)));
   effectsWrap.appendChild(effectsHeader);
   effectsWrap.appendChild(effectsList);
@@ -435,7 +573,16 @@
     }
     text.textContent = `${effect.label}${targetText ? ' ('+targetText+')' : ''}`;
     const turnsBtn = document.createElement('button');
-    turnsBtn.type = 'button'; turnsBtn.className = 'ghost'; turnsBtn.dataset.action = 'edit-effect-turns'; turnsBtn.dataset.effectId = effect.id; turnsBtn.textContent = `${effect.turns}t`;
+    turnsBtn.type = 'button';
+    turnsBtn.className = 'ghost';
+    turnsBtn.dataset.action = 'edit-effect-turns';
+    turnsBtn.dataset.effectId = effect.id;
+    const isInfinite = Number.isFinite(effect.turns) && effect.turns > 5000;
+    // Display ∞ for very large duration effects (used for passives) while retaining numeric value internally
+    turnsBtn.textContent = isInfinite ? '∞' : `${effect.turns}t`;
+    if (isInfinite) {
+      turnsBtn.title = `${effect.turns} turns (treated as passive / infinite)`;
+    }
     const remove = document.createElement('button');
     remove.type = 'button'; remove.className = 'ghost'; remove.dataset.action = 'remove-effect'; remove.dataset.effectId = effect.id; remove.textContent = 'x';
     badge.appendChild(text);
@@ -541,7 +688,7 @@
 
   function handleCardInput(event) {
     const target = event.target;
-  if (!target.matches("[data-action='update-stat'],[data-action='update-dynamic']")) return;
+  if (!target.matches("[data-action='update-stat'],[data-action='update-dynamic'],[data-action='update-spd-effective']")) return;
     const card = target.closest(".tracker-card");
     if (!card) return;
     const entry = findEntry(card.dataset.instanceId);
@@ -573,6 +720,17 @@
         }
         updatePendingSortIndicator();
       }
+      entry.updatedAt = new Date().toISOString();
+      persistSession();
+    } else if (target.dataset.action === 'update-spd-effective') {
+      // Convert effective edit back into base by subtracting current delta
+      const deltas = computeEffectDeltas(entry);
+      const baseSpd = value - (deltas.SPD || 0);
+      entry.stats.spd = baseSpd < 0 ? 0 : baseSpd;
+      entry.stats.mv = computeMovement(entry.stats.spd);
+      state.session.pendingSort = true;
+      recomputeTurnOrder(true);
+      updatePendingSortIndicator();
       entry.updatedAt = new Date().toISOString();
       persistSession();
     }
@@ -611,6 +769,8 @@
       const id = target.dataset.effectId;
       entry.effects = entry.effects.filter(e => e.id !== id);
       persistSession();
+      state.session.pendingSort = true;
+      recomputeTurnOrder(true);
       updateActiveView();
       return;
     }
@@ -630,6 +790,8 @@
       if (Number.isFinite(val) && val > 0) {
         effect.turns = val;
         persistSession();
+        state.session.pendingSort = true;
+        recomputeTurnOrder(true);
         updateActiveView();
       }
       return;
@@ -697,7 +859,12 @@
     if (!force && !state.session.pendingSort) return;
 
     const ordered = getAllParticipants().slice().sort((a, b) => {
-      const spdDiff = (b.stats.spd ?? 0) - (a.stats.spd ?? 0);
+      // Use effective SPD (including effect deltas) for ordering
+      const da = computeEffectDeltas(a).SPD || 0;
+      const db = computeEffectDeltas(b).SPD || 0;
+      const effA = (a.stats.spd ?? 0) + da;
+      const effB = (b.stats.spd ?? 0) + db;
+      const spdDiff = effB - effA;
       if (spdDiff !== 0) return spdDiff;
       const dexDiff = (b.core?.DEX ?? 0) - (a.core?.DEX ?? 0);
       if (dexDiff !== 0) return dexDiff;
@@ -723,6 +890,126 @@
     } catch (_) { /* ignore */ }
   }
 
+  /* ================= Dice Roller ================= */
+  function ensureSessionProf() {
+    if (!state.session) return 0;
+    if (typeof state.session.prof !== 'number') state.session.prof = 0;
+    return state.session.prof;
+  }
+
+  function openDiceRoller(instanceId) {
+    const modal = document.getElementById('dice-roller-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    modal.dataset.contextInstance = instanceId || '';
+    const expr = document.getElementById('dice-expression');
+    if (expr) expr.focus();
+    const profInput = document.getElementById('session-prof-input');
+    if (profInput) { profInput.value = ensureSessionProf(); }
+  }
+
+  function closeDiceRoller() {
+    const modal = document.getElementById('dice-roller-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      delete modal.dataset.contextInstance;
+    }
+  }
+
+  function parseDiceExpression(raw) {
+    const expr = (raw || '').trim();
+    if (!expr) return { parts: [], rolls: [], raw };
+    const tokens = expr.match(/d?\d+d\d+|d\d+|kh1|kl1|[+-]|\b(?:STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP|PROF)(?:\|(STR|DEX|CON|INT|WIS|CHA))?\b|\d+/gi) || [];
+    let keepHigh=false, keepLow=false;
+    const parts=[]; let sign=1; const rolls=[];
+    tokens.forEach(tok => {
+      const lower = tok.toLowerCase();
+      if (tok === '+') { sign=1; return; }
+      if (tok === '-') { sign=-1; return; }
+      if (lower === 'kh1') { keepHigh=true; keepLow=false; return; }
+      if (lower === 'kl1') { keepLow=true; keepHigh=false; return; }
+      if (/^\d+$/.test(tok)) { parts.push({type:'flat', value: sign*parseInt(tok,10)}); sign=1; return; }
+      if (/^\d+d\d+$/i.test(tok) || /^d\d+$/i.test(tok)) {
+        let count, faces; if (/^d\d+$/i.test(tok)) { count=1; faces=parseInt(tok.slice(1),10); } else { const [c,f]=tok.toLowerCase().split('d'); count=parseInt(c,10); faces=parseInt(f,10); }
+        const these=[]; for(let i=0;i<count;i++){ these.push(1+Math.floor(Math.random()*faces)); }
+        let used=these.slice(); if (keepHigh) used=[Math.max(...these)]; else if (keepLow) used=[Math.min(...these)];
+        const subtotal=used.reduce((a,b)=>a+b,0)*sign; const detail={notation:tok, all:these, used, subtotal, sign};
+        rolls.push(detail); parts.push({type:'roll', detail}); sign=1; return;
+      }
+      if (/^(?:STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP|PROF)(?:\|(STR|DEX|CON|INT|WIS|CHA))?$/i.test(tok)) {
+        if (tok.includes('|')) {
+          const [a,b] = tok.toUpperCase().split('|');
+          parts.push({ type:'alt-stat', keys:[a,b], sign });
+        } else {
+          parts.push({ type:'stat', key:tok.toUpperCase(), sign });
+        }
+        sign=1; return;
+      }
+    });
+    return { parts, rolls, raw: expr };
+  }
+
+  function resolveStatValue(key, entry) {
+    if (key === 'PROF') return ensureSessionProf();
+    if (!entry) return 0;
+    switch (key) {
+      case 'SPD': return (entry.stats?.spd||0) + (computeEffectDeltas(entry).SPD||0);
+      case 'AC': return (entry.stats?.ac||0) + (computeEffectDeltas(entry).AC||0);
+      case 'HP': return entry.stats?.hp||0;
+      case 'MP': return entry.stats?.resource||0;
+      default: return entry.core?.[key] || 0;
+    }
+  }
+
+  function evaluateDiceParts(parts, entry) {
+    let total=0; const segments=[]; const critFlags=[];
+    parts.forEach(p => {
+      if (p.type==='flat') { total+=p.value; segments.push(`${p.value>=0?'+':''}${p.value}`); }
+      else if (p.type==='roll') {
+        const d=p.detail; total+=d.subtotal; segments.push(`${d.sign<0?'-':''}${d.notation}[${d.all.join(',')}]${d.used.length!==d.all.length?`→${d.used.join(',')}`:''}=${d.subtotal}`);
+        // Crit: any used die equals its max face (supports NdX; if keep high, evaluate used array)
+        const facesMatch = /d(\d+)/i.exec(d.notation);
+        if (facesMatch) {
+          const maxFace = parseInt(facesMatch[1],10);
+            if (d.used.some(v => v === maxFace)) critFlags.push(true);
+        }
+      }
+      else if (p.type==='stat') { const v=resolveStatValue(p.key, entry)*p.sign; total+=v; segments.push(`${v>=0?'+':''}${p.key}(${v})`); }
+      else if (p.type==='alt-stat') {
+        const a = resolveStatValue(p.keys[0], entry); const b = resolveStatValue(p.keys[1], entry);
+        const chosen = Math.max(a,b)*p.sign; total+=chosen; segments.push(`${chosen>=0?'+':''}${p.keys.join('|')}(${chosen})`);
+      }
+    });
+    return { total, detail: segments.join(' '), crit: critFlags.some(Boolean) };
+  }
+
+  function addDiceHistoryLine(result) {
+    const hist = document.getElementById('dice-history'); if (!hist) return;
+    const div=document.createElement('div'); div.className='dice-line';
+    if (result.crit) div.classList.add('crit');
+    const time=new Date().toLocaleTimeString();
+    div.innerHTML = `<span class="dice-time">${time}</span> <span class="dice-total">${result.total}</span> <span class="dice-detail">${escapeHtml(result.detail)}${result.crit?'<span class="crit-flag"> CRIT!</span>':''}</span>`;
+    hist.prepend(div);
+  }
+
+  function escapeHtml(str){ return String(str).replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s])); }
+
+  function initDiceUI() {
+    const openBtn = document.getElementById('open-dice-btn'); if (openBtn) openBtn.addEventListener('click', ()=>openDiceRoller());
+    const modal = document.getElementById('dice-roller-modal'); if (!modal) return;
+    modal.querySelectorAll('[data-close-overlay]').forEach(btn=>btn.addEventListener('click', closeDiceRoller));
+    modal.addEventListener('click', e => { if (e.target === modal) closeDiceRoller(); });
+    const form=document.getElementById('dice-form');
+    const reroll=document.getElementById('dice-reroll-btn');
+    const clearBtn=document.getElementById('dice-clear-btn');
+    const expr=document.getElementById('dice-expression');
+    const prof=document.getElementById('session-prof-input');
+    if (prof) prof.addEventListener('change', ()=>{ if (!state.session) return; state.session.prof=parseInt(prof.value,10)||0; persistSession(); });
+    if (form) form.addEventListener('submit', e => { e.preventDefault(); const ctxId=modal.dataset.contextInstance; const entry=ctxId?findEntry(ctxId):null; const parsed=parseDiceExpression(expr.value); const evald=evaluateDiceParts(parsed.parts, entry); if (state.settings.keepSingleRoll) { const hist=document.getElementById('dice-history'); if (hist) hist.innerHTML=''; } addDiceHistoryLine(evald); reroll.disabled=false; reroll.dataset.lastExpr=expr.value; reroll.dataset.lastCtx=ctxId||''; });
+    if (reroll) reroll.addEventListener('click', ()=>{ const exprStr=reroll.dataset.lastExpr; if(!exprStr) return; const ctxId=reroll.dataset.lastCtx; const entry=ctxId?findEntry(ctxId):null; const parsed=parseDiceExpression(exprStr); const evald=evaluateDiceParts(parsed.parts, entry); addDiceHistoryLine(evald); });
+    if (clearBtn) clearBtn.addEventListener('click', () => { const hist=document.getElementById('dice-history'); if (hist) hist.innerHTML=''; reroll.disabled=true; });
+  }
+
   function renderTurnOrderBar() {
     if (!state.session) return;
     const container = dom.turnOrderBar;
@@ -746,9 +1033,12 @@
       name.className = "order-name";
       name.textContent = entity.name;
 
-      const meta = document.createElement("div");
-      meta.className = "order-meta";
-      meta.textContent = `SPD ${formatNumber(entity.stats.spd)} � MV ${formatNumber(entity.stats.mv)}`;
+  const d = computeEffectDeltas(entity);
+  const effSpd = formatNumber(applyDelta(entity.stats.spd, d.SPD));
+  const effMv = formatNumber(applyDelta(entity.stats.mv, d.MV));
+  const meta = document.createElement("div");
+  meta.className = "order-meta";
+  meta.textContent = `SPD ${effSpd}${d.SPD ? ` (Δ${d.SPD>0?'+':''}${d.SPD})` : ''} � MV ${effMv}`;
 
       const indicator = document.createElement("div");
       indicator.className = "order-meta";
@@ -1500,6 +1790,7 @@
         cacheRecentCustomEffect(newEffect);
       }
       persistSession();
+      if (state.session) { state.session.pendingSort = true; recomputeTurnOrder(true); }
       updateActiveView();
       const modal = document.getElementById('effect-editor-modal');
       if (modal) closeOverlay(modal);
@@ -1525,7 +1816,17 @@
   }
 
   function resolveImage(rel) {
-    return rel.replace(/^\.\//,'');
+    if (!rel) return '';
+    const clean = rel.trim().replace(/^\.\//,'').replace(/^!+/,'');
+    const cleaned = clean.replace(/^Resources\/(?:Image|Images)\//i, '');
+    // If already looks like a URL path keep it
+    if (/^https?:/i.test(cleaned) || cleaned.startsWith('/')) return cleaned;
+    // Map bare filename to /img route; allow subdir hints like Character/Name.png
+    if (/\.(png|jpg|jpeg|gif|svg)$/i.test(cleaned)) {
+      if (cleaned.includes('/')) return `/img/${cleaned}`;
+      return `/img/${cleaned}`;
+    }
+    return cleaned;
   }
 
   document.addEventListener("DOMContentLoaded", init);

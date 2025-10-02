@@ -1,6 +1,6 @@
 # Character Stat Sheet
 
-![[Ashtear.png]]
+![[Resources/Image/Character/Ashtear.png]]
 
 ---
 

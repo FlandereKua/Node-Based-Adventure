@@ -39,6 +39,8 @@ const ROOT_DIR = path.resolve(__dirname, "..");
 const PUBLIC_DIR = path.join(__dirname, "public");
 const CHARACTERS_DIR = path.join(ROOT_DIR, "Characters");
 const MONSTERS_DIR = path.join(ROOT_DIR, "Monsters");
+const IMAGE_DIR = path.join(ROOT_DIR, "Resources", "Image");
+const NODE_GRAPH_DIR = path.join(ROOT_DIR, "Node Graph");
 
 function sendJson(res, statusCode, payload) {
   const body = JSON.stringify(payload);
@@ -227,6 +229,16 @@ function handleApi(req, res, urlObj) {
     return true;
   }
 
+  if (req.method === 'GET' && urlObj.pathname === '/api/skills') {
+    try {
+      const skills = parseSkills();
+      sendJson(res, 200, { skills });
+    } catch (e) {
+      sendError(res, e);
+    }
+    return true;
+  }
+
   if (req.method === "POST" && urlObj.pathname === "/api/convert") {
     let body = "";
     req.on("data", chunk => (body += chunk));
@@ -327,7 +339,76 @@ function handleApi(req, res, urlObj) {
     return true;
   }
 
+  // Image serving route: /img/<path>
+  if (req.method === 'GET' && urlObj.pathname.startsWith('/img/')) {
+    const rel = urlObj.pathname.replace(/^\/img\//,'');
+    const safe = rel.split('/').filter(seg => seg && seg !== '..').join(path.sep);
+    const filePath = path.join(IMAGE_DIR, safe);
+    fs.stat(filePath, (err, stats) => {
+      if (err || !stats.isFile()) { return sendNotFound(res); }
+      serveStaticFile(res, filePath);
+    });
+    return true;
+  }
+
   return false;
+}
+
+function parseSkills() {
+  const results = [];
+  if (!fs.existsSync(NODE_GRAPH_DIR)) return results;
+  const files = fs.readdirSync(NODE_GRAPH_DIR).filter(f => f.toLowerCase().endsWith('.md'));
+  files.forEach(file => {
+    try {
+      const full = path.join(NODE_GRAPH_DIR, file);
+      const raw = fs.readFileSync(full, 'utf8');
+      const name = file.replace(/\.md$/i,'');
+      // Tier & rarity
+      const tierMatch = raw.match(/\*\*Tier\*\*\s*\|\s*([^\n]+)/i);
+      let tier=null, rarity=null; if (tierMatch) { const seg=tierMatch[1]; const tNum=seg.match(/(\d+)/); if(tNum) tier=parseInt(tNum[1],10); const rar=seg.match(/#(Common|Uncommon|Rare|Epic|Legendary)/i); if (rar) rarity=rar[1]; }
+      // Type tags
+      const typeMatch = raw.match(/\*\*Type\*\*\s*\|\s*([^\n]+)/i);
+      const typeTags = typeMatch ? (typeMatch[1].match(/#([A-Za-z0-9_-]+)/g)||[]).map(t=>t.slice(1)) : [];
+      const passive = typeTags.includes('Passive');
+      const active = typeTags.includes('Active');
+      // Effect Details bullets
+      const lines = raw.split(/\r?\n/);
+      const effectDetails = [];
+      const effIdx = lines.findIndex(l => /Effect Details/i.test(l));
+      if (effIdx !== -1) {
+        for (let i=effIdx+1;i<lines.length;i++) {
+          const line=lines[i];
+          if (/^\s*-\s*\*\*/.test(line)) {
+            effectDetails.push(line.replace(/^\s*-\s*/, '').replace(/\*\*/g,'').trim());
+          } else if (/^##\s/.test(line) || /^---/.test(line)) { break; }
+        }
+      }
+      // Roll hints & resource cost
+      const rollHints=[]; let resourceCost=null;
+      effectDetails.forEach(eff => {
+        const roll=eff.match(/Roll\s+([0-9dD+\- ]+(?:INT|STR|DEX|WIS|CHA|CON)?(?:\s+or\s+(?:INT|STR|DEX|WIS|CHA|CON))?)/i); if (roll) {
+          let hint = roll[1].trim();
+          hint = hint.replace(/\b(INT|STR|DEX|WIS|CHA|CON)\b\s+or\s+\b(INT|STR|DEX|WIS|CHA|CON)\b/i, (m,a,b)=>`${a.toUpperCase()}|${b.toUpperCase()}`);
+          rollHints.push(hint);
+        }
+        const cost=eff.match(/Resource Cost\s*:\s*(\d+)\s*MP/i); if(cost) resourceCost=parseInt(cost[1],10);
+      });
+      // Prerequisites section
+      const prereqIdx = lines.findIndex(l => /Prerequisites/i.test(l));
+      const prerequisites=[];
+      if (prereqIdx !== -1) {
+        for (let i=prereqIdx+1;i<lines.length;i++) {
+          const ln = lines[i];
+          if (/^###\s|^##\s|^---/.test(ln)) break;
+          const linkMatch = ln.match(/\[\[([^\]]+)\]\]/g); if (linkMatch) {
+            linkMatch.forEach(lk => { const name = lk.replace(/[[\]]/g,'').trim(); if (name) prerequisites.push(name); });
+          }
+        }
+      }
+      results.push({ id:name, name, tier, rarity, typeTags, passive, active, effectDetails, rollHints, resourceCost, prerequisites });
+    } catch(_) { /* ignore */ }
+  });
+  return results;
 }
 
 const server = http.createServer((req, res) => {

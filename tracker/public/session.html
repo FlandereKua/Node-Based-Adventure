@@ -16,6 +16,8 @@
       <div class="top-bar-actions">
         <a href="index.html" class="ghost top-nav-btn">Menu</a>
         <button id="open-menu-btn" class="secondary top-nav-btn">Session Menu</button>
+        <button id="open-dice-btn" class="accent top-nav-btn" title="Open Dice Roller">Dice</button>
+        <button type="button" class="secondary top-nav-btn" data-open-skills title="Open Skills">Skills</button>
       </div>
     </header>
 
@@ -242,6 +244,31 @@
     </div>
   </div>
   <div id="toast" class="toast hidden" role="alert"></div>
+
+  <!-- Dice Roller Modal -->
+  <div id="dice-roller-modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dice-roller-title">
+    <div class="overlay-card medium">
+      <div class="overlay-header">
+        <h2 id="dice-roller-title">Dice Roller</h2>
+        <button class="icon-btn" data-close-overlay>&times;</button>
+      </div>
+      <div class="overlay-body dice-body">
+        <form id="dice-form" class="dice-form" autocomplete="off">
+          <div class="dice-row">
+            <input type="text" id="dice-expression" placeholder="e.g. d20 + STR + PROF" aria-label="Dice expression" />
+            <button type="submit" class="primary" title="Roll">Roll</button>
+            <button type="button" id="dice-reroll-btn" class="ghost" disabled title="Reroll last">↻</button>
+            <button type="button" id="dice-clear-btn" class="ghost" title="Clear history">✕</button>
+          </div>
+          <div class="dice-help">Tokens: NdX, dX, numbers, +/-, stats (STR DEX CON INT WIS CHA SPD AC HP MP), PROF. Advantage: d20kh1 / Disadvantage: d20kl1.</div>
+        </form>
+        <div class="dice-session-fields">
+          <label>Session PROF <input type="number" id="session-prof-input" step="1" value="0" /></label>
+        </div>
+        <div id="dice-history" class="dice-history" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js" defer></script>
 </body>
