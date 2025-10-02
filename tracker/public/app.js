@@ -12,6 +12,8 @@
     session: null,
     effectTemplates: [],
     _effectEditingFor: null,
+    // Which entry (instanceId) the skill overlay is currently showing
+    skillContextEntryId: null,
     settings: {
       lightTheme: false,
       compactCards: false,
@@ -106,10 +108,20 @@
       if (saved && document.getElementById('skill-search')) {
         document.getElementById('skill-search').value = saved;
       }
+      // After skills load, auto-apply passive skills defined on entries (from sheet parsing)
+      if (state.session) {
+        const entries = getAllParticipants();
+        entries.forEach(entry => applyParsedPassives(entry));
+        persistSession();
+        updateActiveView();
+      }
     } catch (_) { /* ignore */ }
   }
 
-  function openSkills() { if (dom.skillOverlay) { renderSkills(); openOverlay(dom.skillOverlay); } }
+  function openSkills(instanceId) {
+    if (instanceId) state.skillContextEntryId = instanceId;
+    if (dom.skillOverlay) { renderSkills(); openOverlay(dom.skillOverlay); }
+  }
 
   function renderSkills() {
     const list = document.getElementById('skill-list'); if (!list) return;
@@ -118,14 +130,15 @@
     if (searchInput) state.lastSkillSearch = searchInput.value;
   if (state.lastSkillSearch != null) localStorage.setItem('nba-skill-search', state.lastSkillSearch);
     list.innerHTML='';
+    const entry = state.skillContextEntryId ? findEntry(state.skillContextEntryId) : null;
     const skills = (state.skills||[]).filter(s => !queryVal || s.name.toLowerCase().includes(queryVal) || (s.typeTags||[]).some(t=>t.toLowerCase().includes(queryVal)));
     const count = document.getElementById('skill-count'); if (count) count.textContent = skills.length;
     skills.forEach(skill => {
       const card = document.createElement('div'); card.className='skill-card';
       const isPassive = skill.passive;
       const isActive = skill.active;
-      const acquired = (state.session?.acquiredSkills||[]).includes(skill.name);
-      const unmet = (skill.prerequisites||[]).some(pr => !(state.session?.acquiredSkills||[]).includes(pr));
+      const acquired = entry ? (entry.acquiredSkills||[]).includes(skill.name) : false;
+      const unmet = entry ? (skill.prerequisites||[]).some(pr => !(entry.acquiredSkills||[]).includes(pr)) : true;
       if (unmet) card.classList.add('disabled');
       if (acquired) card.classList.add('owned');
       const badge = isPassive?'<span class="skill-badge passive" title="Passive">P</span>':(isActive?'<span class="skill-badge active" title="Active">A</span>':'');
@@ -135,14 +148,15 @@
         `${acquired?`<span class='owned-flag'>Owned</span>`:''}</div>`+
         `<div class="skill-eff">${(skill.effectDetails||[]).map(e=>`<div class='eff-line'>${escapeHtml(e)}</div>`).join('')}</div>`+
         `${skill.rollHints && skill.rollHints.length?`<div class='skill-rolls'>${skill.rollHints.map(r=>`<button class='ghost mini' data-skill-roll='${r}'>Roll ${r}</button>`).join(' ')}</div>`:''}`+
-        `${isPassive && !acquired && !unmet ? `<div class='skill-actions'><button class='secondary mini' data-apply-passive='${escapeHtml(skill.name)}'>Apply Passive</button></div>`:''}`;
+        `${entry && isPassive && !acquired && !unmet ? `<div class='skill-actions'><button class='secondary mini' data-apply-passive='${escapeHtml(skill.name)}'>Apply Passive</button></div>`:''}`+
+        `${entry && isActive && !acquired && !unmet ? `<div class='skill-actions'><button class='primary mini' data-learn-active='${escapeHtml(skill.name)}'>Learn Active</button></div>`:''}`;
       list.appendChild(card);
     });
   }
 
   document.addEventListener('input', e => { if (e.target && e.target.id === 'skill-search') renderSkills(); });
   document.addEventListener('click', e => {
-    if (e.target && e.target.matches('[data-open-skills]')) { openSkills(); }
+  if (e.target && e.target.matches('[data-open-skills]')) { const card = e.target.closest('.tracker-card'); openSkills(card?card.dataset.instanceId:undefined); }
     if (e.target && e.target.id === 'open-skill-refresh') { fetchSkills().then(renderSkills); }
     if (e.target && e.target.matches('[data-skill-roll]')) {
       const expr = e.target.getAttribute('data-skill-roll');
@@ -154,20 +168,30 @@
       const skillName = e.target.getAttribute('data-apply-passive');
       const skill = (state.skills||[]).find(s => s.name === skillName);
       if (!skill || !state.session) return;
-      // Parse effect lines like "+1 DEX" or "+2 SPD" -> effect targets
-      const targets = [];
-      (skill.effectDetails||[]).forEach(line => {
-        const m = line.match(/([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)/i);
-        if (m) { targets.push({ stat: m[2].toUpperCase(), delta: parseInt(m[1],10) }); }
-      });
-      if (!targets.length) return;
-      const eff = { id: crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2), label: skill.name, targets, turns: 9999 };
-      // Apply to all selected? For now apply to first ally entries; simple: active session allies owning prerequisites.
-      const recipients = [...state.session.allies, ...state.session.enemies].filter(e=>true); // could scope later
-      recipients.forEach(r => { r.effects.push({...eff}); });
-      state.session.acquiredSkills = Array.from(new Set([...(state.session.acquiredSkills||[]), skill.name]));
-      persistSession(); state.session.pendingSort = true; recomputeTurnOrder(true); updateActiveView();
-      showToast(`Passive ${skill.name} applied.`);
+      const entry = state.skillContextEntryId ? findEntry(state.skillContextEntryId) : null;
+      if (!entry) return;
+      const conv = convertSkillToEffects(skill, { passive: true });
+      // Even if no stat targets, still mark acquired
+      entry.acquiredSkills = Array.from(new Set([...(entry.acquiredSkills||[]), skill.name]));
+      conv.effects.forEach(eff => entry.effects.push(eff));
+      persistSession();
+      if (conv.effects.some(e => e.targets && e.targets.length && e.turns > 5000)) { state.session.pendingSort = true; recomputeTurnOrder(true); }
+      updateActiveView();
+      showToast(`Passive ${skill.name} acquired${conv.effects.length? ' and applied':''}.`);
+      renderSkills();
+    }
+    if (e.target && e.target.matches('[data-learn-active]')) {
+      const skillName = e.target.getAttribute('data-learn-active');
+      const skill = (state.skills||[]).find(s => s.name === skillName);
+      if (!skill || !state.session) return;
+      const entry = state.skillContextEntryId ? findEntry(state.skillContextEntryId) : null;
+      if (!entry) return;
+      if (!entry.acquiredSkills.includes(skillName)) {
+        entry.acquiredSkills.push(skillName);
+        persistSession();
+        showToast(`Active skill ${skillName} learned.`);
+        renderSkills();
+      }
     }
   });
 
@@ -363,6 +387,14 @@
   diceBtn.title = 'Open dice roller with this card context';
   diceBtn.addEventListener('click', (e) => { e.stopPropagation(); openDiceRoller(entry.instanceId); });
   title.appendChild(diceBtn);
+  // Skills button
+  const skillBtn = document.createElement('button');
+  skillBtn.type = 'button';
+  skillBtn.className = 'ghost';
+  skillBtn.textContent = '📘';
+  skillBtn.title = 'Open skills';
+  skillBtn.addEventListener('click', (e)=>{ e.stopPropagation(); openSkills(entry.instanceId); });
+  title.appendChild(skillBtn);
 
     const meta = document.createElement("span");
     const metaParts = [];
@@ -488,6 +520,7 @@
     card.appendChild(header);
     card.appendChild(statGrid);
   card.appendChild(effectsWrap);
+  // (Removed inline passive/active chip row for space; skills managed via overlay)
   card.appendChild(collapse);
   card.appendChild(footer);
 
@@ -498,6 +531,17 @@
     }
 
     return card;
+  }
+
+  // (Removed buildEntrySkillSections; kept focusSkillCard for overlay convenience.)
+
+  function focusSkillCard(name) {
+    try {
+      const list = document.getElementById('skill-list');
+      if (!list) return;
+      const node = Array.from(list.querySelectorAll('.skill-card')).find(div => div.querySelector('.skill-head strong')?.textContent === name);
+      if (node) { node.classList.add('pulse'); node.scrollIntoView({ block:'center' }); setTimeout(()=>node.classList.remove('pulse'), 1200); }
+    } catch(_) { /* ignore */ }
   }
 
   function buildInfoSection(entry) {
@@ -1195,7 +1239,7 @@
     const instanceId = `${sheet.id}-${randomId}`;
     const hpDefault = firstFinite(sheet.combat?.hp?.max, sheet.combat?.hp?.current, 0);
     const resourceDefault = firstFinite(sheet.combat?.resource?.max, sheet.combat?.resource?.current, 0);
-    return {
+    const entry = {
       instanceId,
       sheetId: sheet.id,
       category: sheet.category ?? inferCategory(sheet.sourcePath),
@@ -1217,8 +1261,100 @@
       effects: [], // { id, label, stat, delta, turns }
       rawContent: sheet.rawContent || "",
       sourcePath: sheet.sourcePath || "",
-      addedAt: new Date().toISOString()
+      addedAt: new Date().toISOString(),
+      acquiredSkills: []
     };
+    ensureOriginSkills(entry);
+    // If skills already loaded, auto-apply passives now
+    applyParsedPassives(entry);
+    // Auto-learn parsed actives for prerequisite chains
+    ensureParsedActivesLearned(entry);
+    return entry;
+  }
+
+  function ensureOriginSkills(entry) {
+    if (!entry) return;
+    if (!Array.isArray(entry.acquiredSkills)) entry.acquiredSkills = [];
+    const origins = ['Life'];
+    if (Array.isArray(state.skills) && state.skills.length) {
+      origins.forEach(name => {
+        if (state.skills.some(s => s.name === name) && !entry.acquiredSkills.includes(name)) {
+          entry.acquiredSkills.push(name);
+        }
+      });
+    }
+  }
+
+  function applyParsedPassives(entry) {
+    if (!entry) return;
+    if (!Array.isArray(state.skills) || !state.skills.length) return; // wait until skills loaded
+    if (!Array.isArray(entry.passiveSkillNames)) return;
+    entry.passiveSkillNames.forEach(name => {
+      let skill = state.skills.find(s => s.name === name && s.passive);
+      if (!skill) { // case-insensitive fallback
+        skill = state.skills.find(s => s.passive && s.name.toLowerCase() === String(name).toLowerCase());
+      }
+      if (!skill) return;
+      if (entry.acquiredSkills && entry.acquiredSkills.includes(name)) return;
+      const conv = convertSkillToEffects(skill, { passive: true });
+      entry.acquiredSkills = Array.from(new Set([...(entry.acquiredSkills||[]), name]));
+      if (conv.effects.length) {
+        conv.effects.forEach(eff => { eff.isPassive = true; entry.effects.push(eff); });
+      }
+    });
+  }
+
+  function ensureParsedActivesLearned(entry) {
+    if (!entry) return; if (!Array.isArray(entry.activeSkillNames)) return;
+    entry.activeSkillNames.forEach(name => {
+      if (!Array.isArray(entry.acquiredSkills)) entry.acquiredSkills = [];
+      if (!entry.acquiredSkills.includes(name)) entry.acquiredSkills.push(name);
+    });
+  }
+
+  /**
+   * convertSkillToEffects(skill, options)
+   * Parses skill.effectDetails lines into a normalized array of effect objects.
+   * Supported patterns:
+   *   +N STAT, -N STAT (e.g., +2 STR, -1 SPD)
+   *   Optional duration suffix patterns on a line:
+   *     "for 3 turns" | "for 1 turn" | "(3t)" | "[3t]" | trailing "x3t"
+   *   If multiple stat modifications appear on separate lines each becomes a target within a single effect unless separated by blank lines in future expansions.
+   * Passives ignore parsed duration and become 9999 turns.
+   */
+  function convertSkillToEffects(skill, options = {}) {
+    const passive = !!options.passive || !!skill.passive;
+    const lines = Array.isArray(skill.effectDetails) ? skill.effectDetails.slice() : [];
+    const effects = [];
+    const targets = [];
+    let parsedDuration = null; // in turns
+    const statRegex = /([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)\b/i;
+    const durationRegexes = [
+      /for\s+(\d+)\s+turns?/i,
+      /\b(\d+)t\b/i,
+      /\((\d+)t\)/i,
+      /\[(\d+)t\]/i
+    ];
+    lines.forEach(rawLine => {
+      const line = String(rawLine).trim();
+      if (!line) return;
+      const m = line.match(statRegex);
+      if (m) {
+        targets.push({ stat: m[2].toUpperCase(), delta: parseInt(m[1],10) });
+      }
+      // attempt duration discovery (first wins)
+      if (parsedDuration == null) {
+        for (const rx of durationRegexes) {
+          const dm = line.match(rx);
+            if (dm) { parsedDuration = parseInt(dm[1],10); break; }
+        }
+      }
+    });
+    if (targets.length) {
+      const turns = passive ? 9999 : (Number.isFinite(parsedDuration) && parsedDuration > 0 ? parsedDuration : 1);
+      effects.push({ id: crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2), label: skill.name, targets, turns, isPassive: passive });
+    }
+    return { effects, duration: parsedDuration };
   }
 
   function computeMovement(speed) {
@@ -1528,6 +1664,13 @@
       session.turnOrder = Array.from(validIds);
     }
 
+    // Migrate legacy global acquiredSkills if present
+    if (Array.isArray(session.acquiredSkills) && session.acquiredSkills.length) {
+      const legacy = new Set(session.acquiredSkills);
+      session.allies.forEach(e => { e.acquiredSkills = Array.from(new Set([...(e.acquiredSkills||[]), ...legacy])); });
+      session.enemies.forEach(e => { e.acquiredSkills = Array.from(new Set([...(e.acquiredSkills||[]), ...legacy])); });
+      delete session.acquiredSkills;
+    }
     return session;
   }
 
@@ -1585,6 +1728,33 @@
       }
       return e;
     }) : [];
+    clone.acquiredSkills = Array.isArray(source.acquiredSkills) ? source.acquiredSkills.slice() : [];
+    // Parse rawContent for Passive / Active skill listing sections
+    try {
+      const text = String(clone.rawContent || '');
+      const sections = { passive: [], active: [] };
+      // Simple regex: capture lines under headings starting with '## Passive' or '## Active' until next '##'
+      const regex = /(^##\s*(Passive|Active)[^\n]*)([\s\S]*?)(?=^##\s|\Z)/gmi;
+      let m;
+      while ((m = regex.exec(text)) !== null) {
+        const kind = m[2].toLowerCase();
+        const body = m[3];
+        const lines = body.split(/\r?\n/).map(l=>l.trim()).filter(l=>l && !l.startsWith('##'));
+        lines.forEach(line => {
+          // Accept bullet or plain lines; strip leading markers like '-', '*', '+' and digits.
+          const cleaned = line.replace(/^[-*+\d\.\)]\s*/, '').trim();
+          // Stop if line looks like a new heading accidentally not captured
+          if (/^#/.test(cleaned)) return;
+          // Keep only first token up to ' - ' or ':' as a candidate skill name
+          const name = cleaned.split(/\s+-\s+|:/)[0].trim();
+            if (name && !sections[kind].includes(name)) sections[kind].push(name);
+        });
+      }
+      clone.passiveSkillNames = sections.passive;
+      clone.activeSkillNames = sections.active;
+    } catch(_) { /* ignore parse errors */ }
+    ensureOriginSkills(clone);
+    ensureParsedActivesLearned(clone);
     return clone;
   }
 
