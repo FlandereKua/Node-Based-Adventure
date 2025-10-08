@@ -49,8 +49,7 @@
 > [[Adventurer]]
 
 ### Proficiencies
-#### Tier 1 (1/2)
-[[Slash]]: Gain 1 HP when successfully attack
+- **Slash**: Gain 1 HP when successfully attack
 
 ---
 

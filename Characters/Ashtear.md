@@ -6,8 +6,8 @@
 
 ## Character Information
 - **Name**: Ashtear
-- **Race/Origin**: 
-- **Tier**: 
+- **Race/Origin**: Human
+- **Tier**: 1
 
 ---
 
@@ -56,5 +56,8 @@
 ---
 
 ## Background & Notes
-**Tag**: 
-- 
+**Tag**: #Artificer #Scholar #Human #Tier1Ally
+
+**Description**: A fiercely competitive but horribly unlucky knight who struggles with gambling addiction and impulsive behavior. Despite her flaws, she's a skilled swordwoman and talented fire magician.
+
+**Personality**: Hot-headed and impulsive, prone to taking dangerous risks both in combat and at the gambling table. Lives off an allowance from her more responsible sister Carrot, who inherited the family fortune due to Cermia's reckless spending.
