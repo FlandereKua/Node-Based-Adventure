@@ -39,6 +39,7 @@
     handleActionParam();
     initDiceUI();
     fetchSkills();
+    fetchEnhancedSkills();
   }
 
   async function fetchEffectTemplates() {
@@ -89,11 +90,22 @@
       const div = document.createElement('div');
       div.id = 'skill-overlay';
       div.className = 'overlay hidden';
-      div.innerHTML = `<div class="overlay-card large"><div class="overlay-header"><h2>Skills</h2><button class="icon-btn" data-close-overlay>&times;</button></div><div class="overlay-body" id="skill-body"><div class="skill-toolbar"><input type="search" id="skill-search" placeholder="Search skills"/><span id="skill-count" class="count-chip">0</span><button type="button" class="ghost" id="open-skill-refresh" title="Refresh skills">↻</button></div><div id="skill-list" class="skill-list"></div></div></div>`;
+      div.innerHTML = `<div class="overlay-card large"><div class="overlay-header"><h2>Skills</h2><button class="icon-btn" data-close-overlay>&times;</button></div><div class="overlay-body" id="skill-body"><div class="skill-toolbar"><input type="search" id="skill-search" placeholder="Search skills"/><label class="filter-toggle"><input type="checkbox" id="learned-only-filter"/> Learned Only</label><span id="skill-count" class="count-chip">0</span><button type="button" class="ghost" id="open-skill-refresh" title="Refresh skills">↻</button></div><div id="skill-list" class="skill-list"></div></div></div>`;
       document.body.appendChild(div);
       dom.skillOverlay = div;
     } else {
       dom.skillOverlay = document.getElementById('skill-overlay');
+    }
+    // Inject targeting overlay if missing
+    if (!document.getElementById('targeting-overlay')) {
+      const div = document.createElement('div');
+      div.id = 'targeting-overlay';
+      div.className = 'overlay hidden';
+      div.innerHTML = `<div class="overlay-card large"><div class="overlay-header"><h2 id="targeting-skill-name">Select Targets</h2><button class="icon-btn" data-close-overlay>&times;</button></div><div class="overlay-body"><div class="targeting-info"><p id="targeting-description">Select targets for this skill</p></div><div class="target-sections"><div class="target-section"><h3>Allies</h3><div id="ally-targets" class="target-grid"></div></div><div class="target-section"><h3>Enemies</h3><div id="enemy-targets" class="target-grid"></div></div></div><div class="targeting-controls"><span id="target-count">0 targets selected</span><button id="confirm-targeting" class="primary" disabled>Use Skill</button><button id="cancel-targeting" class="ghost">Cancel</button></div></div></div>`;
+      document.body.appendChild(div);
+      dom.targetingOverlay = div;
+    } else {
+      dom.targetingOverlay = document.getElementById('targeting-overlay');
     }
   }
 
@@ -111,11 +123,37 @@
       // After skills load, auto-apply passive skills defined on entries (from sheet parsing)
       if (state.session) {
         const entries = getAllParticipants();
-        entries.forEach(entry => applyParsedPassives(entry));
+        entries.forEach(entry => {
+          // Canonicalize / ensure active skills learned with actual casing
+          ensureParsedActivesLearned(entry, { canonicalize: true });
+          applyParsedPassives(entry);
+        });
         persistSession();
         updateActiveView();
       }
     } catch (_) { /* ignore */ }
+  }
+
+  async function fetchEnhancedSkills() {
+    try {
+      const res = await fetch('/api/skills-enhanced');
+      if (!res.ok) {
+        console.warn("Enhanced skills endpoint not available, status:", res.status);
+        return [];
+      }
+      const enhancedSkills = await res.json();
+      console.log('DEBUG: Fetched enhanced skills:', enhancedSkills);
+      state.enhancedSkills = Array.isArray(enhancedSkills) ? enhancedSkills : [];
+      console.log('DEBUG: Enhanced skills in state:', state.enhancedSkills);
+      // Log All-in skill specifically
+      const allInSkill = state.enhancedSkills.find(s => s.name === 'All-in');
+      console.log('DEBUG: All-in skill found:', allInSkill);
+      return state.enhancedSkills;
+    } catch (err) {
+      console.error("Error fetching enhanced skills:", err);
+      state.enhancedSkills = [];
+      return [];
+    }
   }
 
   function openSkills(instanceId) {
@@ -126,12 +164,18 @@
   function renderSkills() {
     const list = document.getElementById('skill-list'); if (!list) return;
     const searchInput = document.getElementById('skill-search');
+    const learnedOnlyFilter = document.getElementById('learned-only-filter');
     const queryVal = (searchInput?.value||'').toLowerCase();
+    const learnedOnly = learnedOnlyFilter?.checked || false;
     if (searchInput) state.lastSkillSearch = searchInput.value;
   if (state.lastSkillSearch != null) localStorage.setItem('nba-skill-search', state.lastSkillSearch);
     list.innerHTML='';
     const entry = state.skillContextEntryId ? findEntry(state.skillContextEntryId) : null;
-    const skills = (state.skills||[]).filter(s => !queryVal || s.name.toLowerCase().includes(queryVal) || (s.typeTags||[]).some(t=>t.toLowerCase().includes(queryVal)));
+    let skills = (state.skills||[]).filter(s => !queryVal || s.name.toLowerCase().includes(queryVal) || (s.typeTags||[]).some(t=>t.toLowerCase().includes(queryVal)));
+    // Apply learned-only filter if enabled and entry exists
+    if (learnedOnly && entry) {
+      skills = skills.filter(s => (entry.acquiredSkills||[]).includes(s.name));
+    }
     const count = document.getElementById('skill-count'); if (count) count.textContent = skills.length;
     skills.forEach(skill => {
       const card = document.createElement('div'); card.className='skill-card';
@@ -149,12 +193,14 @@
         `<div class="skill-eff">${(skill.effectDetails||[]).map(e=>`<div class='eff-line'>${escapeHtml(e)}</div>`).join('')}</div>`+
         `${skill.rollHints && skill.rollHints.length?`<div class='skill-rolls'>${skill.rollHints.map(r=>`<button class='ghost mini' data-skill-roll='${r}'>Roll ${r}</button>`).join(' ')}</div>`:''}`+
         `${entry && isPassive && !acquired && !unmet ? `<div class='skill-actions'><button class='secondary mini' data-apply-passive='${escapeHtml(skill.name)}'>Apply Passive</button></div>`:''}`+
-        `${entry && isActive && !acquired && !unmet ? `<div class='skill-actions'><button class='primary mini' data-learn-active='${escapeHtml(skill.name)}'>Learn Active</button></div>`:''}`;
+        `${entry && isActive && !acquired && !unmet ? `<div class='skill-actions'><button class='primary mini' data-learn-active='${escapeHtml(skill.name)}'>Learn Active</button></div>`:''}`+
+        `${entry && isActive && acquired ? `<div class='skill-actions'><button class='secondary mini' data-use-active='${escapeHtml(skill.name)}'>Use Skill</button></div>`:''}`;
       list.appendChild(card);
     });
   }
 
   document.addEventListener('input', e => { if (e.target && e.target.id === 'skill-search') renderSkills(); });
+  document.addEventListener('change', e => { if (e.target && e.target.id === 'learned-only-filter') renderSkills(); });
   document.addEventListener('click', e => {
   if (e.target && e.target.matches('[data-open-skills]')) { const card = e.target.closest('.tracker-card'); openSkills(card?card.dataset.instanceId:undefined); }
     if (e.target && e.target.id === 'open-skill-refresh') { fetchSkills().then(renderSkills); }
@@ -192,6 +238,24 @@
         showToast(`Active skill ${skillName} learned.`);
         renderSkills();
       }
+    }
+    if (e.target && e.target.matches('[data-use-active]')) {
+      const skillName = e.target.getAttribute('data-use-active');
+      
+      // Try to find enhanced skill first, then fall back to basic skill
+      let skill = (state.enhancedSkills || []).find(s => s.name === skillName);
+      if (!skill) {
+        skill = (state.skills || []).find(s => s.name === skillName);
+      }
+      
+      if (!skill || !state.session) return;
+      const entry = state.skillContextEntryId ? findEntry(state.skillContextEntryId) : null;
+      if (!entry) return;
+      
+      // Mark the skill as enhanced for downstream processing
+      skill._isEnhanced = !!(state.enhancedSkills || []).find(s => s.name === skillName);
+      
+      openTargetingOverlay(skill, entry);
     }
   });
 
@@ -456,6 +520,36 @@
   effectsHeader.appendChild(addEffectBtn);
   const effectsList = document.createElement("div");
   effectsList.className = "effects-list";
+  
+  // Separate passive and active effects
+  const passiveEffects = entry.effects.filter(e => e.isPassive);
+  const activeEffects = entry.effects.filter(e => !e.isPassive);
+  
+  // Add active effects directly
+  activeEffects.forEach(effect => effectsList.appendChild(buildEffectBadge(effect)));
+  
+  // Add collapsible passive effects if any exist
+  if (passiveEffects.length > 0) {
+    const passiveSection = document.createElement('div');
+    passiveSection.className = 'passive-effects-section';
+    const passiveToggle = document.createElement('button');
+    passiveToggle.type = 'button';
+    passiveToggle.className = 'passive-effects-toggle';
+    passiveToggle.innerHTML = '<span>▼</span>Passive Effects (' + passiveEffects.length + ')';
+    const passiveList = document.createElement('div');
+    passiveList.className = 'passive-effects-list';
+    passiveEffects.forEach(effect => passiveList.appendChild(buildEffectBadge(effect)));
+    
+    passiveToggle.addEventListener('click', () => {
+      const isCollapsed = passiveList.classList.contains('collapsed');
+      passiveList.classList.toggle('collapsed');
+      passiveToggle.querySelector('span').textContent = isCollapsed ? '▼' : '▶';
+    });
+    
+    passiveSection.appendChild(passiveToggle);
+    passiveSection.appendChild(passiveList);
+    effectsList.appendChild(passiveSection);
+  }
   // Quick template buttons (first 3 templates)
   if (state.effectTemplates && state.effectTemplates.length) {
     const quick = document.createElement('div');
@@ -472,7 +566,6 @@
     });
     effectsWrap.appendChild(quick);
   }
-  entry.effects.forEach(effect => effectsList.appendChild(buildEffectBadge(effect)));
   effectsWrap.appendChild(effectsHeader);
   effectsWrap.appendChild(effectsList);
 
@@ -615,7 +708,9 @@
     } else if (effect.stat) {
       targetText = `${effect.stat}${effect.delta>=0?'+':''}${effect.delta}`;
     }
-    text.textContent = `${effect.label}${targetText ? ' ('+targetText+')' : ''}`;
+    // Add passive icon if this is a passive effect
+    const passiveIcon = effect.isPassive ? '<span class="passive-icon" title="Passive Effect">P</span>' : '';
+    text.innerHTML = `${passiveIcon}${escapeHtml(effect.label)}${targetText ? ' ('+targetText+')' : ''}`;
     const turnsBtn = document.createElement('button');
     turnsBtn.type = 'button';
     turnsBtn.className = 'ghost';
@@ -646,6 +741,7 @@
     input.step = "1";
     input.dataset.action = "update-stat";
     input.dataset.field = field;
+    input.dataset.instanceId = entry.instanceId; // Add this for direct updates
     if (field === "hp") {
       input.value = Number.isFinite(entry.stats.hp) ? entry.stats.hp : 0;
     } else {
@@ -654,6 +750,72 @@
     wrapper.appendChild(title);
     wrapper.appendChild(input);
     return wrapper;
+  }
+
+  // Function to update character stat inputs directly without full re-render
+  function updateCharacterStatInputs(character) {
+    console.log(`[UI Update] Updating stat inputs for ${character.name} (${character.instanceId})`);
+    
+    // Find all stat inputs for this character
+    const characterCard = document.querySelector(`[data-instance-id="${character.instanceId}"]`);
+    if (!characterCard) {
+      console.log(`[UI Update] No card found for ${character.name}`);
+      return;
+    }
+    
+    // Update HP input
+    const hpInput = characterCard.querySelector('input[data-field="hp"]');
+    if (hpInput) {
+      const newHpValue = Number.isFinite(character.stats.hp) ? character.stats.hp : 0;
+      console.log(`[UI Update] Updating HP input: ${hpInput.value} → ${newHpValue}`);
+      hpInput.value = newHpValue;
+    }
+    
+    // Update resource (MP) input
+    const resourceInput = characterCard.querySelector('input[data-field="resource"]');
+    if (resourceInput) {
+      const newResourceValue = Number.isFinite(character.stats.resource) ? character.stats.resource : 0;
+      console.log(`[UI Update] Updating ${character.stats.resourceLabel || 'MP'} input: ${resourceInput.value} → ${newResourceValue}`);
+      resourceInput.value = newResourceValue;
+    }
+  }
+
+  // Function to remove defeated characters (0 HP) from tracker and session
+  function removeDefeatedCharacter(character) {
+    console.log(`[Character Defeated] Removing ${character.name} (${character.instanceId}) - HP: ${character.stats.hp}`);
+    
+    // Show defeat notification
+    showToast(`${character.name} has been defeated!`, 'error');
+    
+    // Remove from DOM
+    const characterCard = document.querySelector(`[data-instance-id="${character.instanceId}"]`);
+    if (characterCard) {
+      characterCard.remove();
+      console.log(`[Character Defeated] Removed DOM element for ${character.name}`);
+    }
+    
+    // Remove from session data
+    if (state.session && state.session.participants) {
+      const sessionIndex = state.session.participants.findIndex(p => p.instanceId === character.instanceId);
+      if (sessionIndex >= 0) {
+        state.session.participants.splice(sessionIndex, 1);
+        console.log(`[Character Defeated] Removed ${character.name} from session participants`);
+      }
+    } else {
+      console.log(`[Character Defeated] No session participants array found`);
+    }
+    
+    // Clear selection if this character was selected
+    if (state.selectedEntry && state.selectedEntry.instanceId === character.instanceId) {
+      state.selectedEntry = null;
+      console.log(`[Character Defeated] Cleared selection for ${character.name}`);
+    }
+    
+    // Persist changes
+    persistSession();
+    
+    // Update active view to reflect changes
+    updateActiveView();
   }
 
   function buildEditableNumber(entry, field, label) {
@@ -855,7 +1017,11 @@
     if (!card) return;
     const entry = findEntry(card.dataset.instanceId);
     if (entry) {
-      openSheetDetail(entry);
+      // Mark character as done (completed their turn)
+      entry.hasActed = true;
+      persistSession();
+      updateActiveView();
+      showToast(`${entry.name} marked as done.`);
     }
   }
 
@@ -1038,6 +1204,930 @@
 
   function escapeHtml(str){ return String(str).replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s])); }
 
+  // ================= ENHANCED SKILL SYSTEM =================
+  
+  /**
+   * Enhanced skill structure supporting advanced mechanics
+   */
+  function createEnhancedSkill(basicSkill) {
+    return {
+      ...basicSkill,
+      // Enhanced dice mechanics
+      dice: {
+        expression: '', // base dice expression like "1d6"
+        modifiers: [], // flat bonuses/penalties
+        critRange: null, // custom crit range like [6] or [5,6]
+        critEffects: [], // effects on crit
+        minRollEffects: [], // effects on min roll
+        maxRollEffects: [], // effects on max roll
+        conditionalModifiers: [] // circumstantial bonuses
+      },
+      // Enhanced effects system
+      effects: {
+        onUse: [], // immediate effects when skill used
+        onHit: [], // effects when attack hits
+        onCrit: [], // additional effects on critical hit
+        onKill: [], // effects when target dies
+        onMinRoll: [], // effects on minimum dice roll
+        onMaxRoll: [], // effects on maximum dice roll
+        passive: [], // constant passive effects
+        conditional: [] // conditional effects with triggers
+      },
+      // Enhanced targeting
+      targeting: {
+        range: 1, // base range
+        type: 'single', // single, multi, area, self, ally, enemy
+        maxTargets: 1,
+        canTargetSelf: false,
+        canTargetAllies: false,
+        canTargetEnemies: true
+      },
+      // Enhanced costs and requirements
+      costs: {
+        mp: 0,
+        hp: 0,
+        other: [] // custom resource costs
+      },
+      // Condition system
+      conditions: {
+        usageRequirements: [], // conditions to use skill
+        enhancementTriggers: [] // conditions that enhance the skill
+      }
+    };
+  }
+
+  /**
+   * Enhanced dice evaluation with advanced mechanics
+   */
+  function evaluateEnhancedDice(skill, caster, targets = []) {
+    console.log('DEBUG: evaluateEnhancedDice called with:', {skill: skill?.name, expression: skill?.dice?.expression, caster: caster?.name});
+    const diceConfig = skill.dice || {};
+    const baseExpression = diceConfig.expression || '';
+    console.log('DEBUG: Base expression:', baseExpression);
+    
+    // Parse base expression
+    const parsed = parseDiceExpression(baseExpression);
+    console.log('DEBUG: parsed dice expression:', parsed);
+    let result = evaluateDiceParts(parsed.parts, caster);
+    console.log('DEBUG: dice evaluation result:', result);
+    
+    // Apply flat modifiers
+    (diceConfig.modifiers || []).forEach(mod => {
+      if (typeof mod === 'number') {
+        result.total += mod;
+        result.detail += ` ${mod >= 0 ? '+' : ''}${mod}(mod)`;
+      }
+    });
+    
+    // Check for conditional modifiers
+    (diceConfig.conditionalModifiers || []).forEach(condMod => {
+      if (evaluateCondition(condMod.condition, { caster, targets, result })) {
+        result.total += condMod.value;
+        result.detail += ` ${condMod.value >= 0 ? '+' : ''}${condMod.value}(${condMod.label})`;
+      }
+    });
+    
+    // Enhanced crit detection
+    const critRange = diceConfig.critRange || null;
+    console.log('DEBUG: parsed.rolls:', parsed.rolls);
+    
+    // Safely extract rolls, handling undefined detail
+    const allRolls = parsed.rolls.flatMap(roll => {
+      console.log('DEBUG: roll object:', roll);
+      console.log('DEBUG: roll.detail:', roll.detail);
+      return roll.detail?.used || [];
+    });
+    const maxFace = Math.max(...parsed.rolls.map(roll => {
+      const notation = roll.detail?.notation || roll.notation || '';
+      const match = /d(\d+)/i.exec(notation);
+      return match ? parseInt(match[1], 10) : 1;
+    }));
+    
+    let isCrit = result.crit; // existing crit logic
+    let isMaxRoll = false;
+    let isMinRoll = false;
+    
+    if (allRolls.length > 0) {
+      isMaxRoll = allRolls.every(roll => roll === maxFace);
+      isMinRoll = allRolls.every(roll => roll === 1);
+      
+      // Custom crit range
+      if (critRange && Array.isArray(critRange)) {
+        isCrit = allRolls.some(roll => critRange.includes(roll));
+      }
+    }
+    
+    const finalResult = {
+      ...result,
+      isCrit,
+      isMaxRoll,
+      isMinRoll,
+      rawRolls: allRolls,
+      maxFace,
+      enhancedData: {
+        triggeredConditions: [],
+        appliedModifiers: []
+      }
+    };
+    
+    console.log('DEBUG: evaluateEnhancedDice returning:', finalResult);
+    return finalResult;
+  }
+
+  /**
+   * Evaluate a condition against current context
+   */
+  function evaluateCondition(condition, context) {
+    const { caster, targets, result } = context;
+    
+    switch (condition.type) {
+      case 'target_hp_below':
+        return targets.some(t => (t.stats.hp / (t.combat?.hp?.max || 100)) < condition.threshold);
+      case 'caster_hp_below':
+        return (caster.stats.hp / (caster.combat?.hp?.max || 100)) < condition.threshold;
+      case 'target_has_effect':
+        return targets.some(t => t.effects.some(e => e.label === condition.effect));
+      case 'first_attack_of_turn':
+        return !caster.hasActedThisTurn; // would need to track this
+      case 'target_is_burning':
+        return targets.some(t => t.effects.some(e => e.label.toLowerCase().includes('burn')));
+      case 'multiple_targets':
+        return targets.length > 1;
+      default:
+        return false;
+    }
+  }
+
+  function openTargetingOverlay(skill, casterEntry) {
+    if (!skill || !casterEntry || !state.session) return;
+    
+    state.activeSkillContext = { skill, caster: casterEntry, selectedTargets: [] };
+    
+    document.getElementById('targeting-skill-name').textContent = `Use ${skill.name}`;
+    document.getElementById('targeting-description').textContent = 
+      skill.effectDetails && skill.effectDetails.length 
+        ? skill.effectDetails.join('; ') 
+        : 'Select targets for this active skill.';
+    
+    renderTargetGrid();
+    updateTargetingControls();
+    
+    closeAllOverlays();
+    openOverlay(dom.targetingOverlay);
+  }
+
+  function renderTargetGrid() {
+    const allyGrid = document.getElementById('ally-targets');
+    const enemyGrid = document.getElementById('enemy-targets');
+    
+    if (!allyGrid || !enemyGrid || !state.session) return;
+    
+    allyGrid.innerHTML = '';
+    enemyGrid.innerHTML = '';
+    
+    // Render ally targets
+    state.session.allies.forEach(ally => {
+      const card = createTargetCard(ally);
+      allyGrid.appendChild(card);
+    });
+    
+    // Render enemy targets  
+    state.session.enemies.forEach(enemy => {
+      const card = createTargetCard(enemy);
+      enemyGrid.appendChild(card);
+    });
+  }
+
+  function createTargetCard(entry) {
+    const card = document.createElement('div');
+    card.className = 'target-card';
+    card.dataset.instanceId = entry.instanceId;
+    
+    const selected = state.activeSkillContext?.selectedTargets.includes(entry.instanceId);
+    if (selected) card.classList.add('selected');
+    
+    card.innerHTML = `
+      <div class="target-name">${escapeHtml(entry.name)}</div>
+      <div class="target-stats">HP: ${entry.stats.hp} | AC: ${entry.stats.ac}</div>
+      <div class="target-role">${entry.role}</div>
+    `;
+    
+    card.addEventListener('click', () => toggleTargetSelection(entry.instanceId));
+    
+    return card;
+  }
+
+  function toggleTargetSelection(instanceId) {
+    if (!state.activeSkillContext) return;
+    
+    const targets = state.activeSkillContext.selectedTargets;
+    const index = targets.indexOf(instanceId);
+    
+    if (index >= 0) {
+      targets.splice(index, 1);
+    } else {
+      targets.push(instanceId);
+    }
+    
+    renderTargetGrid();
+    updateTargetingControls();
+  }
+
+  function updateTargetingControls() {
+    const count = state.activeSkillContext?.selectedTargets.length || 0;
+    const countElement = document.getElementById('target-count');
+    const confirmButton = document.getElementById('confirm-targeting');
+    
+    if (countElement) {
+      countElement.textContent = `${count} target${count === 1 ? '' : 's'} selected`;
+    }
+    
+    if (confirmButton) {
+      confirmButton.disabled = count === 0;
+    }
+  }
+
+  // Event listeners for targeting overlay
+  document.addEventListener('click', e => {
+    if (e.target && e.target.id === 'confirm-targeting') {
+      executeActiveSkill();
+    }
+    if (e.target && e.target.id === 'cancel-targeting') {
+      closeOverlay(dom.targetingOverlay);
+      state.activeSkillContext = null;
+    }
+  });
+
+  function executeActiveSkill() {
+    if (!state.activeSkillContext || !state.activeSkillContext.selectedTargets.length) return;
+    
+    const { skill, caster, selectedTargets } = state.activeSkillContext;
+    const targets = selectedTargets.map(id => findEntry(id)).filter(Boolean);
+    
+    // Check if this is an enhanced skill
+    if (skill._isEnhanced && skill.costs) {
+      return executeEnhancedActiveSkill(skill, caster, targets);
+    }
+    
+    // Legacy skill execution
+    // Check and consume MP/resource cost
+    const mpCost = skill.resourceCost || 0;
+    if (mpCost > 0) {
+      if (caster.stats.resource < mpCost) {
+        showToast(`${caster.name} doesn't have enough ${caster.stats.resourceLabel || 'MP'} (${mpCost} required, ${caster.stats.resource} available)`);
+        return;
+      }
+      caster.stats.resource -= mpCost;
+      showToast(`${caster.name} spent ${mpCost} ${caster.stats.resourceLabel || 'MP'} to use ${skill.name}`);
+    }
+    
+    // Open dice roller with skill context for damage calculation
+    openDiceRoller(caster.instanceId);
+    
+    // Parse skill for attack patterns and suggest dice expression
+    const attacks = parseSkillAttacks(skill);
+    if (attacks.length > 0) {
+      const diceInput = document.getElementById('dice-expression');
+      if (diceInput) {
+        // Build suggested expression: attacks + stat modifier
+        const statMod = getSkillStatModifier(skill, caster);
+        const suggestion = attacks[0] + (statMod ? `+${statMod}` : '');
+        diceInput.value = suggestion;
+        diceInput.focus();
+      }
+    }
+    
+    // Store targeting context for applying results
+    state.pendingAttackContext = { skill, caster, targets };
+    
+    showToast(`Rolling ${skill.name} for ${caster.name} → ${targets.map(t => t.name).join(', ')}`);
+    
+    closeOverlay(dom.targetingOverlay);
+    state.activeSkillContext = null;
+  }
+
+  function executeEnhancedActiveSkill(skill, caster, targets) {
+    console.log('=== SKILL EXECUTION DEBUG ===');
+    console.log('Skill:', skill);
+    console.log('Skill name:', skill?.name);
+    console.log('Skill effects:', skill?.effects);
+    console.log('Skill onHit effects:', skill?.effects?.onHit);
+    console.log('Skill dice:', skill?.dice);
+    console.log('Dice expression:', skill?.dice?.expression);
+    console.log('Caster:', caster?.name, 'HP:', caster?.stats?.hp, 'MP:', caster?.stats?.resource);
+    console.log('Targets:', targets?.map(t => ({name: t.name, hp: t.stats.hp, instanceId: t.instanceId})));
+    console.log('Number of targets:', targets?.length);
+    
+    if (!skill) {
+      console.error('ERROR: No skill provided!');
+      return;
+    }
+    if (!targets || targets.length === 0) {
+      console.error('ERROR: No targets provided!');
+      return;
+    }
+    
+    // Check resource costs
+    const mpCost = skill.costs?.mp || 0;
+    const hpCost = skill.costs?.hp || 0;
+    
+    if (mpCost > 0 && caster.stats.resource < mpCost) {
+      showToast(`${caster.name} doesn't have enough ${caster.stats.resourceLabel || 'MP'} (${mpCost} required, ${caster.stats.resource} available)`);
+      return;
+    }
+    
+    if (hpCost > 0 && caster.stats.hp < hpCost) {
+      showToast(`${caster.name} doesn't have enough HP (${hpCost} required, ${caster.stats.hp} available)`);
+      return;
+    }
+    
+    // Consume resources
+    if (mpCost > 0) {
+      const oldMP = caster.stats.resource;
+      caster.stats.resource -= mpCost;
+      console.log(`DEBUG: ${caster.name} MP changed: ${oldMP} → ${caster.stats.resource}`);
+      showToast(`${caster.name} spent ${mpCost} ${caster.stats.resourceLabel || 'MP'} to use ${skill.name}`);
+      
+      // Immediately update the MP display
+      updateCharacterStatInputs(caster);
+    }
+    if (hpCost > 0) {
+      const oldHP = caster.stats.hp;
+      caster.stats.hp -= hpCost;
+      console.log(`DEBUG: ${caster.name} HP changed: ${oldHP} → ${caster.stats.hp}`);
+      showToast(`${caster.name} spent ${hpCost} HP to use ${skill.name}`);
+      
+      // Immediately update the HP display
+      updateCharacterStatInputs(caster);
+    }
+    
+    // Execute dice if present
+    let rollResult = null;
+    console.log('DEBUG: Checking for dice. skill.dice:', skill.dice);
+    console.log('DEBUG: Dice expression exists?', !!skill.dice?.expression);
+    console.log('DEBUG: Dice expression value:', skill.dice?.expression);
+    if (skill.dice?.expression) {
+      console.log('DEBUG: About to roll dice with expression:', skill.dice.expression);
+      rollResult = evaluateEnhancedDice(skill, caster, targets);
+      console.log('DEBUG: Dice roll result:', rollResult);
+      
+      // Display roll result
+      const breakdown = rollResult.breakdown || rollResult.detail || `${rollResult.total}`;
+      showToast(`${caster.name} rolled ${rollResult.total} (${breakdown})${rollResult.isCrit ? ' CRIT!' : ''}`, 'info');
+      
+      // Apply roll-based effects
+      if (rollResult.isCrit && skill.effects?.onCrit) {
+        applyEnhancedEffects(skill.effects.onCrit, caster, targets, rollResult);
+      }
+      if (rollResult.isMinRoll && skill.effects?.onMinRoll) {
+        applyEnhancedEffects(skill.effects.onMinRoll, caster, targets, rollResult);
+      }
+      if (rollResult.isMaxRoll && skill.effects?.onMaxRoll) {
+        applyEnhancedEffects(skill.effects.onMaxRoll, caster, targets, rollResult);
+      }
+    } else {
+      console.log('DEBUG: No dice expression found - skill.dice is:', skill.dice);
+    }
+    
+    // Apply on-use effects
+    console.log('DEBUG: Checking onUse effects:', skill.effects?.onUse);
+    if (skill.effects?.onUse) {
+      console.log('DEBUG: Applying onUse effects');
+      applyEnhancedEffects(skill.effects.onUse, caster, targets, rollResult);
+    }
+    
+    // Apply on-hit effects for each target
+    console.log('DEBUG: Checking onHit effects. Has effects?', !!skill.effects?.onHit, 'Length:', skill.effects?.onHit?.length);
+    if (skill.effects?.onHit && skill.effects.onHit.length > 0) {
+      console.log('DEBUG: Using onHit effects path:', skill.effects.onHit);
+      targets.forEach(target => {
+        console.log('DEBUG: Applying onHit effects to target:', target.name);
+        applyEnhancedEffects(skill.effects.onHit, caster, [target], rollResult);
+      });
+    } else if (rollResult && rollResult.total > 0) {
+      // If no explicit effects but we have a dice roll, apply as damage
+      console.log('DEBUG: Using fallback damage path');
+      targets.forEach(target => {
+        const totalDamage = rollResult.total;
+        if (totalDamage > 0) {
+          const oldHP = target.stats.hp;
+          target.stats.hp = Math.max(0, target.stats.hp - totalDamage);
+          console.log(`DEBUG: ${target.name} HP changed: ${oldHP} → ${target.stats.hp}`);
+          showToast(`${target.name} took ${totalDamage} damage! (${oldHP} → ${target.stats.hp} HP)`, 'warning');
+          
+          // Immediately update the HP display for this target
+          updateCharacterStatInputs(target);
+          
+          // Check if character died and remove if HP is 0
+          if (target.stats.hp <= 0) {
+            // Delay defeat notification so damage notification is seen first
+            setTimeout(() => {
+              removeDefeatedCharacter(target);
+            }, 1000); // 1 second delay to see damage notification
+          }
+        }
+      });
+      
+      // Force update after damage
+      console.log('DEBUG: Forcing UI update after damage');
+      persistSession();
+      updateActiveView();
+    }
+    
+    showToast(`${caster.name} used ${skill.name}!`, 'success');
+    
+    // Update display and persist
+    console.log('DEBUG: Final UI update');
+    persistSession();
+    updateActiveView();
+    
+    // Close overlay
+    closeOverlay(dom.targetingOverlay);
+    state.activeSkillContext = null;
+  }
+
+  function applyEnhancedEffects(effects, caster, targets, rollResult) {
+    console.log('DEBUG: Applying enhanced effects:', effects);
+    effects.forEach(effect => {
+      console.log('DEBUG: Processing effect:', effect);
+      
+      targets.forEach(target => {
+        switch (effect.type) {
+          case 'stat_modifier':
+            applyEnhancedStatModifier(target, effect, rollResult);
+            break;
+          case 'damage':
+            applyEnhancedDamage(target, effect, rollResult);
+            break;
+          case 'heal':
+            applyEnhancedHeal(target, effect, rollResult);
+            break;
+          case 'special':
+            applyEnhancedSpecialEffect(target, effect, rollResult, caster);
+            break;
+          default:
+            console.log(`Unknown enhanced effect type: ${effect.type}`);
+        }
+      });
+    });
+  }
+
+  function applyEnhancedStatModifier(target, effect, rollResult) {
+    const stat = effect.stat?.toLowerCase();
+    const delta = effect.delta || 0;
+    
+    if (!stat || delta === 0) return;
+    
+    // Apply to appropriate stat
+    switch (stat) {
+      case 'hp':
+        const oldHP = target.stats.hp;
+        target.stats.hp = Math.min(target.stats.maxHP, Math.max(0, target.stats.hp + delta));
+        showToast(`${target.name} ${delta > 0 ? 'gained' : 'lost'} ${Math.abs(delta)} HP (${oldHP} → ${target.stats.hp})`);
+        break;
+      case 'mp':
+        const oldMP = target.stats.resource;
+        target.stats.resource = Math.min(target.stats.maxResource, Math.max(0, target.stats.resource + delta));
+        showToast(`${target.name} ${delta > 0 ? 'gained' : 'lost'} ${Math.abs(delta)} ${target.stats.resourceLabel || 'MP'} (${oldMP} → ${target.stats.resource})`);
+        break;
+      default:
+        // For other stats, just show notification (would need proper buff/debuff system)
+        showToast(`${target.name} ${delta > 0 ? 'gained' : 'lost'} ${Math.abs(delta)} ${stat.toUpperCase()}`);
+    }
+  }
+
+  function applyEnhancedDamage(target, effect, rollResult) {
+    const baseDamage = effect.amount || 0;
+    const rollDamage = rollResult ? rollResult.total : 0;
+    const totalDamage = baseDamage + rollDamage;
+    
+    console.log(`DEBUG: applyEnhancedDamage - Base: ${baseDamage}, Roll: ${rollDamage}, Total: ${totalDamage}`);
+    
+    if (totalDamage > 0) {
+      const oldHP = target.stats.hp;
+      target.stats.hp = Math.max(0, target.stats.hp - totalDamage);
+      console.log(`DEBUG: ${target.name} HP changed: ${oldHP} → ${target.stats.hp}`);
+      showToast(`${target.name} took ${totalDamage} damage! (${oldHP} → ${target.stats.hp} HP)`, 'warning');
+      
+      // Immediately update the HP display for this target
+      updateCharacterStatInputs(target);
+      
+      // Check if character died and remove if HP is 0
+      if (target.stats.hp <= 0) {
+        // Delay defeat notification so damage notification is seen first
+        setTimeout(() => {
+          removeDefeatedCharacter(target);
+        }, 1000); // 1 second delay to see damage notification
+      }
+    }
+  }
+
+  function applyEnhancedHeal(target, effect, rollResult) {
+    const baseHealing = effect.amount || 0;
+    const rollHealing = rollResult ? rollResult.total : 0;
+    const totalHealing = baseHealing + rollHealing;
+    
+    if (totalHealing > 0) {
+      const oldHP = target.stats.hp;
+      target.stats.hp = Math.min(target.stats.maxHP, target.stats.hp + totalHealing);
+      showToast(`${target.name} healed for ${totalHealing} HP! (${oldHP} → ${target.stats.hp} HP)`, 'success');
+    }
+  }
+
+  function applyEnhancedSpecialEffect(target, effect, rollResult, caster) {
+    // Handle special effects like status conditions, unique mechanics, etc.
+    const description = effect.description || 'Special effect triggered';
+    showToast(`${target.name}: ${description}`, 'info');
+  }
+
+  function parseSkillAttacks(skill) {
+    const attacks = [];
+    (skill.effectDetails || []).forEach(detail => {
+      // Look for dice patterns like 1d4, 2d6, etc.
+      const diceMatch = detail.match(/(\d+d\d+)/gi);
+      if (diceMatch) {
+        attacks.push(...diceMatch);
+      }
+    });
+    return attacks;
+  }
+
+  function getSkillStatModifier(skill, caster) {
+    // Determine which stat modifier to use based on skill type or content
+    const skillText = (skill.effectDetails || []).join(' ').toLowerCase();
+    
+    if (skillText.includes('str') || skillText.includes('strength')) {
+      return caster.core?.STR || 0;
+    }
+    if (skillText.includes('dex') || skillText.includes('dexterity')) {
+      return caster.core?.DEX || 0;
+    }
+    if (skillText.includes('int') || skillText.includes('intelligence')) {
+      return caster.core?.INT || 0;
+    }
+    if (skillText.includes('fth') || skillText.includes('faith')) {
+      return caster.core?.INT || 0;
+    }
+    
+    // Default to STR for physical attacks, INT for magical
+    if (skillText.includes('magic') || skillText.includes('spell') || skillText.includes('fire') || skillText.includes('ice')) {
+      return caster.core?.INT || 0;
+    }
+    
+    return caster.core?.STR || 0; // Default to STR
+  }
+
+  function applyAttackResults(rollTotal) {
+    if (!state.pendingAttackContext) return;
+    
+    const { skill, caster, targets } = state.pendingAttackContext;
+    const skillType = determineSkillType(skill);
+    let results = [];
+    
+    targets.forEach(target => {
+      if (skillType === 'healing') {
+        // Healing skill - restore HP
+        const healAmount = rollTotal; // No AC reduction for healing
+        const maxHeal = target.combat?.hp?.max || target.stats.hp + 50; // Estimate max HP
+        const actualHeal = Math.min(healAmount, maxHeal - target.stats.hp);
+        
+        target.stats.hp = Math.min(maxHeal, target.stats.hp + actualHeal);
+        results.push(`${target.name}: +${actualHeal} HP`);
+        
+        // Add healing effect for visual feedback
+        if (actualHeal > 0) {
+          const healEffect = {
+            id: crypto.randomUUID?.() || Math.random().toString(16).slice(2),
+            label: `${skill.name} Healing`,
+            targets: [{ stat: 'HP', delta: actualHeal }],
+            turns: 1, // Brief visual effect
+            isHealing: true
+          };
+          target.effects.push(healEffect);
+        }
+      } else {
+        // Attack skill - deal damage
+        const targetAC = target.stats.ac || 0;
+        const finalDamage = Math.max(1, rollTotal - targetAC);
+        
+        target.stats.hp = Math.max(0, target.stats.hp - finalDamage);
+        results.push(`${target.name}: ${finalDamage} dmg`);
+      }
+      
+      // Apply skill effects (buffs/debuffs) from convertSkillToEffects
+      const skillEffects = convertSkillToEffects(skill, { active: true });
+      skillEffects.effects.forEach(effect => {
+        if (skillType === 'self-buff' && target === caster) {
+          // Apply buff to caster
+          target.effects.push({ ...effect, id: crypto.randomUUID?.() || Math.random().toString(16).slice(2) });
+        } else if (skillType === 'debuff' && target !== caster) {
+          // Apply debuff to enemy targets
+          target.effects.push({ ...effect, id: crypto.randomUUID?.() || Math.random().toString(16).slice(2) });
+        } else if (skillType === 'healing' || skillType === 'damage') {
+          // Apply any additional effects from skill
+          target.effects.push({ ...effect, id: crypto.randomUUID?.() || Math.random().toString(16).slice(2) });
+        }
+      });
+    });
+    
+    // Apply self-buffs to caster if skill grants them
+    if (skillType === 'self-buff' || skillType === 'damage') {
+      const selfEffects = convertSkillToEffects(skill, { active: true, selfTarget: true });
+      selfEffects.effects.forEach(effect => {
+        if (effect.selfOnly || skill.effectDetails.some(d => d.toLowerCase().includes('self') || d.toLowerCase().includes('user'))) {
+          caster.effects.push({ ...effect, id: crypto.randomUUID?.() || Math.random().toString(16).slice(2) });
+        }
+      });
+    }
+    
+    persistSession();
+    if (targets.some(t => t.effects.length) || caster.effects.length) {
+      state.session.pendingSort = true;
+      recomputeTurnOrder(true);
+    }
+    updateActiveView();
+    
+    const actionType = skillType === 'healing' ? 'healed' : 'attacked';
+    showToast(`${caster.name}'s ${skill.name} ${actionType}: ${results.join(', ')}`);
+    
+    state.pendingAttackContext = null;
+  }
+
+  function determineSkillType(skill) {
+    const skillText = (skill.effectDetails || []).join(' ').toLowerCase();
+    const skillName = skill.name.toLowerCase();
+    
+    // Check for healing indicators
+    if (skillText.includes('heal') || skillText.includes('restore') || skillText.includes('cure') || 
+        skillName.includes('heal') || skillName.includes('cure') || skillName.includes('sooth')) {
+      return 'healing';
+    }
+    
+    // Check for self-buff indicators  
+    if (skillText.includes('self +') || skillText.includes('user +') || skillText.includes('caster +') ||
+        skillText.includes('gain') || skillName.includes('enhance') || skillName.includes('boost')) {
+      return 'self-buff';
+    }
+    
+    // Check for debuff indicators
+    if (skillText.includes('enemy -') || skillText.includes('target -') || skillText.includes('inflict') ||
+        skillText.includes('poison') || skillText.includes('burn') || skillText.includes('bleed') ||
+        skillText.includes('slow') || skillText.includes('weaken')) {
+      return 'debuff';
+    }
+    
+    // Default to damage
+    return 'damage';
+  }
+
+  /**
+   * Convert markdown skill to enhanced JSON format
+   */
+  function convertMarkdownSkillToJSON(markdownContent, skillName) {
+    const lines = markdownContent.split('\n');
+    const skill = {
+      id: skillName.toLowerCase().replace(/\s+/g, '-'),
+      name: skillName,
+      description: '',
+      tier: null,
+      rarity: null,
+      typeTags: [],
+      passive: false,
+      active: false,
+      dice: {
+        expression: '',
+        modifiers: [],
+        critRange: null,
+        critEffects: [],
+        minRollEffects: [],
+        maxRollEffects: []
+      },
+      effects: {
+        onUse: [],
+        onHit: [],
+        onCrit: [],
+        onKill: [],
+        onMinRoll: [],
+        onMaxRoll: [],
+        passive: [],
+        conditional: []
+      },
+      targeting: {
+        range: 1,
+        type: 'single',
+        maxTargets: 1,
+        canTargetSelf: false,
+        canTargetAllies: false,
+        canTargetEnemies: true
+      },
+      costs: {
+        mp: 0,
+        hp: 0
+      },
+      prerequisites: [],
+      acquisitionMethods: []
+    };
+
+    let currentSection = '';
+    let inEffectDetails = false;
+    
+    lines.forEach(line => {
+      const trimmed = line.trim();
+      
+      // Parse description
+      if (currentSection === '' && trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('|')) {
+        skill.description = trimmed;
+      }
+      
+      // Parse tier and rarity from table
+      if (trimmed.includes('**Tier**')) {
+        const match = line.match(/\|\s*\*\*Tier\*\*\s*\|\s*([^|]+)\s*\|/);
+        if (match) {
+          const tierInfo = match[1];
+          const tierNum = tierInfo.match(/(\d+)/);
+          if (tierNum) skill.tier = parseInt(tierNum[1], 10);
+          
+          const rarityMatch = tierInfo.match(/#(Common|Uncommon|Rare|Epic|Legendary)/i);
+          if (rarityMatch) skill.rarity = rarityMatch[1];
+        }
+      }
+      
+      // Parse type tags
+      if (trimmed.includes('**Type**')) {
+        const match = line.match(/\|\s*\*\*Type\*\*\s*\|\s*([^|]+)\s*\|/);
+        if (match) {
+          const typeInfo = match[1];
+          const tags = typeInfo.match(/#([A-Za-z0-9_-]+)/g) || [];
+          skill.typeTags = tags.map(tag => tag.slice(1));
+          
+          skill.passive = skill.typeTags.includes('Passive');
+          skill.active = skill.typeTags.includes('Active');
+        }
+      }
+      
+      // Parse effect details
+      if (trimmed === '- **Effect Details:**') {
+        inEffectDetails = true;
+        return;
+      }
+      
+      if (inEffectDetails) {
+        if (trimmed.startsWith('- ') || trimmed.startsWith('    - ')) {
+          const effectLine = trimmed.replace(/^-\s*/, '').replace(/^\s*-\s*/, '');
+          parseEffectLine(effectLine, skill);
+        } else if (trimmed.startsWith('#') || trimmed === '') {
+          inEffectDetails = false;
+        }
+      }
+      
+      // Parse prerequisites
+      if (trimmed.includes('[[') && trimmed.includes(']]') && currentSection.includes('Prerequisites')) {
+        const prereqs = trimmed.match(/\[\[([^\]]+)\]\]/g);
+        if (prereqs) {
+          skill.prerequisites.push(...prereqs.map(p => p.slice(2, -2)));
+        }
+      }
+    });
+    
+    return skill;
+  }
+  
+  function parseEffectLine(line, skill) {
+    const lowerLine = line.toLowerCase();
+    
+    // Parse dice expressions
+    const diceMatch = line.match(/(\d+d\d+)/i);
+    if (diceMatch && !skill.dice.expression) {
+      skill.dice.expression = diceMatch[1];
+    }
+    
+    // Parse resource costs
+    const mpCostMatch = line.match(/(\d+)\s*MP/i);
+    if (mpCostMatch) {
+      skill.costs.mp = parseInt(mpCostMatch[1], 10);
+    }
+    
+    // Parse stat modifiers
+    const statMatch = line.match(/([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)/gi);
+    if (statMatch) {
+      statMatch.forEach(match => {
+        const [, delta, stat] = match.match(/([+-]\d+)\s+([A-Z]+)/i);
+        const effect = {
+          type: 'stat_modifier',
+          stat: stat.toUpperCase(),
+          delta: parseInt(delta, 10),
+          duration: parseDuration(line) || 1
+        };
+        
+        if (skill.passive) {
+          skill.effects.passive.push(effect);
+        } else {
+          skill.effects.onHit.push(effect);
+        }
+      });
+    }
+    
+    // Parse special mechanics
+    if (lowerLine.includes('max roll')) {
+      const effect = parseSpecialEffect(line, 'max_roll');
+      if (effect) skill.effects.onMaxRoll.push(effect);
+    }
+    
+    if (lowerLine.includes('min roll')) {
+      const effect = parseSpecialEffect(line, 'min_roll');
+      if (effect) skill.effects.onMinRoll.push(effect);
+    }
+    
+    if (lowerLine.includes('crit') || lowerLine.includes('critical')) {
+      const effect = parseSpecialEffect(line, 'crit');
+      if (effect) skill.effects.onCrit.push(effect);
+    }
+    
+    if (lowerLine.includes('kill') || lowerLine.includes('defeat')) {
+      const effect = parseSpecialEffect(line, 'kill');
+      if (effect) skill.effects.onKill.push(effect);
+    }
+  }
+  
+  function parseSpecialEffect(line, triggerType) {
+    // Extract effect description
+    const description = line.replace(/^\*\*[^*]+\*\*:\s*/, '').trim();
+    
+    return {
+      type: triggerType,
+      description: description,
+      parsed: parseEffectDescription(description)
+    };
+  }
+  
+  function parseEffectDescription(description) {
+    const effects = [];
+    
+    // Look for stat changes
+    const statMatches = description.match(/([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)/gi);
+    if (statMatches) {
+      statMatches.forEach(match => {
+        const [, delta, stat] = match.match(/([+-]\d+)\s+([A-Z]+)/i);
+        effects.push({
+          type: 'stat_modifier',
+          stat: stat.toUpperCase(),
+          delta: parseInt(delta, 10),
+          duration: parseDuration(description) || 1
+        });
+      });
+    }
+    
+    // Look for damage
+    const damageMatch = description.match(/(\d+d\d+|\d+)\s*damage/i);
+    if (damageMatch) {
+      effects.push({
+        type: 'damage',
+        amount: damageMatch[1]
+      });
+    }
+    
+    // Look for healing
+    const healMatch = description.match(/(\d+d\d+|\d+)\s*(heal|hp|health)/i);
+    if (healMatch) {
+      effects.push({
+        type: 'healing',
+        amount: healMatch[1]
+      });
+    }
+    
+    return effects;
+  }
+  
+  function parseDuration(text) {
+    const durationMatch = text.match(/(\d+)\s*turn/i);
+    return durationMatch ? parseInt(durationMatch[1], 10) : null;
+  }
+  
+  /**
+   * Convert all skills to JSON format
+   */
+  async function convertAllSkillsToJSON() {
+    const converted = [];
+    
+    try {
+      const response = await fetch('/api/skills-raw'); // Need to create this endpoint
+      if (!response.ok) return [];
+      
+      const data = await response.json();
+      
+      data.skills.forEach(skill => {
+        if (skill.rawContent) {
+          const enhanced = convertMarkdownSkillToJSON(skill.rawContent, skill.name);
+          converted.push(enhanced);
+        }
+      });
+    } catch (error) {
+      console.error('Failed to convert skills:', error);
+    }
+    
+    return converted;
+  }
+
   function initDiceUI() {
     const openBtn = document.getElementById('open-dice-btn'); if (openBtn) openBtn.addEventListener('click', ()=>openDiceRoller());
     const modal = document.getElementById('dice-roller-modal'); if (!modal) return;
@@ -1049,7 +2139,26 @@
     const expr=document.getElementById('dice-expression');
     const prof=document.getElementById('session-prof-input');
     if (prof) prof.addEventListener('change', ()=>{ if (!state.session) return; state.session.prof=parseInt(prof.value,10)||0; persistSession(); });
-    if (form) form.addEventListener('submit', e => { e.preventDefault(); const ctxId=modal.dataset.contextInstance; const entry=ctxId?findEntry(ctxId):null; const parsed=parseDiceExpression(expr.value); const evald=evaluateDiceParts(parsed.parts, entry); if (state.settings.keepSingleRoll) { const hist=document.getElementById('dice-history'); if (hist) hist.innerHTML=''; } addDiceHistoryLine(evald); reroll.disabled=false; reroll.dataset.lastExpr=expr.value; reroll.dataset.lastCtx=ctxId||''; });
+    if (form) form.addEventListener('submit', e => { 
+      e.preventDefault(); 
+      const ctxId=modal.dataset.contextInstance; 
+      const entry=ctxId?findEntry(ctxId):null; 
+      const parsed=parseDiceExpression(expr.value); 
+      const evald=evaluateDiceParts(parsed.parts, entry); 
+      if (state.settings.keepSingleRoll) { 
+        const hist=document.getElementById('dice-history'); 
+        if (hist) hist.innerHTML=''; 
+      } 
+      addDiceHistoryLine(evald); 
+      reroll.disabled=false; 
+      reroll.dataset.lastExpr=expr.value; 
+      reroll.dataset.lastCtx=ctxId||'';
+      
+      // If there's a pending attack, apply the results
+      if (state.pendingAttackContext) {
+        applyAttackResults(evald.total);
+      }
+    });
     if (reroll) reroll.addEventListener('click', ()=>{ const exprStr=reroll.dataset.lastExpr; if(!exprStr) return; const ctxId=reroll.dataset.lastCtx; const entry=ctxId?findEntry(ctxId):null; const parsed=parseDiceExpression(exprStr); const evald=evaluateDiceParts(parsed.parts, entry); addDiceHistoryLine(evald); });
     if (clearBtn) clearBtn.addEventListener('click', () => { const hist=document.getElementById('dice-history'); if (hist) hist.innerHTML=''; reroll.disabled=true; });
   }
@@ -1059,14 +2168,21 @@
     const container = dom.turnOrderBar;
     container.innerHTML = "";
     const order = state.session.turnOrder.length ? state.session.turnOrder : getAllParticipants().map(entity => entity.instanceId);
-    if (!order.length) {
+    
+    // Filter to show only characters who haven't acted yet
+    const waitingOrder = order.filter(id => {
+      const entity = findEntry(id);
+      return entity && !entity.hasActed;
+    });
+    
+    if (!waitingOrder.length) {
       container.classList.add("empty");
-      container.innerHTML = "<p>No participants yet.</p>";
+      container.innerHTML = "<p>All participants have completed their turns. Click 'End Turn' to proceed.</p>";
       return;
     }
 
     container.classList.remove("empty");
-    order.forEach((id, index) => {
+    waitingOrder.forEach((id, index) => {
       const entity = findEntry(id);
       if (!entity) return;
       const card = document.createElement("article");
@@ -1086,13 +2202,13 @@
 
       const indicator = document.createElement("div");
       indicator.className = "order-meta";
-      indicator.textContent = `${capitalize(entity.role)} � ${entity.hasActed ? "Done" : "Waiting"}`;
+      indicator.textContent = `${capitalize(entity.role)} � Click to complete turn`;
 
       card.appendChild(name);
       card.appendChild(meta);
       card.appendChild(indicator);
 
-      if (!entity.hasActed && index === 0) {
+      if (index === 0) {
         card.classList.add("active");
       }
 
@@ -1264,11 +2380,16 @@
       addedAt: new Date().toISOString(),
       acquiredSkills: []
     };
+    // Parse rawContent now for Passive/Active sections (previously only on hydration)
+    const sections = parseSheetSkillSections(entry.rawContent || '');
+    entry.passiveSkillNames = sections.passive;
+    entry.activeSkillNames = sections.active;
     ensureOriginSkills(entry);
-    // If skills already loaded, auto-apply passives now
-    applyParsedPassives(entry);
-    // Auto-learn parsed actives for prerequisite chains
-    ensureParsedActivesLearned(entry);
+    // If skills already loaded, canonicalize actives and passives
+    if (Array.isArray(state.skills) && state.skills.length) {
+      ensureParsedActivesLearned(entry, { canonicalize: true });
+      applyParsedPassives(entry); // will no-op if skills missing targets
+    }
     return entry;
   }
 
@@ -1295,21 +2416,35 @@
         skill = state.skills.find(s => s.passive && s.name.toLowerCase() === String(name).toLowerCase());
       }
       if (!skill) return;
-      if (entry.acquiredSkills && entry.acquiredSkills.includes(name)) return;
+      // Use canonical skill.name for acquisition tracking
+      const canonical = skill.name;
+      if (entry.acquiredSkills && (entry.acquiredSkills.includes(canonical) || entry.acquiredSkills.includes(name))) return;
       const conv = convertSkillToEffects(skill, { passive: true });
-      entry.acquiredSkills = Array.from(new Set([...(entry.acquiredSkills||[]), name]));
+      entry.acquiredSkills = Array.from(new Set([...(entry.acquiredSkills||[]), canonical]));
       if (conv.effects.length) {
         conv.effects.forEach(eff => { eff.isPassive = true; entry.effects.push(eff); });
       }
     });
   }
 
-  function ensureParsedActivesLearned(entry) {
+  function ensureParsedActivesLearned(entry, opts = {}) {
     if (!entry) return; if (!Array.isArray(entry.activeSkillNames)) return;
-    entry.activeSkillNames.forEach(name => {
+    const canonicalize = !!opts.canonicalize && Array.isArray(state.skills) && state.skills.length;
+    entry.activeSkillNames.forEach(rawName => {
+      let nameToAdd = rawName;
+      if (canonicalize) {
+        const match = state.skills.find(s => s.active && s.name.toLowerCase() === String(rawName).toLowerCase());
+        if (match) nameToAdd = match.name; // use canonical casing
+      }
       if (!Array.isArray(entry.acquiredSkills)) entry.acquiredSkills = [];
-      if (!entry.acquiredSkills.includes(name)) entry.acquiredSkills.push(name);
+      if (!entry.acquiredSkills.some(s => s.toLowerCase() === nameToAdd.toLowerCase())) {
+        entry.acquiredSkills.push(nameToAdd);
+      }
     });
+    // Deduplicate by lowercase
+    entry.acquiredSkills = entry.acquiredSkills.reduce((acc, cur) => {
+      if (!acc.some(s => s.toLowerCase() === cur.toLowerCase())) acc.push(cur); return acc;
+    }, []);
   }
 
   /**
@@ -1355,6 +2490,33 @@
       effects.push({ id: crypto.randomUUID?crypto.randomUUID():Math.random().toString(16).slice(2), label: skill.name, targets, turns, isPassive: passive });
     }
     return { effects, duration: parsedDuration };
+  }
+
+  // Extract Passive / Active skill names from rawContent sections
+  function parseSheetSkillSections(rawContent) {
+    const result = { passive: [], active: [] };
+    try {
+      const text = String(rawContent||'');
+      // Match both ## and ### headings, look for Passive/Active (with optional Nodes suffix)
+      const regex = /(^#{2,3}\s*(Passive|Active)(?:\s+Nodes)?[^\n]*)([\s\S]*?)(?=^#{2,3}\s|\Z)/gmi;
+      let m; while ((m = regex.exec(text)) !== null) {
+        const kind = m[2].toLowerCase();
+        const body = m[3];
+        const lines = body.split(/\r?\n/).map(l=>l.trim()).filter(l=>l && !l.startsWith('#'));
+        lines.forEach(line => {
+          const cleaned = line.replace(/^[-*+\d\.\)>]\s*/, '').trim();
+          if (/^#/.test(cleaned)) return;
+          // Handle [[skill]], **[[skill]]**, and plain text formats
+          let name = cleaned
+            .replace(/^\*\*\[\[(.+?)\]\]\*\*$/, '$1')  // **[[skill]]**
+            .replace(/^\[\[(.+?)\]\]$/, '$1')          // [[skill]]
+            .split(/\s+-\s+|:/)[0].trim();
+          if (name && !result[kind].some(n=>n.toLowerCase()===name.toLowerCase())) result[kind].push(name);
+        });
+      }
+
+    } catch(_) { /* ignore */ }
+    return result;
   }
 
   function computeMovement(speed) {
@@ -1624,13 +2786,20 @@
     URL.revokeObjectURL(url);
   }
 
-  function showToast(message) {
+  function showToast(message, type = 'info') {
+    console.log('DEBUG: Showing toast:', message, 'type:', type);
     dom.toast.textContent = message;
-    dom.toast.classList.remove("hidden");
+    
+    // Remove existing type classes
+    dom.toast.classList.remove("hidden", "toast-info", "toast-success", "toast-warning", "toast-error");
+    
+    // Add type-specific class
+    dom.toast.classList.add(`toast-${type}`);
+    
     clearTimeout(state.toastTimer);
     state.toastTimer = setTimeout(() => {
       dom.toast.classList.add("hidden");
-    }, 2600);
+    }, 3000); // Slightly longer for damage notifications
   }
 
   function formatDate(value) {
@@ -1969,12 +3138,29 @@
 
   function renderMarkdown(raw) {
     if (!raw) return '<em>No content</em>';
+    console.log('=== MARKDOWN DEBUG ===');
+    console.log('Raw content:', raw.substring(0, 200) + '...');
+    
     const esc = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     let html = esc
-      .replace(/!\[\[([^\]]+)\]\]/g, (m, p1) => `<img src="${resolveImage(p1)}" alt="${p1}" class="sheet-img" />`)
-      .replace(/\[\[([^\]|]+\.(?:png|jpg|jpeg|gif))\]\]/gi, (m,p1) => `<img src="${resolveImage(p1)}" alt="${p1}" class="sheet-img" />`);
+      .replace(/!\[\[([^\]]+)\]\]/g, (m, p1) => {
+        const imgSrc = resolveImage(p1);
+        console.log('IMAGE REPLACEMENT:', { match: m, p1, resolved: imgSrc });
+        return `<img src="${imgSrc}" alt="${p1}" class="sheet-img" onerror="console.error('Image failed to load:', this.src, 'Original:', '${p1}')" onload="console.log('Image loaded successfully:', this.src)" style="border: 2px solid red; max-width: 200px;" />`;
+      })
+      .replace(/\[\[([^\]|]+\.(?:png|jpg|jpeg|gif))\]\]/gi, (m,p1) => {
+        const imgSrc = resolveImage(p1);
+        console.log('BRACKET IMAGE:', { match: m, p1, resolved: imgSrc });
+        return `<img src="${imgSrc}" alt="${p1}" class="sheet-img" style="border: 2px solid blue; max-width: 200px;" />`;
+      });
+    
     // Standalone image filename on its own line -> image
-    html = html.replace(/^(?:\s*)([A-Za-z0-9_\- ]+\.(?:png|jpg|jpeg|gif))(?:\s*)$/gmi, (m, p1) => `<img src="${resolveImage(p1.trim())}" alt="${p1.trim()}" class="sheet-img" />`);
+    html = html.replace(/^(?:\s*)([A-Za-z0-9_\- ]+\.(?:png|jpg|jpeg|gif))(?:\s*)$/gmi, (m, p1) => {
+      const imgSrc = resolveImage(p1.trim());
+      console.log('STANDALONE IMAGE:', { match: m, p1: p1.trim(), resolved: imgSrc });
+      return `<img src="${imgSrc}" alt="${p1.trim()}" class="sheet-img" style="border: 2px solid green; max-width: 200px;" />`;
+    });
+    
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
     html = html.replace(/^###\s+(.+)$/gm,'<h3>$1</h3>')
@@ -1982,6 +3168,9 @@
                .replace(/^#\s+(.+)$/gm,'<h1>$1</h1>');
     html = html.replace(/^(?:- \s*.*(?:\n|$))+?/gm, block => '<ul>' + block.trim().split(/\n/).map(l=>l.replace(/^-\s*/,'')).map(li=>`<li>${li}</li>`).join('') + '</ul>');
     html = html.split(/\n{2,}/).map(p=> p.match(/^<h[1-3]|^<ul|<img|<p|<blockquote|<table|^<code/) ? p : `<p>${p.replace(/\n/g,'<br>')}</p>`).join('\n');
+    
+    console.log('Final HTML contains images:', html.includes('<img'));
+    console.log('Sample final HTML:', html.substring(0, 500) + '...');
     return html;
   }
 
@@ -1993,8 +3182,7 @@
     if (/^https?:/i.test(cleaned) || cleaned.startsWith('/')) return cleaned;
     // Map bare filename to /img route; allow subdir hints like Character/Name.png
     if (/\.(png|jpg|jpeg|gif|svg)$/i.test(cleaned)) {
-      if (cleaned.includes('/')) return `/img/${cleaned}`;
-      return `/img/${cleaned}`;
+      return cleaned.includes('/') ? `/img/${cleaned}` : `/img/${cleaned}`;
     }
     return cleaned;
   }

@@ -239,6 +239,26 @@ function handleApi(req, res, urlObj) {
     return true;
   }
 
+  if (req.method === 'GET' && urlObj.pathname === '/api/skills-raw') {
+    try {
+      const skills = parseSkillsWithRawContent();
+      sendJson(res, 200, { skills });
+    } catch (e) {
+      sendError(res, e);
+    }
+    return true;
+  }
+
+  if (req.method === 'GET' && urlObj.pathname === '/api/skills-enhanced') {
+    try {
+      const skills = parseSkillsEnhanced();
+      sendJson(res, 200, skills);
+    } catch (e) {
+      sendError(res, e);
+    }
+    return true;
+  }
+
   if (req.method === "POST" && urlObj.pathname === "/api/convert") {
     let body = "";
     req.on("data", chunk => (body += chunk));
@@ -344,8 +364,13 @@ function handleApi(req, res, urlObj) {
     const rel = urlObj.pathname.replace(/^\/img\//,'');
     const safe = rel.split('/').filter(seg => seg && seg !== '..').join(path.sep);
     const filePath = path.join(IMAGE_DIR, safe);
+    console.log('Image request:', { pathname: urlObj.pathname, rel, safe, filePath, IMAGE_DIR });
     fs.stat(filePath, (err, stats) => {
-      if (err || !stats.isFile()) { return sendNotFound(res); }
+      if (err || !stats.isFile()) { 
+        console.log('Image not found:', { err: err?.code, stats: !!stats });
+        return sendNotFound(res); 
+      }
+      console.log('Serving image:', filePath);
       serveStaticFile(res, filePath);
     });
     return true;
@@ -409,6 +434,249 @@ function parseSkills() {
     } catch(_) { /* ignore */ }
   });
   return results;
+}
+
+function parseSkillsWithRawContent() {
+  const results = [];
+  if (!fs.existsSync(NODE_GRAPH_DIR)) return results;
+  const files = fs.readdirSync(NODE_GRAPH_DIR).filter(f => f.toLowerCase().endsWith('.md'));
+  files.forEach(file => {
+    try {
+      const full = path.join(NODE_GRAPH_DIR, file);
+      const raw = fs.readFileSync(full, 'utf8');
+      const name = file.replace(/\.md$/i,'');
+      const basic = parseSkills().find(s => s.name === name) || { name };
+      results.push({ ...basic, rawContent: raw });
+    } catch(_) { /* ignore */ }
+  });
+  return results;
+}
+
+function parseSkillsEnhanced() {
+  const results = [];
+  if (!fs.existsSync(NODE_GRAPH_DIR)) return results;
+  const files = fs.readdirSync(NODE_GRAPH_DIR).filter(f => f.toLowerCase().endsWith('.md'));
+  
+  files.forEach(file => {
+    try {
+      const full = path.join(NODE_GRAPH_DIR, file);
+      const raw = fs.readFileSync(full, 'utf8');
+      const name = file.replace(/\.md$/i,'');
+      
+      const enhanced = convertMarkdownToEnhancedSkill(raw, name);
+      results.push(enhanced);
+    } catch(error) {
+      console.error(`Failed to parse enhanced skill ${file}:`, error);
+    }
+  });
+  
+  return results;
+}
+
+function convertMarkdownToEnhancedSkill(markdownContent, skillName) {
+  console.log(`DEBUG: Parsing enhanced skill: ${skillName}`);
+  const lines = markdownContent.split('\n');
+  const skill = {
+    id: skillName.toLowerCase().replace(/\s+/g, '-'),
+    name: skillName,
+    description: '',
+    tier: null,
+    rarity: null,
+    typeTags: [],
+    passive: false,
+    active: false,
+    dice: {
+      expression: '',
+      modifiers: [],
+      critRange: null,
+      critEffects: [],
+      minRollEffects: [],
+      maxRollEffects: []
+    },
+    effects: {
+      onUse: [],
+      onHit: [],
+      onCrit: [],
+      onKill: [],
+      onMinRoll: [],
+      onMaxRoll: [],
+      passive: [],
+      conditional: []
+    },
+    targeting: {
+      range: 1,
+      type: 'single',
+      maxTargets: 1,
+      canTargetSelf: false,
+      canTargetAllies: false,
+      canTargetEnemies: true
+    },
+    costs: {
+      mp: 0,
+      hp: 0
+    },
+    prerequisites: [],
+    acquisitionMethods: []
+  };
+
+  let inDescription = false;
+  let inEffectDetails = false;
+  let inPrerequisites = false;
+  
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+    
+    // Parse description (first non-header, non-table content)
+    if (index > 0 && !inDescription && trimmed && 
+        !trimmed.startsWith('#') && !trimmed.startsWith('|') && 
+        !trimmed.startsWith('---') && trimmed !== 'Quick Info') {
+      skill.description = trimmed;
+      inDescription = true;
+    }
+    
+    // Parse tier and rarity from table
+    if (trimmed.includes('**Tier**')) {
+      const match = line.match(/\|\s*\*\*Tier\*\*\s*\|\s*([^|]+)\s*\|/);
+      if (match) {
+        const tierInfo = match[1];
+        const tierNum = tierInfo.match(/(\d+)/);
+        if (tierNum) skill.tier = parseInt(tierNum[1], 10);
+        
+        const rarityMatch = tierInfo.match(/#(Common|Uncommon|Rare|Epic|Legendary)/i);
+        if (rarityMatch) skill.rarity = rarityMatch[1];
+      }
+    }
+    
+    // Parse type tags
+    if (trimmed.includes('**Type**')) {
+      const match = line.match(/\|\s*\*\*Type\*\*\s*\|\s*([^|]+)\s*\|/);
+      if (match) {
+        const typeInfo = match[1];
+        const tags = typeInfo.match(/#([A-Za-z0-9_-]+)/g) || [];
+        skill.typeTags = tags.map(tag => tag.slice(1));
+        
+        skill.passive = skill.typeTags.includes('Passive');
+        skill.active = skill.typeTags.includes('Active');
+      }
+    }
+    
+    // Parse effect details section
+    if (trimmed === '- **Effect Details:**') {
+      inEffectDetails = true;
+      return;
+    }
+    
+    if (inEffectDetails) {
+      if (trimmed.startsWith('- ') || trimmed.startsWith('    - ')) {
+        const effectLine = trimmed.replace(/^-\s*/, '').replace(/^\s*-\s*/, '');
+        parseEnhancedEffectLine(effectLine, skill);
+      } else if (trimmed.startsWith('#') || trimmed === '---') {
+        inEffectDetails = false;
+      }
+    }
+    
+    // Parse prerequisites section
+    if (trimmed === '### Prerequisites') {
+      inPrerequisites = true;
+      return;
+    }
+    
+    if (inPrerequisites) {
+      const prereqMatch = trimmed.match(/\[\[([^\]]+)\]\]/g);
+      if (prereqMatch) {
+        skill.prerequisites.push(...prereqMatch.map(p => p.slice(2, -2)));
+      }
+      
+      if (trimmed.startsWith('### Acquisition Method')) {
+        inPrerequisites = false;
+      }
+    }
+  });
+  
+  console.log(`DEBUG: Finished parsing ${skill.name}. Final skill:`, JSON.stringify(skill, null, 2));
+  return skill;
+}
+
+function parseEnhancedEffectLine(line, skill) {
+  const lowerLine = line.toLowerCase();
+  console.log(`DEBUG: Parsing line: "${line}"`);
+  
+  // Parse dice expressions
+  const diceMatch = line.match(/(\d+d\d+)/i);
+  console.log(`DEBUG: Dice match result:`, diceMatch);
+  if (diceMatch && !skill.dice.expression) {
+    skill.dice.expression = diceMatch[1];
+    console.log(`DEBUG: Set dice expression to: ${skill.dice.expression}`);
+  }
+  
+  // Parse resource costs
+  const mpCostMatch = line.match(/(\d+)\s*MP/i);
+  if (mpCostMatch) {
+    skill.costs.mp = parseInt(mpCostMatch[1], 10);
+  }
+  
+  // Parse damage effects (Attack lines or Roll lines with damage)
+  if ((lowerLine.includes('attack') && (lowerLine.includes('damage') || lowerLine.includes('roll'))) ||
+      (lowerLine.includes('roll') && lowerLine.includes('damage'))) {
+    const effect = {
+      type: 'damage',
+      amount: 0, // Base damage, dice roll will be added
+      description: line.replace(/^\*\*[^*]+\*\*:\s*/, '').trim()
+    };
+    skill.effects.onHit.push(effect);
+  }
+  
+  // Parse special roll effects
+  if (lowerLine.includes('max roll')) {
+    const effect = {
+      type: 'special',
+      trigger: 'max_roll',
+      description: line.replace(/^\*\*[^*]+\*\*:\s*/, '').trim()
+    };
+    skill.effects.onMaxRoll.push(effect);
+  }
+  
+  if (lowerLine.includes('min roll')) {
+    const effect = {
+      type: 'special',
+      trigger: 'min_roll',
+      description: line.replace(/^\*\*[^*]+\*\*:\s*/, '').trim()
+    };
+    skill.effects.onMinRoll.push(effect);
+  }
+  
+  // Parse stat modifiers
+  const statMatch = line.match(/([+-]\d+)\s+(STR|DEX|CON|INT|WIS|CHA|SPD|AC|HP|MP)/gi);
+  if (statMatch) {
+    statMatch.forEach(match => {
+      const [, delta, stat] = match.match(/([+-]\d+)\s+([A-Z]+)/i);
+      const effect = {
+        type: 'stat_modifier',
+        stat: stat.toUpperCase(),
+        delta: parseInt(delta, 10),
+        duration: parseLineDuration(line) || (skill.passive ? 9999 : 1)
+      };
+      
+      if (skill.passive) {
+        skill.effects.passive.push(effect);
+      } else {
+        skill.effects.onHit.push(effect);
+      }
+    });
+  }
+  
+  // Parse targeting info
+  if (lowerLine.includes('range') && line.match(/(\d+)/)) {
+    const rangeMatch = line.match(/(\d+)/);
+    if (rangeMatch) {
+      skill.targeting.range = parseInt(rangeMatch[1], 10);
+    }
+  }
+}
+
+function parseLineDuration(text) {
+  const durationMatch = text.match(/(\d+)\s*turn/i);
+  return durationMatch ? parseInt(durationMatch[1], 10) : null;
 }
 
 const server = http.createServer((req, res) => {
