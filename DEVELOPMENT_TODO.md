@@ -1,8 +1,24 @@
 # Node-Based Adventure - Enhanced Skill System Development To-Do
 
+## ✅ Completed Features
+
+### Core Skill System
+- [x] **Enhanced Skill Parser** - Parse markdown skills with dice, costs, and effects
+- [x] **Dice Expression Evaluation** - Roll and calculate 1D7 and other dice expressions  
+- [x] **Damage Application** - Apply dice results as damage to targets
+- [x] **Resource Consumption** - MP/HP cost deduction with UI updates
+- [x] **Effect System** - onHit, onUse, onCrit effect processing
+- [x] **Character Defeat** - Auto-remove defeated characters from tracker
+- [x] **Direct UI Updates** - Real-time stat input updates without full re-render
+- [x] **Toast Notification System** - Type-based notifications (success, warning, error, info)
+
 ## 🚨 High Priority (Critical)
 
 ### 🔧 Bug Fixes & Stability
+- [x] **Safe Access Patterns** - Fixed undefined property crashes with optional chaining
+- [x] **Session Data Management** - Fixed race conditions in character removal
+- [ ] **Toast Visibility Issue** - Investigate why toast notifications don't display (debugging added)
+- [ ] **Image Display in Detail View** - Fix character/monster images not showing
 - [ ] **Remove Debug Logging** - Clean up console.log statements added for troubleshooting
 - [ ] **Error Handling** - Add try-catch blocks around skill execution pipeline
 - [ ] **Skill Validation** - Validate skill format during parsing to prevent runtime errors

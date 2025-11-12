@@ -1,0 +1,47 @@
+{
+  "version": "0.1.0",
+  "potential_thresholds": {
+    "1": 0,
+    "2": 10,
+    "3": 25,
+    "4": 40,
+    "5": 60,
+    "6": 80,
+    "7": 110,
+    "8": 140,
+    "9": 180
+  },
+  "tier_names": {
+    "1": "Common",
+    "2": "Uncommon",
+    "3": "Rare",
+    "4": "Renowned",
+    "5": "Heroic",
+    "6": "Epic",
+    "7": "Legendary",
+    "8": "Mythical",
+    "9": "Transcendence"
+  },
+  "ability_slots": {
+    "formula_active": "min(4, ceil(tier/2) + floor(potential/50))",
+    "formula_passive": "min(4, 2 + floor(tier/3) + floor(potential/60))"
+  },
+  "damage_types": ["Pierce", "Blunt", "Slash", "Mental"],
+  "stat_defaults": {
+    "STR": 10,
+    "DEX": 10,
+    "INT": 10,
+    "WIS": 10,
+    "CHA": 10,
+    "LCK": 10,
+    "END": 10,
+    "SPD": 10,
+    "HP": 100,
+    "MP": 50
+  },
+  "combat": {
+    "buff_debuff_timing": "entity_start",
+    "movement_type": "manhattan_diagonal",
+    "turn_order_recalc": "per_round"
+  }
+}

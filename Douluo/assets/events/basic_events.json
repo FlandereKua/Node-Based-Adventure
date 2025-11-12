@@ -1,0 +1,47 @@
+{
+  "events": [
+    {
+      "id": "first_blood",
+      "name": "First Blood",
+      "description": "Your first victory in combat grants insight",
+      "trigger_tags": ["warrior"],
+      "trigger_conditions": {},
+      "potential_gain": 5,
+      "stat_adjustments": {
+        "STR": 1,
+        "END": 1
+      },
+      "adds_tags": ["veteran"],
+      "notes": "Triggered after first combat victory"
+    },
+    {
+      "id": "arcane_epiphany",
+      "name": "Arcane Epiphany",
+      "description": "A moment of magical clarity",
+      "trigger_tags": ["mage"],
+      "trigger_conditions": {
+        "min_potential": 15
+      },
+      "potential_gain": 10,
+      "stat_adjustments": {
+        "INT": 2,
+        "WIS": 1
+      },
+      "adds_tags": ["enlightened"],
+      "notes": "Available for mages with sufficient potential"
+    },
+    {
+      "id": "tier2_breakthrough",
+      "name": "Uncommon Breakthrough",
+      "description": "Advance to Tier 2",
+      "trigger_tags": [],
+      "trigger_conditions": {
+        "min_tier": 1,
+        "min_potential": 10
+      },
+      "potential_gain": 0,
+      "tier_advancement": 2,
+      "notes": "Standard tier 2 advancement"
+    }
+  ]
+}

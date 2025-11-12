@@ -794,16 +794,8 @@
       console.log(`[Character Defeated] Removed DOM element for ${character.name}`);
     }
     
-    // Remove from session data
-    if (state.session && state.session.participants) {
-      const sessionIndex = state.session.participants.findIndex(p => p.instanceId === character.instanceId);
-      if (sessionIndex >= 0) {
-        state.session.participants.splice(sessionIndex, 1);
-        console.log(`[Character Defeated] Removed ${character.name} from session participants`);
-      }
-    } else {
-      console.log(`[Character Defeated] No session participants array found`);
-    }
+    // Note: Character already removed from session.participants before this delayed call
+    // This function now just handles UI cleanup and notifications
     
     // Clear selection if this character was selected
     if (state.selectedEntry && state.selectedEntry.instanceId === character.instanceId) {
@@ -1620,9 +1612,20 @@
           
           // Check if character died and remove if HP is 0
           if (target.stats.hp <= 0) {
-            // Delay defeat notification so damage notification is seen first
+            // Delay defeat notification so damage notification is seen first, but remove from data immediately
+            const defeatedCharacter = target;
+            
+            // Remove from session data immediately to prevent re-rendering
+            if (state.session && state.session.participants) {
+              const sessionIndex = state.session.participants.findIndex(p => p.instanceId === defeatedCharacter.instanceId);
+              if (sessionIndex >= 0) {
+                state.session.participants.splice(sessionIndex, 1);
+                console.log(`[Character Defeated] Removed ${defeatedCharacter.name} from session data immediately`);
+              }
+            }
+            
             setTimeout(() => {
-              removeDefeatedCharacter(target);
+              removeDefeatedCharacter(defeatedCharacter);
             }, 1000); // 1 second delay to see damage notification
           }
         }
@@ -1714,9 +1717,20 @@
       
       // Check if character died and remove if HP is 0
       if (target.stats.hp <= 0) {
-        // Delay defeat notification so damage notification is seen first
+        // Delay defeat notification so damage notification is seen first, but remove from data immediately
+        const defeatedCharacter = target;
+        
+        // Remove from session data immediately to prevent re-rendering
+        if (state.session && state.session.participants) {
+          const sessionIndex = state.session.participants.findIndex(p => p.instanceId === defeatedCharacter.instanceId);
+          if (sessionIndex >= 0) {
+            state.session.participants.splice(sessionIndex, 1);
+            console.log(`[Character Defeated] Removed ${defeatedCharacter.name} from session data immediately`);
+          }
+        }
+        
         setTimeout(() => {
-          removeDefeatedCharacter(target);
+          removeDefeatedCharacter(defeatedCharacter);
         }, 1000); // 1 second delay to see damage notification
       }
     }
@@ -2788,6 +2802,13 @@
 
   function showToast(message, type = 'info') {
     console.log('DEBUG: Showing toast:', message, 'type:', type);
+    console.log('DEBUG: dom.toast element:', dom.toast);
+    
+    if (!dom.toast) {
+      console.error('ERROR: Toast element not found!');
+      return;
+    }
+    
     dom.toast.textContent = message;
     
     // Remove existing type classes

@@ -1,0 +1,26 @@
+{
+  "id": "arena_basic",
+  "name": "Training Arena",
+  "width": 24,
+  "height": 16,
+  "type": "battle",
+  "description": "A basic arena for combat training",
+  "tiles": [
+    {"x": 2, "y": 7, "terrain": "normal", "deployment_team": "ally"},
+    {"x": 2, "y": 8, "terrain": "normal", "deployment_team": "ally"},
+    {"x": 3, "y": 7, "terrain": "normal", "deployment_team": "ally"},
+    {"x": 3, "y": 8, "terrain": "normal", "deployment_team": "ally"},
+    {"x": 20, "y": 7, "terrain": "normal", "deployment_team": "enemy"},
+    {"x": 20, "y": 8, "terrain": "normal", "deployment_team": "enemy"},
+    {"x": 21, "y": 7, "terrain": "normal", "deployment_team": "enemy"},
+    {"x": 21, "y": 8, "terrain": "normal", "deployment_team": "enemy"},
+    {"x": 10, "y": 5, "terrain": "forest"},
+    {"x": 11, "y": 5, "terrain": "forest"},
+    {"x": 12, "y": 5, "terrain": "forest"},
+    {"x": 13, "y": 5, "terrain": "forest"},
+    {"x": 10, "y": 10, "terrain": "forest"},
+    {"x": 11, "y": 10, "terrain": "forest"},
+    {"x": 12, "y": 10, "terrain": "forest"},
+    {"x": 13, "y": 10, "terrain": "forest"}
+  ]
+}

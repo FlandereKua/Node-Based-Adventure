@@ -808,6 +808,8 @@ body.light-theme .stat-group input {
   border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-lg);
   font-size: 0.95rem;
+  z-index: 10000;
+  pointer-events: none;
 }
 
 .toast.hidden {

@@ -1,0 +1,173 @@
+{
+  "items": [
+    {
+      "id": "iron_sword",
+      "name": "Iron Sword",
+      "item_type": "equipment",
+      "description": "A sturdy iron blade",
+      "rarity": "common",
+      "stat_bonuses": {
+        "STR": 3,
+        "DEX": 1
+      },
+      "stackable": false
+    },
+    {
+      "id": "leather_armor",
+      "name": "Leather Armor",
+      "item_type": "equipment",
+      "description": "Basic protective gear",
+      "rarity": "common",
+      "stat_bonuses": {
+        "END": 4,
+        "HP": 20
+      },
+      "stackable": false
+    },
+    {
+      "id": "mystic_staff",
+      "name": "Mystic Staff",
+      "item_type": "equipment",
+      "description": "A staff pulsing with magical energy",
+      "rarity": "uncommon",
+      "stat_bonuses": {
+        "INT": 5,
+        "WIS": 2,
+        "MP": 15
+      },
+      "stackable": false
+    },
+    {
+      "id": "ring_of_speed",
+      "name": "Ring of Speed",
+      "item_type": "equipment",
+      "description": "Increases movement and reaction time",
+      "rarity": "rare",
+      "stat_bonuses": {
+        "SPD": 3,
+        "DEX": 2
+      },
+      "stackable": false
+    },
+    {
+      "id": "amulet_of_fortune",
+      "name": "Amulet of Fortune",
+      "item_type": "equipment",
+      "description": "Brings good luck to its wearer",
+      "rarity": "rare",
+      "stat_bonuses": {
+        "LCK": 5,
+        "CHA": 2
+      },
+      "stackable": false
+    },
+    {
+      "id": "health_potion",
+      "name": "Health Potion",
+      "item_type": "consumable",
+      "description": "Restores 50 HP",
+      "rarity": "common",
+      "consumable_effects": {
+        "heal_hp": 50
+      },
+      "stackable": true,
+      "max_stack": 99
+    },
+    {
+      "id": "mana_potion",
+      "name": "Mana Potion",
+      "item_type": "consumable",
+      "description": "Restores 30 MP",
+      "rarity": "common",
+      "consumable_effects": {
+        "restore_mp": 30
+      },
+      "stackable": true,
+      "max_stack": 99
+    },
+    {
+      "id": "elixir_of_strength",
+      "name": "Elixir of Strength",
+      "item_type": "consumable",
+      "description": "Temporarily boosts STR by 5 for 3 turns",
+      "rarity": "uncommon",
+      "consumable_effects": {
+        "stat_boost": {
+          "STR": 5,
+          "duration": 3
+        },
+        "combat_only": true
+      },
+      "stackable": true,
+      "max_stack": 20
+    },
+    {
+      "id": "spirit_essence",
+      "name": "Spirit Essence",
+      "item_type": "consumable",
+      "description": "Grants 5 Potential points",
+      "rarity": "rare",
+      "potential_gain": 5,
+      "consumable_effects": {
+        "non_combat_only": true
+      },
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "breakthrough_pill",
+      "name": "Breakthrough Pill",
+      "item_type": "consumable",
+      "description": "Aids in tier advancement, grants 15 Potential",
+      "rarity": "epic",
+      "tier_advancement_value": 15,
+      "consumable_effects": {
+        "non_combat_only": true
+      },
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "antidote",
+      "name": "Antidote",
+      "item_type": "consumable",
+      "description": "Removes all debuffs",
+      "rarity": "uncommon",
+      "consumable_effects": {
+        "remove_debuffs": true
+      },
+      "stackable": true,
+      "max_stack": 50
+    },
+    {
+      "id": "mega_health_potion",
+      "name": "Mega Health Potion",
+      "item_type": "consumable",
+      "description": "Restores 150 HP",
+      "rarity": "rare",
+      "consumable_effects": {
+        "heal_hp": 150
+      },
+      "stackable": true,
+      "max_stack": 20
+    },
+    {
+      "id": "dragon_scale",
+      "name": "Dragon Scale",
+      "item_type": "material",
+      "description": "A rare crafting material",
+      "rarity": "epic",
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "monster_core",
+      "name": "Monster Core",
+      "item_type": "material",
+      "description": "Essence of a defeated monster",
+      "rarity": "uncommon",
+      "stackable": true,
+      "max_stack": 50
+    }
+  ]
+}

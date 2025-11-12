@@ -1,0 +1,54 @@
+{
+  "trainings": [
+    {
+      "id": "strength_training",
+      "name": "Strength Training",
+      "description": "Build physical power through rigorous exercise",
+      "stat_gains": {
+        "STR": 1,
+        "END": 1
+      },
+      "potential_multiplier": 1.0,
+      "requirements": {},
+      "cost": 0
+    },
+    {
+      "id": "agility_training",
+      "name": "Agility Training",
+      "description": "Improve speed and reflexes",
+      "stat_gains": {
+        "DEX": 1,
+        "SPD": 1
+      },
+      "potential_multiplier": 1.0,
+      "requirements": {},
+      "cost": 0
+    },
+    {
+      "id": "magical_study",
+      "name": "Magical Study",
+      "description": "Deepen understanding of arcane arts",
+      "stat_gains": {
+        "INT": 1,
+        "MP": 5
+      },
+      "potential_multiplier": 1.0,
+      "requirements": {
+        "has_tag": "mage"
+      },
+      "cost": 0
+    },
+    {
+      "id": "meditation",
+      "name": "Meditation",
+      "description": "Cultivate wisdom and mental fortitude",
+      "stat_gains": {
+        "WIS": 1,
+        "MP": 3
+      },
+      "potential_multiplier": 1.0,
+      "requirements": {},
+      "cost": 0
+    }
+  ]
+}

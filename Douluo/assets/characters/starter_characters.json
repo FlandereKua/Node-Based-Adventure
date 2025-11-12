@@ -1,0 +1,88 @@
+{
+  "characters": [
+    {
+      "id": "hero_warrior",
+      "name": "Valiant",
+      "tier": 1,
+      "potential": 15,
+      "stats": {
+        "STR": 15,
+        "DEX": 12,
+        "INT": 8,
+        "WIS": 10,
+        "CHA": 11,
+        "LCK": 10,
+        "END": 14,
+        "SPD": 10,
+        "HP": 150,
+        "MP": 40
+      },
+      "tags": ["warrior", "human", "melee", "tank"],
+      "skills": ["life", "thrust", "power_strike"],
+      "is_ally": true
+    },
+    {
+      "id": "hero_mage",
+      "name": "Arcana",
+      "tier": 1,
+      "potential": 20,
+      "stats": {
+        "STR": 7,
+        "DEX": 10,
+        "INT": 16,
+        "WIS": 14,
+        "CHA": 12,
+        "LCK": 11,
+        "END": 8,
+        "SPD": 11,
+        "HP": 90,
+        "MP": 100
+      },
+      "tags": ["mage", "human", "ranged", "magic"],
+      "skills": ["life", "mental_blast", "minor_heal"],
+      "is_ally": true
+    },
+    {
+      "id": "enemy_goblin",
+      "name": "Goblin Grunt",
+      "tier": 1,
+      "potential": 5,
+      "stats": {
+        "STR": 10,
+        "DEX": 13,
+        "INT": 6,
+        "WIS": 7,
+        "CHA": 5,
+        "LCK": 8,
+        "END": 9,
+        "SPD": 12,
+        "HP": 80,
+        "MP": 20
+      },
+      "tags": ["goblin", "melee", "enemy"],
+      "skills": ["life", "thrust"],
+      "is_ally": false
+    },
+    {
+      "id": "enemy_orc",
+      "name": "Orc Warrior",
+      "tier": 1,
+      "potential": 8,
+      "stats": {
+        "STR": 16,
+        "DEX": 8,
+        "INT": 5,
+        "WIS": 6,
+        "CHA": 6,
+        "LCK": 7,
+        "END": 15,
+        "SPD": 8,
+        "HP": 140,
+        "MP": 25
+      },
+      "tags": ["orc", "melee", "enemy", "brute"],
+      "skills": ["life", "power_strike"],
+      "is_ally": false
+    }
+  ]
+}

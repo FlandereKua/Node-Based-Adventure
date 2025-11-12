@@ -1,0 +1,170 @@
+{
+  "skills": [
+    {
+      "id": "thrust",
+      "name": "Thrust",
+      "tier": 1,
+      "type": "active",
+      "description": "A quick piercing attack",
+      "tags": ["physical", "melee", "pierce"],
+      "links": ["life"],
+      "costs": {
+        "mp": 5
+      },
+      "range": {
+        "min": 0,
+        "max": 1,
+        "pattern": "single"
+      },
+      "effects": [
+        {
+          "kind": "damage",
+          "params": {
+            "amount": 18,
+            "damage_type": "Pierce",
+            "scaling": "STR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "quick_hand",
+      "name": "Quick Hand",
+      "tier": 1,
+      "type": "passive",
+      "description": "Improves dexterity through practice",
+      "tags": ["passive", "dexterity"],
+      "links": ["life"],
+      "costs": {},
+      "range": {},
+      "effects": [
+        {
+          "kind": "stat_mod",
+          "params": {
+            "DEX": 2,
+            "SPD": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "triple_thrust",
+      "name": "Triple Thrust",
+      "tier": 2,
+      "type": "active",
+      "description": "Three rapid piercing strikes",
+      "tags": ["physical", "melee", "pierce", "combo"],
+      "links": ["thrust", "quick_hand"],
+      "costs": {
+        "mp": 12
+      },
+      "range": {
+        "min": 0,
+        "max": 1,
+        "pattern": "single"
+      },
+      "effects": [
+        {
+          "kind": "damage",
+          "params": {
+            "amount": 45,
+            "damage_type": "Pierce",
+            "scaling": "STR"
+          }
+        }
+      ],
+      "potential_breakpoints": [
+        {
+          "pt_threshold": 50,
+          "bonus_effect": {
+            "kind": "damage",
+            "params": {
+              "amount": 15,
+              "damage_type": "Pierce"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "power_strike",
+      "name": "Power Strike",
+      "tier": 1,
+      "type": "active",
+      "description": "A heavy blunt attack",
+      "tags": ["physical", "melee", "blunt"],
+      "links": ["life"],
+      "costs": {
+        "mp": 8
+      },
+      "range": {
+        "min": 0,
+        "max": 1,
+        "pattern": "single"
+      },
+      "effects": [
+        {
+          "kind": "damage",
+          "params": {
+            "amount": 25,
+            "damage_type": "Blunt",
+            "scaling": "STR"
+          }
+        }
+      ]
+    },
+    {
+      "id": "minor_heal",
+      "name": "Minor Heal",
+      "tier": 1,
+      "type": "active",
+      "description": "Restore a small amount of HP",
+      "tags": ["magic", "healing"],
+      "links": ["life"],
+      "costs": {
+        "mp": 10
+      },
+      "range": {
+        "min": 0,
+        "max": 3,
+        "pattern": "single"
+      },
+      "effects": [
+        {
+          "kind": "heal",
+          "params": {
+            "amount": 30,
+            "scaling": "WIS"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mental_blast",
+      "name": "Mental Blast",
+      "tier": 2,
+      "type": "active",
+      "description": "Attack the mind directly",
+      "tags": ["magic", "mental", "psionic"],
+      "links": ["life"],
+      "costs": {
+        "mp": 15
+      },
+      "range": {
+        "min": 1,
+        "max": 4,
+        "pattern": "single"
+      },
+      "effects": [
+        {
+          "kind": "damage",
+          "params": {
+            "amount": 35,
+            "damage_type": "Mental",
+            "scaling": "INT"
+          }
+        }
+      ]
+    }
+  ]
+}
