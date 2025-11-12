@@ -1,0 +1,91 @@
+- id: skill_seed_root
+  name: "Seedlight Basics"
+  type: Passive
+  tier: Common
+  tags: ["Life"]
+  description: "A spark that every itinerant hero awakens with."
+  effects: {}
+  links: []
+
+- id: skill_edge_lattice
+  name: "Edge Lattice"
+  type: Active
+  tier: Uncommon
+  tags: ["Strike", "Combo"]
+  description: "Weaves two rapid cuts that set up future finishers."
+  effects:
+    hits:
+      - { dice: "1d4", flat: 1 }
+      - { dice: "1d6" }
+    cost: { MP: 3 }
+    scaling: { stat: "DEX", factor: 0.5 }
+  links: ["skill_seed_root"]
+
+- id: skill_cascade_flurry
+  name: "Cascade Flurry"
+  type: Active
+  tier: Rare
+  tags: ["Combo"]
+  description: "Riding momentum from the Edge Lattice, the hero unleashes three finishing blows."
+  effects:
+    hits:
+      - { dice: "1d6" }
+      - { dice: "1d6" }
+      - { dice: "2d6", flat: 2 }
+    cost: { MP: 6 }
+    scaling: { stat: "DEX", factor: 0.6 }
+  links: ["skill_edge_lattice"]
+
+- id: skill_phantom_lance
+  name: "Phantom Lance"
+  type: Active
+  tier: Rare
+  tags: ["Pierce", "Summon"]
+  description: "Launches a spectral lance. Unlocks a guardian aid on hit."
+  effects:
+    hits:
+      - { dice: "2d4", flat: 2 }
+    summon:
+      id: "phantom_guard"
+      name: "Phantom Guard"
+      stats:
+        STR: 6
+        DEX: 5
+        INT: 4
+        WIS: 5
+        CHA: 4
+        LCK: 3
+        END: 7
+        SPD: 6
+        HP: 30
+        MP: 0
+        PT: 20
+      skills: ["skill_seed_root"]
+      duration: 2
+      tags: ["Spectral"]
+    cost: { MP: 7 }
+    scaling: { stat: "DEX", factor: 0.7 }
+  links: ["skill_edge_lattice", "skill_seed_root"]
+
+- id: skill_starseer_beacon
+  name: "Starseer Beacon"
+  type: Passive
+  tier: Epic
+  tags: ["Aura"]
+  description: "A distant goal node that requires Cascade Flurry to unlock."
+  effects:
+    repeat: 0
+  links: ["skill_cascade_flurry"]
+
+- id: skill_radiant_burst
+  name: "Radiant Burst"
+  type: Active
+  tier: Uncommon
+  tags: ["Shotgun", "Radiant"]
+  description: "Close-range burst that benefits from the starter node."
+  effects:
+    hits:
+      - { dice: "2d4", flat: 1 }
+    cost: { MP: 4 }
+    scaling: { stat: "CHA", factor: 0.4 }
+  links: ["skill_seed_root"]

@@ -1,0 +1,122 @@
+- id: skill_life_core
+  name: "Life Thread"
+  type: Passive
+  tier: Common
+  tags: ["Life"]
+  description: "The origin node that all mortals touch."
+  effects: {}
+  links: []
+
+- id: skill_triple_thrust
+  name: "Triple Thrust"
+  type: Active
+  tier: Rare
+  tags: ["Pierce"]
+  description: "Three precise lance thrusts."
+  effects:
+    hits:
+      - { dice: "1d3" }
+      - { dice: "2d4" }
+      - { dice: "3d6" }
+    cost: { MP: 6 }
+    scaling: { stat: "DEX", factor: 0.5 }
+    stackingBonusPerHit: 0
+  links: ["skill_life_core", "skill_multi_slash"]
+
+- id: skill_multi_slash
+  name: "Multi Slash"
+  type: Active
+  tier: Common
+  tags: ["Strike"]
+  description: "Rapid slashes that build momentum."
+  effects:
+    hits:
+      - { dice: "1d4" }
+      - { dice: "1d4" }
+    cost: { MP: 3 }
+    scaling: { stat: "STR", factor: 0.4 }
+    stackingBonusPerHit: 1
+  links: ["skill_life_core"]
+
+- id: skill_distant_snipe
+  name: "Distant Snipe"
+  type: Active
+  tier: Uncommon
+  tags: ["Snipe"]
+  description: "Line-of-sight shot gains power with distance."
+  effects:
+    hits:
+      - { dice: "1d8", flat: 2 }
+    cost: { MP: 4 }
+    scaling: { stat: "DEX", factor: 0.6 }
+  links: ["skill_life_core"]
+
+- id: skill_scatter_shot
+  name: "Scatter Shot"
+  type: Active
+  tier: Uncommon
+  tags: ["Shotgun"]
+  description: "Cone blast that punishes close range."
+  effects:
+    hits:
+      - { dice: "1d6", flat: 1 }
+      - { dice: "1d6", flat: 1 }
+    cost: { MP: 5 }
+    scaling: { stat: "DEX", factor: 0.4 }
+  links: ["skill_distant_snipe", "skill_life_core"]
+
+- id: skill_guardian_aid
+  name: "Guardian's Aid"
+  type: Active
+  tier: Rare
+  tags: ["Summon"]
+  description: "Call a spectral guardian to shield allies."
+  effects:
+    cost: { MP: 8 }
+    summon:
+      id: "aid_guardian"
+      name: "Spectral Guardian"
+      stats:
+        STR: 8
+        DEX: 4
+        INT: 4
+        WIS: 6
+        CHA: 3
+        LCK: 3
+        END: 10
+        SPD: 5
+        HP: 32
+        MP: 0
+        PT: 20
+      skills: ["skill_life_core"]
+      duration: 3
+      tags: ["Protector"]
+    aid: true
+  links: ["skill_life_core"]
+
+- id: skill_healing_wave
+  name: "Healing Wave"
+  type: Active
+  tier: Uncommon
+  tags: ["Heal"]
+  description: "Soothing magic that restores allies."
+  effects:
+    hits:
+      - { dice: "2d4", flat: 2 }
+    cost: { MP: 5 }
+    scaling: { stat: "WIS", factor: 0.8 }
+  links: ["skill_life_core"]
+
+- id: skill_shadow_bolt
+  name: "Shadow Bolt"
+  type: Active
+  tier: Uncommon
+  tags: ["Magic"]
+  description: "Corrupted energy blast."
+  effects:
+    hits:
+      - { dice: "2d6", flat: 1 }
+    cost: { MP: 4 }
+    scaling: { stat: "INT", factor: 0.7 }
+    traitsRequired: ["Corrupted"]
+  links: ["skill_life_core"]

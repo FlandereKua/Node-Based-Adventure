@@ -1,0 +1,46 @@
+- id: hero_graph_tester
+  name: "Irel Varos"
+  tier: Rare
+  stats:
+    STR: 9
+    DEX: 11
+    INT: 7
+    WIS: 6
+    CHA: 5
+    LCK: 5
+    END: 8
+    SPD: 9
+    HP: 44
+    MP: 18
+    PT: 70
+  traits: ["Human", "Pathfinder"]
+  skills: ["skill_seed_root", "skill_edge_lattice", "skill_radiant_burst"]
+  slots: { passive: 3, active: 4 }
+  lootTable:
+    - { itemId: "mock_focus_shard", weight: 20 }
+    - { itemId: "mock_canvas", weight: 5 }
+  tags: ["Hero", "Mock"]
+  backstory: "Built for automated testing of skill-link visualizations."
+
+- id: hero_graph_support
+  name: "Seren Tala"
+  tier: Uncommon
+  stats:
+    STR: 6
+    DEX: 8
+    INT: 9
+    WIS: 8
+    CHA: 7
+    LCK: 6
+    END: 7
+    SPD: 8
+    HP: 38
+    MP: 24
+    PT: 68
+  traits: ["Human", "Radiant"]
+  skills: ["skill_seed_root", "skill_radiant_burst"]
+  slots: { passive: 2, active: 3 }
+  lootTable:
+    - { itemId: "mock_lightstone", weight: 15 }
+  tags: ["Hero", "Mock"]
+  backstory: "Provides alternate branching for the mock link graph suite."

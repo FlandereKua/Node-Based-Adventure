@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArchOS Codex UI</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "@app/": "/src/",
+          "@app/styles/": "/src/styles/",
+          "@engine/": "/../src/",
+          "react": "/node_modules/react/index.js",
+          "react/jsx-runtime": "/node_modules/react/jsx-runtime.js",
+          "react/jsx-dev-runtime": "/node_modules/react/jsx-dev-runtime.js",
+          "react-dom": "/node_modules/react-dom/index.js",
+          "react-dom/client": "/node_modules/react-dom/client.js",
+          "react-router-dom": "/node_modules/react-router-dom/dist/index.js",
+          "scheduler": "/node_modules/scheduler/index.js",
+          "zustand": "/node_modules/zustand/esm/index.js",
+          "yaml": "/node_modules/yaml/browser/dist/index.js"
+        }
+      }
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
